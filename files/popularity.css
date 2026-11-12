@@ -1,0 +1,35 @@
+.panel { width:420px; }
+.popCard { display:grid;gap:9px;padding:14px;border-radius:14px;background:linear-gradient(140deg,var(--accent-soft),var(--well));border:1px solid var(--line); }
+.eyebrow { color:var(--muted);font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:700; }
+.liveBadge { font-size:10px;background:var(--solid);border-radius:20px;padding:3px 7px;color:var(--muted);white-space:nowrap; }
+.popHeading { display:flex;align-items:center;gap:12px; }
+.popHeading strong { font-size:32px;letter-spacing:-.04em;line-height:1.1; }
+.popHeading span { font-size:13px; }
+.popSplit { display:block;font-size:10px;color:var(--muted);margin-top:3px; }.popSplit span { padding:0 5px; }
+.dateNote { font-size:11px;color:var(--muted); }
+.micro { font-size:11px;color:var(--muted);line-height:1.5; }
+.checkNote { font-size:12px;display:flex;gap:7px;align-items:center; }
+.checkNote input { margin:0;accent-color:var(--accent); }
+.catalogueCount { font-size:11px;color:var(--muted); }
+.placeSearch, input[type=date] { width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--solid);min-width:0; }
+.placeSearch { font-size:13px; }
+.poiList { max-height:275px;overflow:auto;flex-shrink:0; }
+.poiRow { min-height:61px; }.poiRow .nm { font-size:13px; }
+.poiRow .nm small { display:block;font-size:10px;font-weight:400;color:var(--muted);margin-top:3px; }
+.poiRow:disabled { opacity:.55;cursor:default; }.poiRow:hover:not(:disabled) { background:var(--accent-soft); }
+.postBadge { flex:none;min-width:60px;text-align:right;color:var(--accent);font-size:18px;font-weight:650; }
+.postBadge small { display:block;font-size:10px;font-weight:400;max-width:85px;white-space:normal; }.postBadge.empty { color:var(--muted);font-size:16px; }
+.selectedPlaces:empty { display:none; }.selectedPlaces .chip { text-align:left;max-width:100%; }
+.recommend { background:var(--accent);color:var(--on-accent);padding:10px 12px;border-radius:10px;font-weight:600;font-size:13px; }
+.notice { background:var(--accent-soft);padding:9px 11px;border-radius:9px;font-size:12px; }
+.textButton { color:var(--accent);font-size:11px; }
+.routeEvidence { color:var(--muted);font-size:11px;line-height:1.5; }
+.routeEvidence strong { color:var(--accent); }
+.walkSettings { border:1px solid var(--line);border-radius:10px;padding:9px 11px; }
+.walkSettings summary { cursor:pointer;font-size:12px;font-weight:600; }
+.walkSettings[open] { display:grid;gap:10px; }
+.walkSettings .grid2 { margin-top:10px; }
+.mk.popular .p { width:16px;height:16px;background:var(--accent);border-color:var(--solid);box-shadow:0 0 0 4px var(--accent-soft); }
+.mk.popular .tag { border-color:var(--accent); }
+.mk .tag { max-width:210px;overflow:hidden;text-overflow:ellipsis; }
+@media (max-width:760px) { .panel { width:auto; }.popHeading strong { font-size:29px; }.poiList { max-height:230px; }.popCard { padding:12px; } }

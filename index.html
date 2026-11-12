@@ -1,0 +1,748 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShadeWalk Singapore</title>
+<style>
+[hidden] { display: none !important; }
+/* Layout: one full-bleed map with a floating route panel, bottom sheet on phones. */
+:root {
+  --bg: #e9ece6; --fg: #15191c; --muted: #5e676d; --faint: #8a9298;
+  --material: rgba(250, 251, 249, .9); --solid: #ffffff; --well: rgba(20, 30, 35, .06); --line: rgba(20, 30, 35, .12);
+  --accent: #0a6fe0; --on-accent: #ffffff; --accent-soft: rgba(10, 111, 224, .12);
+  --high: #0b8f7c; --mid: #d08700; --low: #d9482b; --pending: #7a5fb5; --pending-soft: rgba(122, 95, 181, .13);
+  --shadow: 0 8px 30px rgba(15, 25, 30, .18), 0 1px 3px rgba(15, 25, 30, .12);
+  --start: #0f7a45; --end: #c72f2f;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Segoe UI", "Microsoft YaHei", "Noto Sans SC", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171b1e; --fg: #eef1f2; --muted: #a2abb1; --faint: #788188;
+  --material: rgba(34, 39, 43, .9); --solid: #2a3034; --well: rgba(255, 255, 255, .08); --line: rgba(255, 255, 255, .13);
+  --accent: #5aa7ff; --on-accent: #06203d; --accent-soft: rgba(90, 167, 255, .17);
+  --high: #38c9b3; --mid: #eeb13c; --low: #ff7d60; --pending: #b9a2ec; --pending-soft: rgba(185, 162, 236, .16);
+  --shadow: 0 8px 30px rgba(0, 0, 0, .45), 0 1px 3px rgba(0, 0, 0, .3); color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #171b1e; --fg: #eef1f2; --muted: #a2abb1; --faint: #788188;
+  --material: rgba(34, 39, 43, .9); --solid: #2a3034; --well: rgba(255, 255, 255, .08); --line: rgba(255, 255, 255, .13);
+  --accent: #5aa7ff; --on-accent: #06203d; --accent-soft: rgba(90, 167, 255, .17);
+  --high: #38c9b3; --mid: #eeb13c; --low: #ff7d60; --pending: #b9a2ec; --pending-soft: rgba(185, 162, 236, .16);
+  --shadow: 0 8px 30px rgba(0, 0, 0, .45), 0 1px 3px rgba(0, 0, 0, .3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 14px/1.45 var(--font); overflow: hidden; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tn { font-variant-numeric: tabular-nums; }
+#map { position: absolute; inset: 0; }
+.maplibregl-map { overflow: hidden; position: absolute; }
+.maplibregl-canvas { position: absolute; left: 0; top: 0; }
+.maplibregl-canvas-container.maplibregl-interactive { cursor: grab; user-select: none; }
+.maplibregl-canvas-container.maplibregl-interactive:active { cursor: grabbing; }
+.maplibregl-marker { position: absolute; top: 0; left: 0; will-change: transform; }
+
+.panel { position: absolute; z-index: 5; left: 14px; top: 14px; bottom: 14px; width: 392px; display: flex; flex-direction: column; background: var(--material); -webkit-backdrop-filter: saturate(170%) blur(22px); backdrop-filter: saturate(170%) blur(22px); border-radius: 18px; box-shadow: var(--shadow); overflow: hidden; }
+.handle { display: none; }
+.head { padding: 14px 16px 10px; display: flex; flex-direction: column; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 8px; }
+.brand strong { font-size: 17px; letter-spacing: -.01em; font-weight: 650; }
+.brand .sub { color: var(--muted); font-size: 12px; }
+.brand .sp { flex: 1; }
+.lang { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--well); }
+.ask { display: flex; align-items: center; gap: 8px; background: var(--well); border-radius: 12px; padding: 0 6px 0 11px; height: 40px; }
+.ask svg { flex: none; color: var(--muted); }
+.ask input { flex: 1; min-width: 0; border: 0; background: none; outline: 0; height: 100%; }
+.ask input::placeholder { color: var(--muted); }
+.ask button { flex: none; height: 28px; padding: 0 10px; border-radius: 8px; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 600; }
+.askNote { font-size: 12px; color: var(--muted); margin-top: -3px; }
+.askNote b { color: var(--fg); font-weight: 600; }
+.tabs { display: flex; gap: 2px; padding: 0 12px; border-bottom: .5px solid var(--line); }
+.tabs button { flex: 1; padding: 8px 2px 9px; color: var(--muted); font-size: 13px; font-weight: 550; border-bottom: 2px solid transparent; margin-bottom: -.5px; }
+.tabs button[aria-selected="true"] { color: var(--accent); border-color: var(--accent); }
+.body { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 16px; }
+.row { display: grid; gap: 6px; }
+.lbl { font-size: 12px; color: var(--muted); font-weight: 550; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+select { width: 100%; height: 34px; border-radius: 9px; border: .5px solid var(--line); background: var(--solid); padding: 0 8px; }
+.seg { display: flex; background: var(--well); border-radius: 9px; padding: 2px; }
+.seg button { flex: 1; min-width: 0; height: 30px; border-radius: 7px; font-size: 12.5px; font-weight: 550; color: var(--muted); white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--solid); color: var(--fg); box-shadow: 0 1px 2px rgba(0, 0, 0, .18); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 550; }
+.chip.plain { background: var(--well); color: var(--fg); }
+.chip .n { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 10.5px; font-weight: 700; }
+.chip.more { background: none; border: 1px dashed var(--line); color: var(--fg); }
+.pending { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 6px; background: var(--pending-soft); color: var(--pending); font-size: 11px; font-weight: 600; white-space: nowrap; }
+.sect { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sect h3 { margin: 0; font-size: 14px; font-weight: 650; }
+.poiList { display: flex; flex-direction: column; border: .5px solid var(--line); border-radius: 11px; background: var(--solid); overflow: hidden; }
+.poiRow { display: flex; align-items: center; gap: 9px; padding: 8px 10px; text-align: left; width: 100%; border-bottom: .5px solid var(--line); }
+.poiRow:last-child { border-bottom: 0; }
+.poiRow .box { flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--faint); display: grid; place-items: center; color: var(--on-accent); font-size: 11px; font-weight: 700; }
+.poiRow[aria-pressed="true"] .box { background: var(--accent); border-color: var(--accent); }
+.poiRow .nm { flex: 1; min-width: 0; font-size: 13.5px; }
+.poiRow .cat { color: var(--muted); font-size: 12px; }
+.options { display: flex; flex-direction: column; gap: 6px; }
+.opt { width: 100%; text-align: left; padding: 10px 11px; border-radius: 12px; background: var(--well); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; border: 1.5px solid transparent; }
+.opt[aria-pressed="true"] { background: var(--solid); border-color: var(--accent); }
+.opt .t { font-weight: 600; font-size: 13.5px; }
+.opt .d { color: var(--muted); font-size: 12px; grid-column: 1; }
+.opt .v { grid-row: 1 / span 2; grid-column: 2; align-self: center; text-align: right; }
+.opt .v b { display: block; font-size: 16px; font-weight: 650; }
+.opt .v span { font-size: 12px; color: var(--muted); }
+.opt.off { cursor: default; opacity: .9; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stat { background: var(--well); border-radius: 10px; padding: 8px 10px; }
+.stat span { display: block; font-size: 11.5px; color: var(--muted); }
+.stat b { font-size: 17px; font-weight: 650; }
+.bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--well); }
+.bar i { display: block; height: 100%; }
+.barKey { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
+.warn { padding: 8px 11px; border-radius: 10px; background: color-mix(in srgb, var(--low) 13%, transparent); color: var(--low); font-size: 12.5px; font-weight: 550; }
+.steps { display: flex; flex-direction: column; }
+.step { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; }
+.step .pin { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 700; }
+.step .pin.m { border-radius: 7px; background: var(--fg); color: var(--bg); font-size: 10px; }
+.step .nm { font-weight: 600; font-size: 13.5px; padding-top: 2px; }
+.leg { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; min-height: 34px; }
+.leg .ln { justify-self: center; width: 3px; border-radius: 2px; margin: 2px 0; }
+.leg .tx { color: var(--muted); font-size: 12px; align-self: center; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.tbl th { text-align: right; font-weight: 550; color: var(--muted); padding: 5px 4px; border-bottom: .5px solid var(--line); }
+.tbl td { text-align: right; padding: 7px 4px; border-bottom: .5px solid var(--line); }
+.tbl th:first-child, .tbl td:first-child { text-align: left; }
+.note { font-size: 12.5px; color: var(--muted); margin: 0; }
+.lead { font-size: 13.5px; margin: 0; }
+.lead b { font-weight: 650; }
+.planRow { width: 100%; text-align: left; padding: 9px 11px; background: var(--well); border-radius: 11px; display: grid; gap: 5px; border: 1.5px solid transparent; }
+.planRow[aria-pressed="true"] { border-color: var(--low); background: var(--solid); }
+.planRow .top { display: flex; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 13.5px; }
+.planRow .top span { color: var(--low); font-weight: 650; white-space: nowrap; }
+.src { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1px 10px; padding: 8px 0; border-bottom: .5px solid var(--line); }
+.src:last-child { border-bottom: 0; }
+.src b { font-weight: 600; font-size: 13.5px; }
+.src small { grid-column: 1; color: var(--muted); font-size: 12px; }
+.src .st { grid-row: 1 / span 2; grid-column: 2; align-self: center; font-size: 11px; font-weight: 650; padding: 2px 7px; border-radius: 6px; white-space: nowrap; }
+.st.ok { background: color-mix(in srgb, var(--high) 15%, transparent); color: var(--high); }
+.st.part { background: color-mix(in srgb, var(--mid) 17%, transparent); color: var(--mid); }
+.st.wait { background: var(--pending-soft); color: var(--pending); }
+
+.ctl { position: absolute; z-index: 4; right: 14px; top: 14px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.ctlGroup { background: var(--material); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-radius: 11px; box-shadow: var(--shadow); display: flex; flex-direction: column; overflow: hidden; }
+.ctlGroup button { width: 38px; height: 38px; display: grid; place-items: center; font-weight: 650; font-size: 13px; border-bottom: .5px solid var(--line); }
+.ctlGroup button:last-child { border-bottom: 0; }
+.ctlGroup button[aria-pressed="true"] { color: var(--accent); }
+.layers { background: var(--material); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-radius: 12px; box-shadow: var(--shadow); padding: 8px 12px; width: 214px; display: grid; gap: 1px; }
+.layers label { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13px; cursor: pointer; }
+.layers .pend { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 5px 0; font-size: 13px; color: var(--muted); }
+.foot { position: absolute; z-index: 3; right: 14px; bottom: 12px; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.sun, .legend { background: var(--material); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-radius: 10px; box-shadow: var(--shadow); padding: 6px 10px; font-size: 12px; display: flex; gap: 10px; align-items: center; }
+.sun b { font-weight: 650; }
+.attr { font-size: 10.5px; color: var(--muted); background: var(--material); padding: 1px 6px; border-radius: 5px; max-width: 340px; text-align: right; }
+.err { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; padding: 24px 24px 24px 430px; color: var(--muted); text-align: center; }
+
+.mk { display: grid; place-items: center; transform: translateY(0); cursor: pointer; }
+.mk .p { width: 11px; height: 11px; border-radius: 50%; background: var(--solid); border: 2.5px solid var(--accent); box-shadow: 0 1px 3px rgba(0, 0, 0, .35); }
+.mk.on .p { width: 26px; height: 26px; background: var(--accent); border: 2px solid var(--solid); color: var(--on-accent); font-size: 12px; font-weight: 700; display: grid; place-items: center; }
+.mk .tag { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 3px; white-space: nowrap; font-size: 11.5px; font-weight: 600; color: var(--fg); padding: 0 4px; border-radius: 4px; background: var(--material); pointer-events: none; }
+.mk:not(.on) .tag { display: none; }
+.showLabels .mk .tag { display: block; }
+.st-mk { display: grid; place-items: center; width: 17px; height: 17px; border-radius: 5px; background: var(--solid); border: 1.5px solid var(--fg); color: var(--fg); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); font-size: 9px; font-weight: 800; }
+.st-mk.on { width: 25px; height: 25px; border-radius: 7px; background: var(--fg); color: var(--bg); font-size: 10px; }
+.st-mk .tag { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: 2px; white-space: nowrap; font-size: 11px; font-weight: 600; color: var(--fg); padding: 0 4px; border-radius: 4px; background: var(--material); pointer-events: none; }
+.st-mk .tag { display: none; }
+.showLabels .st-mk .tag { display: block; }
+.ex { display: none; place-items: center; min-width: 17px; height: 15px; padding: 0 3px; border-radius: 4px; background: var(--fg); color: var(--bg); font-size: 9.5px; font-weight: 700; line-height: 1; box-shadow: 0 1px 2px rgba(0, 0, 0, .3); white-space: nowrap; }
+.showExits .ex { display: grid; }
+.ex.used { display: none !important; }
+.flag { display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.flag .ftxt { color: #ffffff; font-size: 12px; font-weight: 650; padding: 3px 8px; border-radius: 8px; white-space: nowrap; box-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
+.flag .stem { width: 2.5px; height: 9px; }
+.flag .tip { width: 11px; height: 11px; border-radius: 50%; border: 2.5px solid #ffffff; box-shadow: 0 1px 3px rgba(0, 0, 0, .4); margin-top: -1px; }
+.flag.s .ftxt, .flag.s .stem, .flag.s .tip { background: var(--start); }
+.flag.e .ftxt, .flag.e .stem, .flag.e .tip { background: var(--end); }
+.step .pin.s { background: var(--start); color: #ffffff; }
+.step .pin.e { background: var(--end); color: #ffffff; }
+
+@media (max-width: 760px) {
+  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 58%; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .panel.small { height: 112px; }
+  .handle { display: block; width: 100%; height: 18px; flex: none; }
+  .handle::after { content: ""; display: block; width: 38px; height: 4px; border-radius: 2px; background: var(--faint); margin: 7px auto 0; }
+  .head { padding: 2px 14px 8px; }
+  .brand .sub { display: none; }
+  .body { padding: 12px 14px 18px; overflow-x: hidden; }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .askNote { display: none; }
+  .ctl { top: max(10px, env(safe-area-inset-top, 0px)); right: max(10px, env(safe-area-inset-right, 0px)); }
+  .foot { display: none; }
+  .err { padding: 24px; align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+<link rel="stylesheet" href="files/popularity.css">
+<link rel="stylesheet" href="files/svi.css">
+
+<div id="map" role="application" aria-label="Map of walking routes in central Singapore"></div>
+<div class="err" id="err" hidden></div>
+
+<aside class="panel" id="panel">
+  <button class="handle" id="handle" aria-label="Resize panel"></button>
+  <div class="head">
+    <div class="brand"><strong>ShadeWalk</strong><span class="sub" id="brandSub"></span><span class="sp"></span><button class="lang" id="lang"></button></div>
+    <form class="ask" id="askForm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="ask" autocomplete="off">
+      <button type="submit" id="askBtn"></button>
+    </form>
+    <div class="askNote" id="askNote"></div>
+  </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="body" id="body"></div>
+</aside>
+
+<div class="ctl">
+  <div class="ctlGroup">
+    <button id="zin" aria-label="Zoom in">+</button>
+    <button id="zout" aria-label="Zoom out">−</button>
+  </div>
+  <div class="ctlGroup">
+    <button id="b3d" aria-pressed="false" aria-label="3D view">3D</button>
+    <button id="bLayers" aria-pressed="false" aria-label="Layers"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></button>
+    <button id="bFit" aria-label="Fit route"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+  </div>
+  <div class="layers" id="layers" hidden></div>
+</div>
+
+<div class="foot">
+  <div class="legend modeLegend" id="modeLegend" hidden></div>
+  <div class="legend" id="legend"></div>
+  <div class="sun tn" id="sun"></div>
+  <div class="attr" id="attr"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.min.js"></script>
+<script src="files/data.js"></script>
+<script src="files/network.js"></script>
+<script src="files/popularity-data.js"></script>
+<script src="files/routing-engine.js"></script>
+<script src="files/exits-data.js"></script>
+<script src="files/exits.js"></script>
+<script src="files/map-modes.js"></script>
+<script src="files/flow.js"></script>
+<script src="files/popularity-ui.js"></script>
+<script src="files/svi-data.js"></script>
+<script src="files/svi-ui.js"></script>
+<script src="files/popular-route.js"></script>
+<script src="files/route-geometry.js"></script>
+<script>
+const D = window.SHADE_DATA;
+const P = window.POPULARITY_DATA;
+D.pois = P.places; D.segs = window.SHADE_NETWORK.segs;
+D.plan = window.SHADE_NETWORK.plan;
+installSvi(D);
+installExits(D);
+const router = createWalkingRouter(D);
+const [OX, OY, K] = D.origin;
+const $ = id => document.getElementById(id);
+const dec = a => { const o = []; let x = 0, y = 0; for (let i = 0; i < a.length; i += 2) { x += a[i]; y += a[i + 1]; o.push([+(OX + x / K).toFixed(5), +(OY + y / K).toFixed(5)]); } return o; };
+const WALK = 75; // metres per minute, about 4.5 km/h
+
+const I18N = {
+  zh: { sub: "遮阴步行路线 · 原型", langBtn: "EN", ph: "例如：中午少晒太阳，一小时内逛博物馆", send: "设置", askHint: "概念演示：按关键词解析，尚未连接 AI 模型。", understood: "已设置", notUnderstood: "没有识别到条件，可以试试时段、时长或“博物馆”。", tabRoute: "路线", tabCompare: "方法比较", tabPlan: "规划视角", tabData: "数据",
+    start: "起点 MRT", time: "出发时段", limit: "步行上限", tradeoff: "距离和遮阴的权衡", less: "少绕路", bal: "平衡", shady: "更阴凉", min: "分钟",
+    attractions: "想去的景点", add: "添加或修改", done: "完成", popPending: "热度 待接入", maxPoi: "最多选 6 个景点，这样顺序才能即时算出。", all: "全部", museum: "博物馆", landmark: "地标", park: "公园", heritage: "历史建筑", chooseOne: "至少选 1 个景点才能生成路线。",
+    routes: "推荐路线", A: "最短路径", B: "连廊优先", C: "遮阴优先", D: "街景遮阴（SVI）", Ad: "只看距离", Bd: "优先走 LTA 和 OSM 的有盖路段", Cd: "3D 建筑阴影 + 树冠 + 连廊", Dd: "等 SVI 分数接入", wait: "待接入", shade: "遮蔽", km: "公里", distance: "总距离", walk: "步行时间", exposed: "最长连续暴晒", high: "遮蔽高", mid: "遮蔽中", low: "遮蔽低", itin: "行程", exit: "出口站", overLimit: m => `比步行上限多约 ${m} 分钟，可以减少景点或放宽上限。`, legFmt: (m, t, s) => `步行 ${m} 米 · ${t} 分钟 · 遮蔽 ${s}%`, startAt: "从这里出发", endAt: "到达最近的 MRT", exitLabel: "出口",
+    cmpLead: (dm, ds) => `和最短路径相比，遮阴优先路线${dm >= 0 ? "多走" : "少走"} <b class="tn">${Math.abs(dm)} 米</b>，遮蔽比例${ds >= 0 ? "提高" : "降低"} <b class="tn">${Math.abs(ds)} 个百分点</b>。`, method: "方法", cmpNote: "所有百分比都按同一份“3D 阴影 + 树冠 + 连廊”估算，所以只能说明路线差异。要判断哪种方法更准，还需要实地核查。", sens: "权衡设置的影响（遮阴优先）", sensCol: "设置", svi: "接入 SVI 后会增加第四行，并用实地核查比较 3D 和 SVI 谁更接近真实情况。", fieldPending: "实地核查 待完成",
+    planLead: "在 14 个景点之间的最短路径里，这些路段经常被使用，13:00 的遮蔽又少。可以作为实地核查和遮阴改善的优先候选。", planExp: s => `暴露 ${s}%`, planLen: m => `路段长约 ${m} 米`, planNote: "这是筛查线索，不代表这些路段一定需要改造。点击可在地图上查看。",
+    dataLead: "原型使用真实数据。下面标明每项数据的来源和现状，便于判断结果能信到什么程度。", ok: "可用", part: "需核实", pend: "待接入", assume: "原型假设",
+    srcs: [["步行路网", "OpenStreetMap，已和 LTA 人行道交叉检查", "ok"], ["MRT 出入口", "LTA，2025–2026 版", "ok"], ["有盖连廊和遮蔽设施", "LTA 2026 年 9 月版 + OSM 标注", "ok"], ["建筑和高度", "OSM；部分高度为估算值", "part"], ["树冠", "Meta/WRI 和 ESA 取并集；两者差异大，可能偏高", "part"], ["景点", "STB 数据，内容较旧（2015），开放情况待核实", "part"], ["街景遮阴分数（SVI）", "SVI 同学负责", "wait"], ["社交媒体热度", "数据来源待定", "wait"], ["实地核查", "路线确定后抽样", "wait"]],
+    assumes: d => [`太阳位置按 ${d} 计算`, "步行速度约 4.5 公里/小时", "晒太阳的距离按 1.5、2.5、4 倍计入成本（三档设置，尚未校准）", "不走高速公路和 trunk 级道路", "主要道路和 service 道路计入少量惩罚"],
+    startPin: "起点", endPin: "终点", startShort: "起", endShort: "终", bothPin: "起点和终点", lExit: "MRT 出口", legendExit: "黑色小标：MRT 出口", layerTitle: "地图图层", lGreen: "绿地和树冠（ESA）", lShelter: "路线网络中的遮蔽路段", lArea: "研究区范围", lBuild: "建筑", lSvi: "SVI 遮阴", sunFmt: (h, e) => `${h}:00 · 太阳高度 ${e}°`, legendHigh: "遮蔽高", legendMid: "中", legendLow: "低", ghost: "虚线：最短路径", attr: "© OpenStreetMap contributors · LTA · SLA · STB · ESA WorldCover 2021 · Meta/WRI 2024 · 原型，仅供课堂演示", noMap: "地图无法加载（需要 WebGL 和网络加载地图库）。左侧面板仍可使用。" },
+  en: { sub: "Shaded walking routes · prototype", langBtn: "中文", ph: "e.g. less sun at noon, museums within an hour", send: "Set", askHint: "Concept demo: reads keywords only, not connected to an AI model yet.", understood: "Set", notUnderstood: "No conditions found. Try a time of day, a duration, or “museum”.", tabRoute: "Route", tabCompare: "Compare", tabPlan: "Planning", tabData: "Data",
+    start: "Start MRT", time: "Time of day", limit: "Walking limit", tradeoff: "Distance versus shade", less: "Shorter", bal: "Balanced", shady: "Shadier", min: "min",
+    attractions: "Places to visit", add: "Add or change", done: "Done", popPending: "Popularity pending", maxPoi: "Choose up to 6 places so the order can be worked out instantly.", all: "All", museum: "Museum", landmark: "Landmark", park: "Park", heritage: "Heritage", chooseOne: "Choose at least one place to see a route.",
+    routes: "Suggested routes", A: "Shortest path", B: "Linkways first", C: "Shade first", D: "Street-view shade (SVI)", Ad: "Distance only", Bd: "Prefers LTA and OSM covered paths", Cd: "3D building shade + trees + linkways", Dd: "Waiting for SVI scores", wait: "Pending", shade: "shaded", km: "km", distance: "Distance", walk: "Walking time", exposed: "Longest in sun", high: "High shade", mid: "Medium", low: "Low shade", itin: "Itinerary", exit: "Exit station", overLimit: m => `About ${m} min over your walking limit. Remove a place or raise the limit.`, legFmt: (m, t, s) => `${m} m · ${t} min · ${s}% shaded`, startAt: "Start here", endAt: "Nearest MRT on foot", exitLabel: "Exit",
+    cmpLead: (dm, ds) => `Compared with the shortest path, the shade-first route is <b class="tn">${Math.abs(dm)} m ${dm >= 0 ? "longer" : "shorter"}</b> and shade share is <b class="tn">${Math.abs(ds)} points ${ds >= 0 ? "higher" : "lower"}</b>.`, method: "Method", cmpNote: "All percentages use the same 3D shade + trees + linkways estimate, so they only show how routes differ. Field checks are needed to say which method is more accurate.", sens: "Effect of the trade-off setting (shade first)", sensCol: "Setting", svi: "With SVI scores this gains a fourth row, and field checks will test whether 3D or SVI is closer to reality.", fieldPending: "Field check pending",
+    planLead: "On the shortest paths between the 14 places, these streets carry many trips with little shade at 13:00. They are candidates for field audits and shade improvements.", planExp: s => `${s}% exposed`, planLen: m => `About ${m} m of street`, planNote: "A screening lead, not proof that a street needs changing. Select one to see it on the map.",
+    dataLead: "The prototype uses real data. Each source is listed with its status so you can judge how far to trust the results.", ok: "Ready", part: "Check", pend: "Pending", assume: "Prototype assumptions",
+    srcs: [["Walking network", "OpenStreetMap, cross-checked against LTA footpaths", "ok"], ["MRT exits", "LTA, 2025–2026 release", "ok"], ["Covered linkways and shelter", "LTA Sep 2026 + OSM tags", "ok"], ["Buildings and heights", "OSM; some heights are estimated", "part"], ["Tree canopy", "Union of Meta/WRI and ESA, which differ widely; may run high", "part"], ["Attractions", "STB data from 2015; opening status needs checking", "part"], ["Street-view shade scores (SVI)", "Teammate's workstream", "wait"], ["Social media popularity", "Source to be decided", "wait"], ["Field checks", "Sampled once routes are final", "wait"]],
+    assumes: d => [`Sun position computed for ${d}`, "Walking speed about 4.5 km/h", "Distance in sun costs 1.5, 2.5 or 4 times shaded distance (three settings, not yet calibrated)", "No motorways or trunk roads", "Small penalty on primary and service roads"],
+    startPin: "Start", endPin: "End", startShort: "S", endShort: "E", bothPin: "Start and end", lExit: "MRT exits", legendExit: "Dark tags: MRT exits", layerTitle: "Map layers", lGreen: "Greenery and trees (ESA)", lShelter: "Sheltered paths on the route network", lArea: "Study area", lBuild: "Buildings", lSvi: "SVI shade", sunFmt: (h, e) => `${h}:00 · sun at ${e}°`, legendHigh: "High shade", legendMid: "Medium", legendLow: "Low", ghost: "Dashed: shortest path", attr: "© OpenStreetMap contributors · LTA · SLA · STB · ESA WorldCover 2021 · Meta/WRI 2024 · Prototype for class demo", noMap: "The map could not load (it needs WebGL and the map library). The panel still works." },
+};
+
+Object.assign(I18N.en,{"popTitle": "Post activity", "insideStudy": "Inside study boundary", "snapshot": "Snapshot · 4 Nov 2026", "locatedPosts": "located posts", "tagged": "location-tagged", "captionPlaced": "caption-inferred", "fixed90": "90-day study", "allDates": "All dates", "customDates": "Custom", "dateFrom": "From", "dateTo": "Through", "includeCaptions": "Include conservative caption matches", "sampleNote": "Collected Instagram post activity; not visitor numbers or a live crowd forecast.", "selected": "selected", "choosePlaces": "Choose my stops", "letPopularity": "Suggest by popularity", "browseSource": "Places catalogue", "instagramLocations": "Instagram locations", "referencePlaces": "Reference POIs", "bothCatalogues": "Both catalogues", "sortBy": "Sort places", "mostPosts": "Most posts first", "fewerPosts": "Fewer observed posts", "byName": "Name A–Z", "searchPlaces": "Search a place or location name", "category": "Category", "artwork": "Art & sculpture", "shopping": "Shopping", "observed": "Instagram location", "suggestStops": "Suggest up to 3 stops", "recommendNote": "Uses the current catalogue, filters and post counts. Tries the top 80 matches, keeps stops 200 m apart, and checks the full walk to an exit MRT against your limit. Suggestions update when you press this button.", "results": "matching records", "clearSelection": "Clear stops", "tagPlace": "Instagram location tag", "referencePlace": "OSM reference POI", "browseOnly": "Route connection needs review", "captionEvidence": "Caption evidence", "postCount": "posts", "noMatchedPosts": "No matched posts", "noResults": "No matching places. Try another name or catalogue.", "showMore": "Show more", "remove": "Remove", "identityNote": "Location tags and reference POIs are separate records. Some refer to the same physical place; counts are not merged by distance or name.", "suggestedNote": null, "noSuggestions": "No suggested stop fits these filters and this walking limit. Try another MRT, more time, or a wider catalogue.", "dataExplanation": "Snapshot of 10,692 unique collected posts. Only 4,548 with a specific placement inside the boundary are used here: 4,320 location-tagged and 228 conservative caption-inferred posts. The 90-day study is 6 Aug–3 Nov 2026, inclusive, in Singapore time. All dates spans 26 Jan 2014–4 Nov 2026 for these inside-boundary posts. Queries were count-limited; this is a historical sample, not a complete record.", "noDataNote": "A dash means no matched posts in the selected sample and period. It does not mean a place is unpopular. Promotional posts can remain in the original tagged sample. A tag is not proof of where a photograph was taken.", "routingNote": "797 catalogue records: 331 OSM reference POIs plus 466 Instagram location tags. 789 are connected within 100 m of the main walking graph; 8 are browse-only. Dashed connectors are approximate and entrances, opening status and access need checking. Existing 10 MRT starts are retained. Popularity ranks destinations; distance and shade choose the paths.", "sviFuture": "SVI scores are pending. Current shade values are the supplied building, canopy and linkway estimates. Future SVI data should join the original SEGMENT_ID with survey date, time, confidence and coverage before a new route option is enabled.", "collected": "Collected", "routePostLabel": "sampled posts at selected stops", "currentShade": "Shade values below are model estimates; SVI is pending.", "mapPlaces": "Map shows selected stops and up to 40 filtered catalogue records. Numbers in the list are collected posts.", "dataLead": "Study prototype · date-filtered post activity and walking routes", "planLead": "This original screening compares shortest paths between the original 14 attractions at 13:00. It has not been recalculated using popularity or the expanded catalogue.", "sub": "Places · popularity · shaded walks"});
+Object.assign(I18N.zh,{"popTitle": "发帖活跃度", "insideStudy": "研究边界内", "snapshot": "快照 · 2026年11月4日", "locatedPosts": "条已定位帖子", "tagged": "地点标签", "captionPlaced": "文案推断", "fixed90": "90天研究期", "allDates": "所有日期", "customDates": "自选日期", "dateFrom": "开始", "dateTo": "截止", "includeCaptions": "包含保守的文案地点匹配", "sampleNote": "采集到的 Instagram 发帖活跃度，不是实际客流或实时拥挤预测。", "selected": "已选", "choosePlaces": "自己选择地点", "letPopularity": "按热度推荐", "browseSource": "地点目录", "instagramLocations": "Instagram 地点", "referencePlaces": "参考兴趣点", "bothCatalogues": "两个目录", "sortBy": "排序", "mostPosts": "发帖最多优先", "fewerPosts": "已观测帖子较少", "byName": "名称 A–Z", "searchPlaces": "搜索地点名称", "category": "分类", "artwork": "艺术与雕塑", "shopping": "购物", "observed": "Instagram 地点", "suggestStops": "推荐最多3个地点", "recommendNote": "按当前目录、筛选和帖子数量，从前80个匹配中尝试推荐。停靠点间隔至少200米，并检查包含终点地铁站的步行时间。更改条件后请再次点击推荐。", "results": "条匹配记录", "clearSelection": "清空地点", "tagPlace": "Instagram 地点标签", "referencePlace": "OSM 参考兴趣点", "browseOnly": "路网连接待核查", "captionEvidence": "文案证据", "postCount": "条帖子", "noMatchedPosts": "没有匹配帖子", "noResults": "无匹配地点，请更改搜索或目录。", "showMore": "显示更多", "remove": "移除", "identityNote": "地点标签与参考兴趣点保留为独立记录；有些指向同一实际地点，不按距离或名称自动合并计数。", "suggestedNote": null, "noSuggestions": "当前条件和步行上限内没有合适的地点。请更改地铁站、增加时间或扩大目录。", "dataExplanation": "已采集10,692条不重复帖子，其中边界内已明确定位的4,548条进入此原型：4,320条地点标签和228条保守文案推断。90天研究期为2026年8月6日至11月3日（新加坡时间，含首尾日期）。边界内所有日期为2014年1月26日至2026年11月4日。采集按查询数量限制，是历史样本，不是完整记录。", "noDataNote": "破折号表示所选样本和时段没有匹配帖子，不代表地点不受欢迎。原始地点标签样本仍可能包含广告。标签不等于照片的实际拍摄位置。", "routingNote": "797条目录记录：331个OSM参考兴趣点与466个Instagram地点标签。789条距主步行路网节点100米以内，可规划路线；8条只供浏览。虚线连接为近似，入口、开放时间和通行条件需核实。保留原来的10个地铁起点。热度选择目的地，距离和遮阴决定路径。", "sviFuture": "SVI数据待接入；当前遮阴值沿用建筑、树冠和连廊模型估计。今后按原始SEGMENT_ID连接街景分数、采样日期、时间、置信度与覆盖率后，启用新的路线选项。", "collected": "已采集", "routePostLabel": "条已选地点样本帖子", "currentShade": "以下遮阴值为模型估计，SVI尚待接入。", "mapPlaces": "地图显示已选地点和最多40条筛选记录；列表数字为采集到的帖子数。", "dataLead": "研究原型 · 按日期筛选发帖活跃度与步行路线", "planLead": "此原始筛查比较14个原景点在13:00的最短路径，尚未按热度或扩充的目录重新计算。", "sub": "地点 · 热度 · 遮阴步行"});
+I18N.en.suggestedNote = n => `Suggested ${n} stop${n===1?"":"s"} using observed post counts. You can add or remove stops.`;
+I18N.zh.suggestedNote = n => `已按观测帖子数推荐${n}个地点，可继续添加或移除。`;
+for (const lang of ['en','zh']) {
+ const src=I18N[lang].srcs;
+ src.find(r=>r[0]=== (lang==='en'?'Social media popularity':'社交媒体热度'))?.splice(1,2,lang==='en'?'Instagram sample via Apify · snapshot 4 Nov 2026':'Instagram样本（Apify）· 2026年11月4日快照','part');
+ const poi=src.find(r=>r[0]===(lang==='en'?'Attractions':'景点'));
+ if(poi) poi.splice(1,2,lang==='en'?'331 OSM POIs + 466 distinct Instagram location tags; possible overlaps retained':'331个OSM兴趣点 + 466个独立Instagram地点标签；保留潜在重叠','part');
+}
+installSviText(I18N);
+installModeText(I18N);
+const state = { lang: "zh", start: Math.max(0, D.stations.findIndex(s => s.name === "City Hall")), startExit: null, endStation: null, endExit: null, mapMode: "standard", time: 1, limit: 60, w: 1, scheme: "D", sel: ["ig:474324149", "ig:367732531", "ig:212980037"].map(id=>D.pois.findIndex(p=>p.id===id)), tab: "route", picker: false, cat: "all", hi: null, is3d: false, layers: { green: true, shelter: false, area: true, build: true, exits: true }, note: null, legsOpen: false };
+Object.assign(state, { period:'recent', dateFrom:P.meta.windowStart, dateTo:P.meta.windowEnd,
+ includeCaptions:true, catalogue:'instagram', sort:'most', search:'', listLimit:10,
+ visitMode:'manual', recommendNote:null, settingsOpen:false });
+I18N.en.walkPreferences='Walking preferences'; I18N.zh.walkPreferences='步行设置';
+const T = k => I18N[state.lang][k];
+const poiName = i => state.lang === "zh" ? D.pois[i].zh : D.pois[i].en;
+const fmtKm = m => (m / 1000).toFixed(1);
+installPopular(D);
+const ROUTES = ["D", "P", "B", "A"];
+
+/* ---------- routing on the precomputed tables ---------- */
+const segs = D.segs;
+const segCoords = i => segs[i].c || (segs[i].c = dec(segs[i][0]));
+function cfgOf(s) { return s === "A" ? "A" : s === "B" ? "B" + state.w : s === "P" ? popularCfg() : s + state.time + state.w; }
+function segCost(s, i) { return router.cost(cfgOf(s), i); }
+function leg(cfg, a, b) { return router.leg(cfg, a, b); }
+const costMemo = {};
+function legCost(s, a, b) {
+  const cfg = cfgOf(s), k = `${cfg}|${a}|${b}`;
+  if (k in costMemo) return costMemo[k];
+  const l=leg(cfg,a,b);
+  const connector = n=>n[0]==='p'?D.pois[+n.slice(1)].snap:0;
+  return (costMemo[k] = l.s.reduce((sum,v)=>sum+segCost(s,Math.abs(v)-1),0)+connector(a)+connector(b)+(l.exit==null?0:D.exits[l.exit].snap));
+}
+function perms(a) { if (a.length < 2) return [a]; const o = []; a.forEach((x, i) => perms(a.filter((_, j) => j !== i)).forEach(p => o.push([x, ...p]))); return o; }
+function plan(s, sel = state.sel) {
+  if (!sel.length || sel.some(i=>!D.pois[i].routable)) return null;
+  const start = state.startExit != null ? "x" + state.startExit : "s" + state.start;
+  const ends = state.endExit != null ? ["x" + state.endExit] : state.endStation != null ? ["s" + state.endStation] : D.stations.map((_, e) => "s" + e);
+  let best = null;
+  for (const p of perms(sel)) {
+    let c = legCost(s, start, "p" + p[0]);
+    for (let i = 1; i < p.length; i++) c += legCost(s, "p" + p[i - 1], "p" + p[i]);
+    for (const e of ends) {
+      const tot = c + legCost(s, "p" + p[p.length - 1], e);
+      if (!best || tot < best.cost) best = { cost: tot, order: p, end: e };
+    }
+  }
+  const cfg = cfgOf(s), legs = [], stops = [start, ...best.order.map(i => "p" + i), best.end];
+  for (let i = 0; i < stops.length - 1; i++) legs.push({ from: stops[i], to: stops[i + 1], ...leg(cfg, stops[i], stops[i + 1]) });
+  return { scheme: s, order: best.order, end: D.exits[legs[legs.length - 1].exit].st, legs, ...routeMeasure(legs), posts: routePosts(legs) };
+}
+const coordsOfLeg = l => { const out = []; l.s.forEach(v => { const c = segCoords(Math.abs(v) - 1); const d = v > 0 ? c : c.slice().reverse(); out.push(...(out.length ? d.slice(1) : d)); }); return out; };
+
+/* ---------- map ---------- */
+const PAL = {
+  light: { bg: "#f2f1ec", green: "#cfe8bf", water: "#a6d8f4", major: "#ffffff", majorC: "#d9d7cf", minor: "#ffffff", minorC: "#e6e4dd", foot: "#c6c6bf", ctx: "#dedcd5", expw: "#f6dfa6", bld: "#e6e4dd", ext: "#efeee8", mask: "#ecebe6", area: "#a9adaf", shelter: "#7a5fb5", ghost: "#59626a", casing: "#ffffff", high: "#0a9d8a", mid: "#efa800", low: "#ee5a42", hi: "#ee5a42" },
+  dark: { bg: "#232427", green: "#25392c", water: "#16364b", major: "#4a4c50", majorC: "#303236", minor: "#3d3f43", minorC: "#2a2c2f", foot: "#55575b", ctx: "#3d3f43", expw: "#6d5a30", bld: "#33353a", ext: "#3d3f44", mask: "#17181a", area: "#7d8084", shelter: "#b9a2ec", ghost: "#a8b0b6", casing: "#101214", high: "#30d1bb", mid: "#ffc233", low: "#ff6b55", hi: "#ff6b55" },
+};
+const isDark = () => { const a = document.documentElement.getAttribute("data-theme"); return a ? a === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const fc = f => ({ type: "FeatureCollection", features: f });
+const line = (coords, p = {}) => ({ type: "Feature", properties: p, geometry: { type: "LineString", coordinates: coords } });
+let map = null, poiMarkers = [], stMarkers = [], exitMarkers = [], startFlag = null, endFlag = null, mapReady = false;
+const exitCode = x => String(x.code).replace(/^exit\s*/i, "");
+const exitText = x => `${D.stations[x.st].name} ${T("exitLabel")} ${exitCode(x)}`;
+function zoomClasses() {
+  const z = map.getZoom(), el = $("map");
+  el.classList.toggle("showLabels", z >= 15.4);
+  el.classList.toggle("showExits", z >= 15 && state.layers.exits);
+}
+
+function initMap() {
+  if (!window.maplibregl) throw new Error("no library");
+  const [w, s, e, n] = D.bounds;
+  map = new maplibregl.Map({ container: "map", style: { version: 8, sources: {}, layers: [{ id: "bg", type: "background", paint: { "background-color": PAL.light.bg } }] }, bounds: [[103.838, 1.276], [103.862, 1.303]], maxBounds: [[w - .01, s - .01], [e + .01, n + .01]], minZoom: 12.5, maxZoom: 18.5, attributionControl: false, dragRotate: true, pitchWithRotate: true, antialias: true, fadeDuration: 0 });
+  map.on("load", () => {
+    map.addSource("green", { type: "geojson", data: fc(D.green.map(r => ({ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: r.map(dec) } }))) });
+    map.addSource("water", { type: "geojson", data: fc(D.water.map(r => ({ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: r.map(dec) } }))) });
+    map.addSource("ctx", { type: "geojson", data: fc([...D.context[0].map(c => line(dec(c), { k: 0 })), ...D.context[1].map(c => line(dec(c), { k: 1 }))]) });
+    map.addSource("roads", { type: "geojson", data: fc(D.roads.flatMap((arr, k) => arr.map(c => line(dec(c), { k })))) });
+    map.addSource("bld", { type: "geojson", data: fc(D.buildings.map(b => ({ type: "Feature", properties: { h: b[0], m: b[1] }, geometry: { type: "Polygon", coordinates: [dec(b[2])] } }))) });
+    const area = dec(D.area);
+    map.addSource("mask", { type: "geojson", data: { type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [[[w - 1, s - 1], [e + 1, s - 1], [e + 1, n + 1], [w - 1, n + 1], [w - 1, s - 1]], area.slice().reverse()] } } });
+    map.addSource("area", { type: "geojson", data: line(area) });
+    const shelterF = []; segs.forEach((g, i) => { if (g[1] && g[2] / g[1] > .5) shelterF.push(line(segCoords(i))); });
+    map.addSource("shelter", { type: "geojson", data: fc(shelterF) });
+    map.addSource("hi", { type: "geojson", data: fc([]) });
+    const add = l => map.addLayer(l);
+    add({ id: "green", type: "fill", source: "green" });
+    add({ id: "water", type: "fill", source: "water" });
+    add({ id: "ctx", type: "line", source: "ctx", paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 12, .6, 16, 2.5] } });
+    add({ id: "rFoot", type: "line", source: "roads", filter: ["==", ["get", "k"], 2], minzoom: 14.3, paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 14.3, .4, 18, 1.6], "line-dasharray": [2, 1.2] } });
+    add({ id: "rMinorC", type: "line", source: "roads", filter: ["==", ["get", "k"], 1], layout: { "line-cap": "round" }, paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 12, .6, 15, 3.2, 18, 11] } });
+    add({ id: "rMajorC", type: "line", source: "roads", filter: ["==", ["get", "k"], 0], layout: { "line-cap": "round" }, paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 12, 1.4, 15, 6, 18, 20] } });
+    add({ id: "rMinor", type: "line", source: "roads", filter: ["==", ["get", "k"], 1], layout: { "line-cap": "round" }, paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 12, .3, 15, 2.2, 18, 9] } });
+    add({ id: "rMajor", type: "line", source: "roads", filter: ["==", ["get", "k"], 0], layout: { "line-cap": "round" }, paint: { "line-width": ["interpolate", ["linear"], ["zoom"], 12, .8, 15, 4.6, 18, 17] } });
+    add({ id: "bld", type: "fill", source: "bld", minzoom: 13 });
+    add({ id: "mask", type: "fill", source: "mask", paint: { "fill-opacity": .55 } });
+    add({ id: "area", type: "line", source: "area", paint: { "line-width": 1.4, "line-dasharray": [3, 2] } });
+    add({ id: "shelter", type: "line", source: "shelter", layout: { "line-cap": "round", visibility: "none" }, paint: { "line-width": 3.2 } });
+    add({ id: "hi", type: "line", source: "hi", layout: { "line-cap": "round", "line-join": "round" }, paint: { "line-width": 8, "line-opacity": .9 } });
+    add({ id: "bld3d", type: "fill-extrusion", source: "bld", minzoom: 13, layout: { visibility: "none" }, paint: { "fill-extrusion-height": ["get", "h"], "fill-extrusion-base": ["get", "m"], "fill-extrusion-opacity": .92 } });
+    mapReady = true;
+    setupMapModes();
+    RouteOverlay.attach(map);
+    FlowOverlay.attach(map);
+    applyTheme(); buildMarkers(); renderMap(true);
+  });
+  map.on("zoom", zoomClasses);
+}
+function applyTheme() {
+  if (!mapReady) return;
+  const base = isDark() ? PAL.dark : PAL.light;
+  const p = state.mapMode === "standard" ? base : { ...base, ...(isDark() ? ARCH.dark : ARCH.light) };
+  const set = (l, k, v) => map.setPaintProperty(l, k, v);
+  if (map.getLayer("bldLine")) set("bldLine", "line-color", p.line || base.area);
+  set("bg", "background-color", p.bg); set("green", "fill-color", p.green); set("water", "fill-color", p.water);
+  set("ctx", "line-color", ["match", ["get", "k"], 1, p.expw, p.ctx]);
+  set("rFoot", "line-color", p.foot); set("rMinorC", "line-color", p.minorC); set("rMajorC", "line-color", p.majorC); set("rMinor", "line-color", p.minor); set("rMajor", "line-color", p.major);
+  set("bld", "fill-color", p.bld); set("bld3d", "fill-extrusion-color", p.ext); set("mask", "fill-color", p.mask); set("area", "line-color", p.area); set("shelter", "line-color", p.shelter);
+  set("hi", "line-color", p.hi);
+  RouteOverlay.setPalette({ cls: { 2: "#0a84ff", 1: "#ffc400", 0: "#ff3b30" }, casing: isDark() ? "#0a4fb5" : "#0058cc", shadow: isDark() ? "rgba(0,0,0,.42)" : "rgba(0,30,80,.2)" });
+  setSunLight();
+}
+function setSunLight() {
+  if (!mapReady) return;
+  const s = D.times[state.time];
+  map.setLight({ anchor: "map", position: [1.4, s.az, 90 - s.el], intensity: isDark() ? .28 : .4, color: "#ffffff" });
+}
+function buildMarkers() {
+  stMarkers = D.stations.map((st, i) => {
+    const el = document.createElement("button"); el.className = "st-mk"; el.innerHTML = `M<span class="tag"></span>`; el.setAttribute("aria-label", st.name + " MRT");
+    el.addEventListener("click", ev => { ev.stopPropagation(); state.start = i; state.startExit = null; refresh(true); });
+    return new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([st.lng, st.lat]).addTo(map);
+  });
+  exitMarkers = D.exits.map((x, xi) => {
+    const el = document.createElement("button"); el.className = "ex"; el.textContent = exitCode(x);
+    el.addEventListener("click", ev => { ev.stopPropagation(); state.start = x.st; state.startExit = xi; refresh(true); });
+    return new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([x.lng, x.lat]).addTo(map);
+  });
+  const flag = cls => {
+    const el = document.createElement("div"); el.className = "flag " + cls; el.innerHTML = `<span class="ftxt"></span><span class="stem"></span><span class="tip"></span>`;
+    return new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, 5] }).setLngLat([D.exits[0].lng, D.exits[0].lat]).addTo(map);
+  };
+  startFlag = flag("s"); endFlag = flag("e");
+  zoomClasses();
+  poiMarkers = D.pois.map((p, i) => {
+    const el = document.createElement("button"); el.className = "mk"; el.innerHTML = `<span class="p"></span><span class="tag"></span>`;
+    el.addEventListener("click", ev => { ev.stopPropagation(); togglePoi(i); });
+    return new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat([p.lng, p.lat]).addTo(map);
+  });
+}
+function renderMarkers(r) {
+  if (!mapReady) return;
+  const shownPlaces = new Set(state.picker ? visiblePlaces().slice(0,40).map(x=>x.i) : []);
+  const along = new Set(r && state.scheme === "P" && !state.picker ? r.posts.top.map(x => x.i) : []);
+  poiMarkers.forEach((m, i) => {
+    const el = m.getElement(), n = r ? r.order.indexOf(i) : -1;
+    el.hidden = n < 0 && !shownPlaces.has(i) && !along.has(i);
+    el.classList.toggle("along", along.has(i));
+    el.classList.toggle('popular', n < 0 && popularity(i).total > 0);
+    el.title = poiName(i)+' · '+countText(i);
+    el.disabled = !D.pois[i].routable;
+    el.classList.toggle("on", n >= 0);
+    el.querySelector(".p").textContent = n >= 0 ? n + 1 : "";
+    el.querySelector(".tag").textContent = poiName(i)+" · "+countText(i);
+    el.setAttribute("aria-label", poiName(i));
+    el.setAttribute("aria-pressed", n >= 0);
+    el.style.zIndex = n >= 0 ? 3 : 1;
+  });
+  stMarkers.forEach((m, i) => {
+    const el = m.getElement();
+    el.querySelector(".tag").textContent = D.stations[i].name;
+    el.style.zIndex = 2;
+  });
+  const sx = r ? r.legs[0].exit : null, ex = r ? r.legs[r.legs.length - 1].exit : null;
+  exitMarkers.forEach((m, i) => {
+    const el = m.getElement();
+    el.classList.toggle("used", i === sx || i === ex);
+    el.setAttribute("aria-label", exitText(D.exits[i]));
+    el.title = exitText(D.exits[i]);
+    el.style.zIndex = 2;
+  });
+  const place = (mk, i, label) => {
+    const el = mk.getElement();
+    el.hidden = i == null;
+    if (i == null) return;
+    mk.setLngLat([D.exits[i].lng, D.exits[i].lat]);
+    el.querySelector(".ftxt").textContent = `${label} · ${exitText(D.exits[i])}`;
+    el.style.zIndex = 6;
+  };
+  place(startFlag, sx, sx === ex ? T("bothPin") : T("startPin"));
+  place(endFlag, sx === ex ? null : ex, T("endPin"));
+}
+function renderMap(fit) {
+  const r = current();
+  renderMarkers(r);
+  if (!mapReady) return;
+  const conn = [];
+  if (r) r.legs.forEach(l => {
+    const cs = coordsOfLeg(l);
+    if (cs.length) {
+      if (l.from[0] === "p") conn.push([[D.pois[+l.from.slice(1)].lng, D.pois[+l.from.slice(1)].lat], cs[0]]);
+      if (l.to[0] === "p") conn.push([cs[cs.length - 1], [D.pois[+l.to.slice(1)].lng, D.pois[+l.to.slice(1)].lat]]);
+      if (l.exit != null) { const x = D.exits[l.exit]; conn.push(l.from[0] !== "p" ? [[x.lng, x.lat], cs[0]] : [cs[cs.length - 1], [x.lng, x.lat]]); }
+    }
+  });
+  RouteOverlay.setRoute(r, conn, state.time);
+  renderRoutePill(r);
+  updateMapModes();
+  const hf = state.hi != null ? D.plan[state.hi].segs.map(i => line(segCoords(i))) : [];
+  map.getSource("hi").setData(fc(hf));
+  map.setLayoutProperty("shelter", "visibility", state.layers.shelter ? "visible" : "none");
+  map.setLayoutProperty("green", "visibility", state.layers.green ? "visible" : "none");
+  ["mask", "area"].forEach(l => map.setLayoutProperty(l, "visibility", state.layers.area ? "visible" : "none"));
+  map.setLayoutProperty("bld", "visibility", state.layers.build && !state.is3d ? "visible" : "none");
+  map.setLayoutProperty("bld3d", "visibility", state.layers.build && state.is3d ? "visible" : "none");
+  if (fit) fitRoute(hf.length ? hf.flatMap(f => f.geometry.coordinates) : null);
+}
+let routePill = null;
+function renderRoutePill(r) {
+  if (routePill) { routePill.remove(); routePill = null; }
+  if (!r) return;
+  // A fixed spot on the route, as far as possible from its stops, so the label never jumps.
+  const stops = [...r.order.map(i => [D.pois[i].lng, D.pois[i].lat]), ...r.legs.filter(l => l.exit != null).map(l => [D.exits[l.exit].lng, D.exits[l.exit].lat])];
+  let at = null, best = -1;
+  r.legs.flatMap(l => l.s).forEach(v => {
+    const cs = segCoords(Math.abs(v) - 1), c = cs[Math.floor(cs.length / 2)];
+    const room = stops.reduce((m, q) => Math.min(m, Math.hypot(c[0] - q[0], c[1] - q[1])), Infinity);
+    if (room > best) { best = room; at = c; }
+  });
+  if (!at) return;
+  const el = document.createElement("div");
+  el.className = "routePill on tn";
+  el.innerHTML = `${r.mins} ${T("min")}<small>${T(r.scheme)}</small>`;
+  el.style.zIndex = 5;
+  routePill = new maplibregl.Marker({ element: el, anchor: "center" }).setLngLat(at).addTo(map);
+}
+function selectScheme(s) { state.scheme = s; state.note = null; state.recommendNote = null; refresh(false); }
+function fitRoute(coords) {
+  if (!mapReady) return;
+  const r = current();
+  if (!coords && r) {
+    coords = r.legs.flatMap(coordsOfLeg);
+    r.order.forEach(i => coords.push([D.pois[i].lng, D.pois[i].lat]));
+    r.legs.forEach(l => { if (l.exit != null) coords.push([D.exits[l.exit].lng, D.exits[l.exit].lat]); });
+  }
+  if (!coords || !coords.length) return;
+  const lo = coords.reduce((a, c) => [Math.min(a[0], c[0]), Math.min(a[1], c[1]), Math.max(a[2], c[0]), Math.max(a[3], c[1])], [999, 999, -999, -999]);
+  const phone = innerWidth <= 760;
+  const panelRight = $("panel").getBoundingClientRect().right;
+  const pad = phone ? { top: 60, left: 40, right: 60, bottom: innerHeight * .6 } : { top: 80, left: Math.round(panelRight) + 60, right: innerWidth - panelRight > 520 ? 110 : 40, bottom: innerHeight > 620 ? 120 : 50 };
+  map.fitBounds([[lo[0], lo[1]], [lo[2], lo[3]]], { padding: pad, maxZoom: 16.6, pitch: state.is3d ? 52 : 0, duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 900, easing: t => 1 - Math.pow(1 - t, 3) });
+}
+
+/* ---------- panel ---------- */
+let cur = null;
+const current = () => cur;
+function recompute() { cur = plan(state.scheme); }
+function togglePoi(i) {
+  const at = state.sel.indexOf(i);
+  if (at >= 0) state.sel.splice(at, 1);
+  else if (state.sel.length >= 6) { state.note = { warn: T("maxPoi") }; renderHead(); return; }
+  else if (D.pois[i].routable) state.sel.push(i);
+  state.note = null; state.recommendNote=null;
+  refresh(true);
+}
+const seg = (act, opts, val) => `<div class="seg">${opts.map(([v, l]) => `<button data-act="${act}" data-v="${v}" aria-pressed="${String(v) === String(val)}">${l}</button>`).join("")}</div>`;
+const pct = x => Math.round(x * 100);
+function barHtml(r) {
+  const tot = r.hi + r.mi + r.lo || 1;
+  return `<div class="bar" role="img" aria-label="${T("shadeLevels")}: ${T("high")} ${pct(r.hi / tot)}%, ${T("mid")} ${pct(r.mi / tot)}%, ${T("low")} ${pct(r.lo / tot)}%"><i style="width:${r.hi / tot * 100}%;background:var(--high)"></i><i style="width:${r.mi / tot * 100}%;background:var(--mid)"></i><i style="width:${r.lo / tot * 100}%;background:var(--low)"></i></div>
+  <div class="barKey tn"><span>${T("shadeLevels")}</span><span><i class="dot" style="background:var(--high)"></i>${T("high")} ${pct(r.hi / tot)}%</span><span><i class="dot" style="background:var(--mid)"></i>${T("mid")} ${pct(r.mi / tot)}%</span><span><i class="dot" style="background:var(--low)"></i>${T("low")} ${pct(r.lo / tot)}%</span></div>`;
+}
+const selectPill = (id, label, opts, val) => `<label>${label}<select class="pillSel" id="${id}">${opts.map(([v, l]) => `<option value="${v}" ${String(v) === String(val) ? "selected" : ""}>${l}</option>`).join("")}</select></label>`;
+function routeTab() {
+  if (state.picker) return placePicker();
+  const r = cur;
+  const stops = r ? r.order : state.sel;
+  const lastExit = r && r.legs[r.legs.length - 1].exit, firstExit = r && r.legs[0].exit;
+  const code = x => x == null ? "" : exitCode(D.exits[x]);
+  const exitSelect = (id, label, st, chosen, auto) => `<select class="exitSel" id="${id}" aria-label="${label}">
+    <option value="" ${chosen == null ? "selected" : ""}>${T("exitAuto")(code(auto) || T("autoChoice"))}</option>
+    ${st == null ? "" : exitsOf(st).map(([x, xi]) => `<option value="${xi}" ${xi === chosen ? "selected" : ""}>${T("exitLabel")} ${esc(exitCode(x))}</option>`).join("")}</select>`;
+  const endSt = state.endStation != null ? state.endStation : r ? r.end : null;
+  const waypoints = `<div class="card">
+    <div class="wp station"><span class="wpDot s" aria-hidden="true"></span><select class="wpSel" id="startSel" aria-label="${T("start")}">${D.stations.map((s, i) => `<option value="${i}" ${i === state.start ? "selected" : ""}>${s.name}</option>`).join("")}</select>${exitSelect("startExitSel", T("startExit"), state.start, state.startExit, firstExit)}</div>
+    ${stops.map((i, n) => `<div class="wp"><span class="wpDot">${n + 1}</span><span class="wpName">${esc(poiName(i))}<small class="tn">${countText(i)}</small></span><button class="wpX" data-act="poi" data-v="${i}" aria-label="${T("remove")} ${esc(poiName(i))}">×</button></div>`).join("")}
+    <button class="wp addRow" data-act="picker"><span class="wpDot add" aria-hidden="true">+</span><span>${T("addPlaces")}</span></button>
+    <div class="wp station"><span class="wpDot e" aria-hidden="true"></span><select class="wpSel" id="endSel" aria-label="${T("endStation")}"><option value="" ${state.endStation == null ? "selected" : ""}>${state.endStation == null && r ? `${D.stations[r.end].name} · ${T("autoChoice")}` : T("autoNearest")}</option>${D.stations.map((s, i) => `<option value="${i}" ${i === state.endStation ? "selected" : ""}>${s.name}</option>`).join("")}</select>${exitSelect("endExitSel", T("endExit"), endSt, state.endExit, lastExit)}</div>
+  </div>`;
+  const prefs = `<div class="prefs">
+    ${selectPill("prefTime", T("timeLabel"), D.times.map((x, i) => [i, x.h + ":00"]), state.time)}
+    ${selectPill("prefLimit", T("limitLabel"), [[30, `30 ${T("min")}`], [60, `60 ${T("min")}`], [90, `90 ${T("min")}`]], state.limit)}
+    ${selectPill("prefW", T("tradeLabel"), [[0, T("less")], [1, T("bal")], [2, T("shady")]], state.w)}
+  </div>`;
+  if (!r) return `${waypoints}${prefs}<p class="note">${T("chooseOne")}</p>`;
+  const plans = ROUTES.map(s => plan(s));
+  const best = f => plans.reduce((a, b) => f(b) > f(a) ? b : a).scheme;
+  const badges = { [best(x => -x.L)]: T("badgeShort") };
+  const shadiest = best(x => x.share), hottest = best(x => x.posts.total);
+  if (!badges[shadiest]) badges[shadiest] = T("badgeShade");
+  if (!badges[hottest]) badges[hottest] = T("badgePop");
+  const options = plans.map(x => `<button class="opt" data-act="scheme" data-v="${x.scheme}" aria-pressed="${state.scheme === x.scheme}">
+    <span class="optTime tn">${x.mins}<small> ${T("min")}</small></span><span class="optKm tn">${fmtKm(x.L)} ${T("km")}</span>
+    <span class="optName">${T(x.scheme)}${badges[x.scheme] ? `<span class="optBadge">${badges[x.scheme]}</span>` : ""}</span><span class="optMeta tn">${pct(x.share)}% ${T("shadeWord")} · ${x.posts.total.toLocaleString()} ${T("postsWord")}</span>
+  </button>`).join("");
+  const steps = r.legs.map((l, i) => {
+    const ratio = l.m ? l.sh / l.m : 0, color = ratio >= .67 ? "var(--high)" : ratio >= .33 ? "var(--mid)" : "var(--low)";
+    const mins = Math.max(1, Math.round(l.m / WALK));
+    const exitTxt = l.exit != null ? " · " + T("exitLabel") + " " + esc(exitCode(D.exits[l.exit])) : "";
+    const stop = i === 0 ? `<div class="step"><span class="pin s">${T("startShort")}</span><div class="nm">${D.stations[state.start].name}${exitTxt}</div></div>` : "";
+    const next = l.to[0] === "p" ? `<div class="step"><span class="pin">${i + 1}</span><div class="nm">${esc(poiName(+l.to.slice(1)))}</div></div>` : `<div class="step"><span class="pin e">${T("endShort")}</span><div class="nm">${D.stations[D.exits[l.exit].st].name}${exitTxt}</div></div>`;
+    return `${stop}<div class="leg"><span class="ln" style="background:${color}"></span><span class="tx tn">${T("legFmt")(Math.round(l.m), mins, pct(ratio))}</span></div>${next}`;
+  }).join("");
+  const over = r.mins > state.limit ? r.mins - state.limit : 0;
+  return `${waypoints}${prefs}
+  <div class="sectTitle">${T("routesTitle")}</div>
+  <div class="options">${options}</div>
+  ${over ? `<div class="warn">${T("overLimit")(over)}</div>` : ""}
+  <section class="group">
+    <div class="row">${barHtml(r)}</div>
+    <div class="metrics tn"><div><b>${pct(r.share)}%</b><span>${T("shadeCol")}</span></div><div><b>${pct(r.coverage)}%</b><span>${T("sviCover")}</span></div><div><b>${Math.round(r.maxRun / 10) * 10} m</b><span>${T("exposed")}</span></div></div>
+  </section>
+  ${r.posts.top.length ? `<section class="group"><h3>${T("along")}</h3><div class="along tn">${r.posts.top.slice(0, 3).map(x => `<div class="alongRow"><span>${esc(poiName(x.i))}</span><span>${x.n.toLocaleString()} ${T("postsWord")}</span></div>`).join("")}</div><p class="note">${T("alongNote")}</p></section>` : ""}
+  <details class="group disc" id="legsDetails" ${state.legsOpen ? "open" : ""}><summary>${T("detailLegs")}</summary><div class="steps">${steps}</div></details>`;
+}
+function compareTab() {
+  if (!cur) return `<p class="note">${T("chooseOne")}</p>`;
+  const a = plan("A"), b = plan("B"), c = plan("C"), d = plan("D"), p = plan("P");
+  const row = (s, x, cls = "") => `<tr class="${cls}"><td>${T(s)}</td><td class="tn">${fmtKm(x.L)}</td><td class="tn">${pct(x.share)}%</td><td class="tn">${pct(x.modelShare)}%</td><td class="tn">${pct(x.coverage)}%</td><td class="tn">${x.posts.total.toLocaleString()}</td></tr>`;
+  const keep = state.w;
+  const sens = [0, 1, 2].map(w => { state.w = w; const x = plan("D"); return [w, x]; });
+  state.w = keep;
+  const wl = [T("less"), T("bal"), T("shady")];
+  return `<section class="group"><p class="lead">${T("cmpLeadD")(Math.round(d.L - a.L), pct(a.share), pct(d.share))}</p>
+  <p class="lead">${T("cmpLeadP")(Math.round(p.L - a.L), a.posts.total.toLocaleString(), p.posts.total.toLocaleString())}</p></section>
+  <section class="group"><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>${T("method")}</th><th>${T("km")}</th><th>${T("shadeCol")}</th><th>${T("modelCol")}</th><th>${T("sviCover")}</th><th>${T("postsCol")}</th></tr></thead><tbody>
+  ${row("D", d)}${row("P", p)}${row("B", b)}${row("A", a)}${row("C", c, "base")}</tbody></table></div>
+  <p class="note">${T("cmpNote")}</p></section>
+  ${sviFindings()}
+  <section class="group"><h3>${T("sens")}</h3><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>${T("sensCol")}</th><th>${T("km")}</th><th>${T("shadeCol")}</th><th>${T("exposed")}</th></tr></thead><tbody>${sens.map(([w, x]) => `<tr><td>${wl[w]}</td><td class="tn">${fmtKm(x.L)}</td><td class="tn">${pct(x.share)}%</td><td class="tn">${Math.round(x.maxRun / 10) * 10} m</td></tr>`).join("")}</tbody></table></div></section>
+  <p class="note">${T("svi")}</p>`;
+}
+function planTab() {
+  return `<p class="lead">${T("planLead")}</p>${D.plan.map((p, i) => `<button class="planRow" data-act="hi" data-v="${i}" aria-pressed="${state.hi === i}"><span class="top"><span style="color:var(--fg);font-weight:600">${esc(p.name)}</span><span class="tn">${T("planExp")(pct(p.sun / p.m))}</span></span><span class="note tn">${T("planLen")(p.m)}</span><span class="bar"><i style="width:${pct(p.sun / p.m)}%;background:var(--low)"></i></span></button>`).join("")}<p class="note">${T("planNote")}</p>`;
+}
+function dataTab() {
+  const lab = { ok: T("ok"), part: T("part"), wait: T("pend") };
+  return `<p class="lead">${T("dataLead")}</p>${sviDataNotes()}${popularityDataNotes()}<p class="note">${T("exitsNote")(D.exits.length)}</p><div>${T("srcs").map(([a, b, s]) => `<div class="src"><b>${a}</b><small>${b}</small><span class="st ${s}">${lab[s]}</span></div>`).join("")}</div>
+  <div class="row"><h3 style="margin:0;font-size:14px;font-weight:650">${T("assume")}</h3><ul class="note" style="padding-left:18px;margin:0;display:grid;gap:3px">${T("assumes")(D.sunDate).map(x => `<li>${x}</li>`).join("")}</ul></div>`;
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function renderHead() {
+  $("brandSub").textContent = T("sub"); $("lang").textContent = T("langBtn"); $("ask").placeholder = T("ph"); $("askBtn").textContent = T("send");
+  const n = state.note;
+  $("askNote").innerHTML = n && n.warn ? `<span style="color:var(--low)">${esc(n.warn)}</span>` : n && n.done ? `<b>${T("understood")}：</b>${esc(n.done)}` : "";
+  $("tabs").innerHTML = [["route", "tabRoute"], ["compare", "tabCompare"], ["plan", "tabPlan"], ["data", "tabData"]].map(([id, k]) => `<button role="tab" data-tab="${id}" aria-selected="${state.tab === id}">${T(k)}</button>`).join("");
+}
+function renderBody() {
+  const b = $("body"), top = b.scrollTop;
+  b.innerHTML = state.tab === "route" ? routeTab() : state.tab === "compare" ? compareTab() : state.tab === "plan" ? planTab() : dataTab();
+  b.scrollTop = top;
+}
+function renderChrome() {
+  const s = D.times[state.time];
+  $("sun").innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><b>${T("sunFmt")(s.h, Math.round(s.el))}</b>`;
+  $("legend").innerHTML = `<span><i class="dot" style="background:var(--high)"></i>${T("legendHigh")}</span><span><i class="dot" style="background:var(--mid)"></i>${T("legendMid")}</span><span><i class="dot" style="background:var(--low)"></i>${T("legendLow")}</span>`;
+  $("attr").textContent = T("attr");
+  const L = state.layers;
+  $("modeLegend").innerHTML = modeLegend();
+  $("modeLegend").hidden = state.mapMode === "standard";
+  $("layers").innerHTML = `${modeControls()}<div class="lbl" style="padding:10px 0 3px">${T("layerTitle")}</div>
+    <label><input type="checkbox" id="lExit" ${L.exits ? "checked" : ""}>${T("lExit")}</label>
+    <label><input type="checkbox" id="lGreen" ${L.green ? "checked" : ""}>${T("lGreen")}</label>
+    <label><input type="checkbox" id="lShelter" ${L.shelter ? "checked" : ""}>${T("lShelter")}</label>
+    <label><input type="checkbox" id="lBuild" ${L.build ? "checked" : ""}>${T("lBuild")}</label>
+    <label><input type="checkbox" id="lArea" ${L.area ? "checked" : ""}>${T("lArea")}</label>`;
+}
+function refresh(fit) { recompute(); renderHead(); renderBody(); renderChrome(); renderMap(fit); setSunLight(); }
+
+$("body").addEventListener("click", ev => {
+  const b = ev.target.closest("[data-act]"); if (!b) return;
+  const a = b.dataset.act, v = b.dataset.v;
+  if (a === 'period') { state.period=v; state.recommendNote=null; refresh(false); }
+  if (a === 'visitMode') { state.visitMode=v; state.recommendNote=null; renderBody(); }
+  if (a === 'recommend') suggestPopularStops();
+  if (a === 'clear') { state.sel=[]; state.recommendNote=null; refresh(false); }
+  if (a === 'loadMore') { state.listLimit+=20; renderBody(); }
+  if (a === "limit") { state.limit = +v; state.recommendNote=null; refresh(false); }
+  if (a === "time") { state.time = +v; state.recommendNote=null; refresh(false); }
+  if (a === "w") { state.w = +v; state.recommendNote=null; refresh(false); }
+  if (a === "scheme") selectScheme(v);
+  if (a === "picker") { state.picker = !state.picker; $("body").scrollTop = 0; renderBody(); renderMap(false); }
+  if (a === "cat") { state.cat = v; renderBody(); }
+  if (a === "poi") togglePoi(+v);
+  if (a === "hi") { state.hi = state.hi === +v ? null : +v; renderBody(); renderMap(state.hi != null); }
+});
+$("body").addEventListener('toggle',ev=>{if(ev.target.id==='legsDetails')state.legsOpen=ev.target.open;},true);
+$("body").addEventListener("change", ev => {
+  const {id,value,checked}=ev.target;
+  if(id==='startSel') { state.start=+value; state.startExit=null; state.recommendNote=null; refresh(true); return; }
+  if(id==='startExitSel') { state.startExit=value===''?null:+value; refresh(true); return; }
+  if(id==='endSel') { state.endStation=value===''?null:+value; state.endExit=null; refresh(true); return; }
+  if(id==='endExitSel') {
+    if(value==='') state.endExit=null;
+    else { state.endExit=+value; state.endStation=D.exits[+value].st; }
+    refresh(true); return;
+  }
+  if(id==='prefTime') { state.time=+value; refresh(false); return; }
+  if(id==='prefLimit') { state.limit=+value; refresh(false); return; }
+  if(id==='prefW') { state.w=+value; refresh(false); return; }
+  if(id==='catalogue') { state.catalogue=value; state.cat='all'; state.listLimit=10; }
+  else if(id==='popSort') { state.sort=value; state.listLimit=10; }
+  else if(id==='placeCategory') { state.cat=value; state.listLimit=10; }
+  else if(id==='includeCaptions') state.includeCaptions=checked;
+  else if(id==='dateFrom' || id==='dateTo') {
+    if(!value) { renderBody(); return; }
+    const from=id==='dateFrom'?value:state.dateFrom, to=id==='dateTo'?value:state.dateTo;
+    if(from>to || from<P.meta.earliest || to>P.meta.latest) {
+      state.note={warn:state.lang==='en'?'Choose a valid date range within the snapshot.':'请选择快照范围内的有效日期。'};
+      renderHead(); renderBody(); return;
+    }
+    state[id]=value;
+  } else return;
+  state.note=null; state.recommendNote=null; refresh(false);
+});
+$("body").addEventListener('input',ev=>{
+  if(ev.target.id!=='placeSearch') return;
+  const pos=ev.target.selectionStart;
+  state.search=ev.target.value; state.listLimit=10; state.recommendNote=null;
+  renderBody(); const search=$('placeSearch'); search.focus();
+  if(pos!=null) search.setSelectionRange(pos,pos);
+  renderMap(false);
+});
+$("tabs").addEventListener("click", ev => { const b = ev.target.closest("[data-tab]"); if (!b) return; state.tab = b.dataset.tab; if (state.tab !== "plan" && state.hi != null) { state.hi = null; renderMap(false); } renderHead(); renderBody(); $("body").scrollTop = 0; });
+$("lang").addEventListener("click", () => { state.lang = state.lang === "zh" ? "en" : "zh"; state.note = null; document.documentElement.lang = state.lang === "zh" ? "zh-Hans" : "en"; refresh(false); });
+$("handle").addEventListener("click", () => $("panel").classList.toggle("small"));
+$("zin").addEventListener("click", () => map && map.zoomIn());
+$("zout").addEventListener("click", () => map && map.zoomOut());
+$("bFit").addEventListener("click", () => fitRoute());
+$("b3d").addEventListener("click", () => { state.is3d = !state.is3d; $("b3d").setAttribute("aria-pressed", state.is3d); if (map) { renderMap(false); map.easeTo({ pitch: state.is3d ? 52 : 0, bearing: state.is3d ? -18 : 0, duration: 550 }); } });
+$("bLayers").addEventListener("click", () => { const l = $("layers"); l.hidden = !l.hidden; $("bLayers").setAttribute("aria-pressed", !l.hidden); });
+$("layers").addEventListener("click", ev => { const b = ev.target.closest("[data-mode]"); if (!b) return; state.mapMode = b.dataset.mode; renderChrome(); updateMapModes(); });
+$("layers").addEventListener("change", ev => { const m = { lExit: "exits", lGreen: "green", lShelter: "shelter", lBuild: "build", lArea: "area" }[ev.target.id]; if (m) { state.layers[m] = ev.target.checked; if (map) zoomClasses(); renderMap(false); } });
+$("askForm").addEventListener("submit", ev => { ev.preventDefault(); applyAsk($("ask").value); });
+function applyAsk(q) {
+  const s = q.toLowerCase(), done = [];
+  if (/早|上午|morning|9\s*(am|点|:)/.test(s)) { state.time = 0; done.push("9:00"); }
+  else if (/中午|正午|noon|lunch|1\s*(pm|点)/.test(s)) { state.time = 1; done.push("13:00"); }
+  else if (/下午|傍晚|afternoon|evening|5\s*(pm|点)/.test(s)) { state.time = 2; done.push("17:00"); }
+  if (/少晒|阴凉|遮阴|防晒|怕热|shade|shady|less sun|cool/.test(s)) { state.scheme = "D"; state.w = 2; done.push(T("D")); }
+  if (/最短|别绕|少绕|不绕|shortest|fast|quick/.test(s)) { state.w = 0; done.push(T("less")); }
+  let m;
+  if ((m = s.match(/(\d+)\s*(分钟|min)/))) { state.limit = +m[1] <= 30 ? 30 : +m[1] <= 60 ? 60 : 90; done.push(`${state.limit} ${T("min")}`); }
+  else if ((m = s.match(/(\d+|一|半|两)\s*(个)?\s*(小时|hour)/)) || /an hour/.test(s)) { const h = !m ? 1 : m[1] === "半" ? .5 : m[1] === "一" ? 1 : m[1] === "两" ? 2 : +m[1]; state.limit = h <= .5 ? 30 : h <= 1 ? 60 : 90; done.push(`${state.limit} ${T("min")}`); }
+  if (/popular|popularity|trending|热度|热门/.test(s)) { state.scheme = "P"; done.push(T("P")); }
+  const catHit = [["museum", /博物馆|美术馆|museum|gallery/], ["heritage", /历史|古迹|教堂|heritage|history|church/], ["landmark", /地标|打卡|landmark|icon/], ["park", /公园|绿地|park|garden/]].find(([, re]) => re.test(s));
+  if (catHit) { const idx = D.pois.map((p, i) => [p, i]).filter(([p]) => p.cat === catHit[0] && p.routable).map(([, i]) => i).slice(0, 4); state.sel = idx; done.push(T(catHit[0])); }
+  state.tab = "route";
+  if (!done.length && q.trim()) { state.search = q.trim(); state.picker = true; state.listLimit = 10; state.note = null; refresh(false); return; }
+  state.note = done.length ? { done: done.join(" · ") } : null;
+  state.picker = false;
+  refresh(!!catHit);
+}
+new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applyTheme);
+
+recompute(); renderHead(); renderBody(); renderChrome(); renderMarkers(null);
+try { initMap(); } catch (e) { $("err").hidden = false; $("err").textContent = T("noMap"); }
+</script>
