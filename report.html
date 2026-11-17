@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShadeWalk Final Report | AR5958A Group 1</title>
+<meta name="description" content="Final report of ShadeWalk, an AI-assisted prototype of shade-oriented leisure walking routes between MRT stations in central Singapore.">
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    color-scheme: light;
+    --ink: #1F2933;
+    --ink-soft: #52606D;
+    --muted: #8A8A8A;
+    --rule: #D9D9D9;
+    --accent: #5B95CC;
+    --accent-dark: #3F78AE;
+    --accent-soft: #B7CCE1;
+    --panel: #F4F7FB;
+    --paper: #FFFFFF;
+    --tbc: #FFF3C4;
+  }
+
+  /* ---------- Base: the brief asks for 12-point font and 1.5 line spacing ---------- */
+  * { box-sizing: border-box; }
+  html { font-size: 12pt; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  a { color: var(--accent-dark); }
+  a:hover { color: var(--ink); }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 16px; }
+
+  /* Items still to be confirmed by the group. Remove the mark once filled. */
+  mark.tbc { background: var(--tbc); color: #6B5300; padding: 0 0.15em; border-radius: 2px; }
+
+  /* ---------- Header ---------- */
+  header.cover { border-bottom: 1px solid var(--rule); padding: 3rem 0 2rem; }
+  .kicker { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; }
+  h1 { font-size: 2.4rem; line-height: 1.15; margin: 0 0 0.5rem; }
+  .subtitle { font-size: 1.15rem; color: var(--ink-soft); margin: 0 0 1rem; }
+  .authors { margin: 0 0 1.5rem; color: var(--ink-soft); }
+  .buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn { display: inline-block; padding: 0.55rem 1.1rem; border-radius: 6px; border: 1px solid var(--accent); text-decoration: none; font-weight: 600; color: var(--accent-dark); }
+  .btn.primary { background: var(--accent); color: #FFFFFF; }
+  .btn.primary:hover { background: var(--accent-dark); color: #FFFFFF; }
+
+  /* ---------- Contents ---------- */
+  nav.toc { background: var(--panel); border-radius: 8px; padding: 1rem 1.25rem; margin: 2rem 0; }
+  nav.toc h2 { font-size: 1rem; margin: 0 0 0.5rem; border: 0; padding: 0; }
+  nav.toc ol { margin: 0; padding-left: 1.25rem; }
+  nav.toc li { margin: 0.15rem 0; }
+
+  /* ---------- Sections ---------- */
+  section { margin: 0 0 2.5rem; }
+  h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; padding-top: 0.5rem; border-top: 2px solid var(--accent); }
+  h3 { font-size: 1.15rem; margin: 1.75rem 0 0.5rem; }
+  p { margin: 0 0 0.9rem; }
+  .runin { font-weight: 700; }
+  .formula { font-family: Consolas, "Courier New", monospace; background: var(--panel); padding: 0.6rem 1rem; border-radius: 6px; margin: 0 0 0.9rem; text-align: center; }
+
+  /* ---------- Figures and tables ---------- */
+  figure { margin: 1.5rem 0; }
+  figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--rule); }
+  figure img.narrow { max-width: 70%; }
+  figcaption { font-size: 0.9rem; color: var(--ink-soft); margin-top: 0.5rem; }
+  figcaption b { color: var(--ink); }
+
+  .table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  caption { text-align: left; font-size: 0.9rem; color: var(--ink-soft); padding-bottom: 0.4rem; }
+  caption b { color: var(--ink); }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { border-bottom: 1.5px solid var(--ink-soft); }
+  td.num, th.num { text-align: right; white-space: nowrap; }
+  td.ai { color: var(--accent-dark); font-weight: 600; }
+
+  /* Figure 4, drawn in HTML so no post screenshots or usernames are published */
+  .flow { border: 1px solid var(--rule); border-radius: 6px; padding: 0.8rem; font-size: 0.85rem; line-height: 1.3; }
+  .fbox { border-radius: 6px; padding: 0.4rem 0.6rem; margin: 0 0 0.6rem; }
+  .fbox small { display: block; color: var(--ink-soft); font-size: 0.78rem; margin-top: 0.1rem; }
+  .fbox b { font-size: 1rem; }
+  .fbox.rules { background: #E8EFF7; }
+  .fbox.ai { background: var(--accent); color: #FFFFFF; }
+  .fbox.ai small { color: #EAF2FA; }
+  .fbox.out { background: #FFFFFF; border: 1.5px solid var(--accent); }
+  .fbox.total { text-align: center; margin-bottom: 0; }
+  .lane { display: flex; align-items: stretch; gap: 0.35rem; margin: 0 0 0.6rem; }
+  .lane .fbox { flex: 1 1 0; margin: 0; }
+  .lane .arrow { align-self: center; color: var(--muted); }
+  .lane-label { flex: 0 0 4.6rem; align-self: center; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+  .legend { display: flex; gap: 1rem; font-size: 0.8rem; color: var(--ink-soft); margin: 0 0 0.75rem; }
+  .legend span::before { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 2px; margin-right: 0.3rem; vertical-align: -0.1rem; }
+  .legend .l-ai::before { background: var(--accent); }
+  .legend .l-rules::before { background: #E8EFF7; border: 1px solid var(--accent-soft); }
+
+  dl.links { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 1rem; margin: 0 0 1rem; }
+  dl.links dt { font-weight: 600; }
+  dl.links dd { margin: 0; word-break: break-all; }
+
+  .appendix h2 { border-top-color: var(--rule); }
+  ol.refs { list-style: none; padding: 0; margin: 0; }
+  ol.refs li { padding-left: 2em; text-indent: -2em; margin: 0 0 0.5rem; font-size: 0.95rem; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.5rem 0 3rem; font-size: 0.85rem; color: var(--muted); }
+  footer p { margin: 0 0 0.4rem; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.9rem; }
+    header.cover { padding-top: 2rem; }
+    dl.links { grid-template-columns: 1fr; }
+    .lane { flex-direction: column; }
+    .lane .arrow { transform: rotate(90deg); }
+    .lane-label { flex-basis: auto; align-self: flex-start; }
+    figure img.narrow { max-width: 100%; }
+  }
+
+  /* ---------- Print: A4, 12 pt, 1.5 spacing, so "Save as PDF" gives a document copy ---------- */
+  @page { size: A4; margin: 20mm; }
+  @media print {
+    html, body { font-size: 12pt; line-height: 1.5; }
+    .wrap { max-width: none; padding: 0; }
+    nav.toc { display: none; }
+    header.cover { padding-top: 0; }
+    .btn { border: 0; padding: 0; font-weight: 400; color: var(--ink); }
+    .btn.primary { background: none; color: var(--ink); }
+    .btn::after { content: " (" attr(href) ")"; font-size: 0.85rem; color: var(--ink-soft); }
+    h2 { margin: 1.2rem 0 0.6rem; }
+    h3 { margin: 1rem 0 0.3rem; }
+    h2, h3 { break-after: avoid; }
+    section { margin-bottom: 1rem; }
+    figure { margin: 0.8rem 0; }
+    figure, table, .flow { break-inside: avoid; }
+    .appendix { break-before: page; }
+    a { color: var(--ink); }
+    figure img { max-height: 58mm; width: auto; max-width: 100%; }
+    figure img.narrow { max-height: 52mm; }
+    /* Body text stays at 12 pt; captions and tables use 10 pt in print */
+    figcaption, table, caption { font-size: 10pt; line-height: 1.3; }
+    .flow { padding: 0.5rem; font-size: 0.78rem; }
+    footer { margin-top: 1rem; padding-bottom: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <p class="kicker">AR5958A AI Methods in Urbanism &middot; National University of Singapore &middot; AY2026/27 Semester 1</p>
+    <h1>ShadeWalk</h1>
+    <p class="subtitle">Shade-oriented leisure walking routes between MRT stations in central Singapore</p>
+    <p class="authors">Group 1 &middot; Glen Ang Xun Zhe, Haoyang He, Shuo Yang and Yihan Zhang</p>
+    <div class="buttons">
+      <a class="btn primary" href="https://zhangyihan-1021.github.io/shadewalk-sg/">Open the live demo</a>
+      <a class="btn" href="https://github.com/ZhangYihan-1021/shadewalk-sg">GitHub repository</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="summary" aria-labelledby="summary-h">
+    <h2 id="summary-h">Summary</h2>
+    <p>Walking between MRT stations and attractions in central Singapore often means long stretches in direct sun, yet navigation apps compare routes mainly by distance and time. ShadeWalk is a web prototype that suggests places to visit from public Instagram posts and compares shortest, covered-linkway, shade-oriented and popularity-oriented routes between them. AI is used for two tasks that fixed rules handle poorly, reading post captions for place evidence and rating shade in street view images. Across 300 test itineraries the shade route added a median 202&nbsp;m of walking for 16.0 percentage points more shade. Covered linkways alone gave about 78% of that gain.</p>
+  </section>
+
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#problem">Problem Statement</a></li>
+      <li><a href="#solution">Proposed Solution</a></li>
+      <li><a href="#methodology">AI Methodology</a></li>
+      <li><a href="#prototype">Prototype and Demonstration</a></li>
+      <li><a href="#evaluation">Critical Evaluation</a></li>
+      <li><a href="#repository">Project Repository</a></li>
+    </ol>
+    <p style="margin:0.5rem 0 0"><a href="#appendices">Appendices</a></p>
+  </nav>
+
+  <!-- ============================== 1 ============================== -->
+  <section id="problem" aria-labelledby="problem-h">
+    <h2 id="problem-h">1. Problem Statement</h2>
+
+    <h3 id="s1-1">1.1 Heat and walking in Singapore</h3>
+    <p>Singapore is already hot for walking, and it is getting hotter. National projections suggest that days with a maximum above 35&nbsp;&deg;C, about 21 a year over the last four decades, could number between 41 and 351 a year by the end of the century, depending on the emission pathway (MSS &amp; MSE, 2024; Figure 1).</p>
+    <p>People respond to this heat with their feet. In a route-choice experiment at Nanyang Technological University, participants accepted longer paths to stay out of the sun and valued 100&nbsp;m in direct sun like about 116&nbsp;m in full shade (Melnikov et al., 2022), and walkers in another dense subtropical city make similar trade-offs (Ma et al., 2025). For someone on a leisure walk, a slightly longer route can therefore be the better one, as long as it is shaded and passes places worth seeing.</p>
+    <figure id="fig1">
+      <img class="narrow" src="report-assets/fig1_hot_days.png" alt="Bar chart of projected days a year above 35 degrees Celsius in Singapore by the end of the century. Low emissions 41 to 125 days, medium 103 to 261, high 252 to 351, against a historical reference of 21.4 days a year." loading="lazy">
+      <figcaption><b>Figure 1.</b> Projected days a year with a daily maximum above 35&nbsp;&deg;C in Singapore by the end of the century, under low, medium and high emission pathways. Data from MSS and MSE (2024), chart by the authors.</figcaption>
+    </figure>
+
+    <h3 id="s1-2">1.2 The gap in current tools</h3>
+    <p>Navigation tools tell walkers how far and how long, but not what the walk will be like. Two pieces of information are missing. The first is which nearby places people actually care about at the moment. Lists of points of interest show where places are, while location-based social media show where attention concentrates (Liu et al., 2022). The second is where the walk is shaded. Canopy maps look down from above, so they miss awnings, overhangs and covered walkways and say little about whether shade continues along a trip (Zhao et al., 2026). Street view imagery, by contrast, records the street at a pedestrian&rsquo;s eye level and has already been used to measure the shade of street trees (Li et al., 2018; Biljecki &amp; Ito, 2021). Tourist route planning is a well-studied problem (Gavalas et al., 2014), yet these two kinds of evidence are rarely brought together in one walking tool for MRT users.</p>
+
+    <h3 id="s1-3">1.3 Intended users and aim</h3>
+    <p>We designed ShadeWalk first for visitors and residents who set out on foot from an MRT station with limited time, such as a visitor who arrives at City Hall at 13:00 with an hour to spare. Singapore received about 16.9 million international visitors in 2025 (STB, 2026). Planners are a second audience, because the same layers reveal popular streets that lack shade, in support of the Walk-Cycle-Ride aim of the Land Transport Master Plan 2040 (LTA, 2019).</p>
+    <p>Our aim was a transparent prototype that suggests places from social media evidence and sets a shade-oriented route beside the shortest one, so that users can see what a few extra minutes of walking buy in shade.</p>
+  </section>
+
+  <!-- ============================== 2 ============================== -->
+  <section id="solution" aria-labelledby="solution-h">
+    <h2 id="solution-h">2. Proposed Solution</h2>
+
+    <h3 id="s2-1">2.1 Approach</h3>
+    <p>ShadeWalk answers the two gaps in Section 1.2 with two separate decisions (Figure 2). Social media posts decide where to stop, and shade decides how to walk between the stops. At each stage we chose the simplest method that could do the job. AI enters only where the input is unstructured text or an image, namely Instagram captions without a location tag and street view images that need a shade rating. Data collection, spatial joins, a shade model for unrated streets and the routing itself rely on GIS and fixed rules.</p>
+    <p>For the same stops the prototype computes four routes, namely the shortest route and routes that prefer covered paths, shaded streets or streets near popular places. A fifth route, guided only by a 3D model of building and tree shade, serves as a baseline. Because every route shares one network and one cost rule, any difference between two routes comes from the shade or popularity layer alone, and every score can be traced back to its source.</p>
+    <figure id="fig2">
+      <img src="report-assets/fig2_pipeline.png" alt="Pipeline diagram. Social media posts are placed from location tags by rules and from captions by rule screening followed by AI reading. Street view images are rated for shade by a vision-language model and gaps are filled with 3D buildings, canopy and covered paths. A keyword parser reads user requests. Routing uses weighted shortest paths, all orderings of the chosen stops and the lowest-cost exit, and returns shortest, linkway, shade and popular routes." loading="lazy">
+      <figcaption><b>Figure 2.</b> Processing pipeline. Dark boxes use AI and light boxes use GIS or fixed rules.</figcaption>
+    </figure>
+
+    <h3 id="s2-2">2.2 Study area and data</h3>
+    <p>We worked in seven Central Area planning zones covering 12.60&nbsp;km&sup2; with 10 MRT stations and 54 exits (Figure 3). The walking network comes from OpenStreetMap, downloaded on 4 November 2026, and has 12,179 segments and 8,915 nodes with a total length of 467.4&nbsp;km. Covered linkways, footpaths and pedestrian overhead bridges and underpasses come from LTA DataMall (September 2026 release), and station exits, parks and tourist attractions come from data.gov.sg. Building footprints and heights from OpenStreetMap, the Meta/WRI 1&nbsp;m canopy height map (Tolan et al., 2024) and ESA WorldCover 2021 feed a 3D shade model for 9:00, 13:00 and 17:00. The social media data are public Instagram posts collected through Apify, with a snapshot date of 4 November 2026, and street view images were sampled along the network <mark class="tbc">[TBC image source and how the images were obtained]</mark>. All distances were computed in SVY21 (EPSG:3414), and Appendix B lists dates, versions and licences.</p>
+    <figure id="fig3">
+      <img class="narrow" src="report-assets/fig3_study_area.png" alt="Map of the study area in central Singapore, outlined with a dashed line, showing the walking network and MRT stations including Dhoby Ghaut, Bencoolen, Bugis, Bras Basah, City Hall, Promenade, Esplanade, Fort Canning, Clarke Quay and Raffles Place." loading="lazy">
+      <figcaption><b>Figure 3.</b> Study area of seven Central Area planning zones (dashed line), with its MRT stations and walking network. Map data &copy; OpenStreetMap contributors.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================== 3 ============================== -->
+  <section id="methodology" aria-labelledby="methodology-h">
+    <h2 id="methodology-h">3. AI Methodology</h2>
+    <p>Table 1 summarises each processing step, whether it uses AI and the simpler method it is measured against. The rest of this section follows the data through the pipeline, from posts to place popularity, from images to street shade and from both layers to routes. Model names, versions and instructions are listed in Appendix C.</p>
+
+    <div class="table-wrap">
+      <table id="tab1">
+        <caption><b>Table 1.</b> Processing steps, methods and baselines.</caption>
+        <thead>
+          <tr><th>Step</th><th>Method</th><th>AI or rules</th><th>Output</th><th>Non-AI baseline</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Place tagged posts</td><td>Instagram location ID to place metadata</td><td>Rules</td><td>Point at the tagged place</td><td>Not needed</td></tr>
+          <tr><td>Place untagged posts</td><td>Dictionary screening, then reading of captions in context</td><td class="ai">Rules, then AI</td><td>Place link with confidence and post role</td><td>Dictionary screening alone</td></tr>
+          <tr><td>Rate street shade</td><td>Vision-language model on four views per point</td><td class="ai">AI</td><td>Shade level 0&ndash;3 per point</td><td>3D shade model, covered linkways</td></tr>
+          <tr><td>Describe street scene</td><td>Prompt-based segmentation</td><td class="ai">AI, descriptive only</td><td>Pixel shares of 20 classes</td><td>Not used in routing</td></tr>
+          <tr><td>Fill shade gaps</td><td>3D building and canopy shadow model</td><td>Rules</td><td>Shaded share per segment and time</td><td>Not needed</td></tr>
+          <tr><td>Choose path and order</td><td>Weighted shortest paths, all stop orderings</td><td>Rules</td><td>Four routes</td><td>Shortest route</td></tr>
+          <tr><td>Read user request</td><td>Keyword and place-name parser</td><td>Rules</td><td>Stops and settings</td><td>Not needed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="s3-1">3.1 Popularity from social media</h3>
+    <p>We began with place names. The 331 named places in OpenStreetMap with leisure, tourism, historic, shop or place tags inside the study area supplied the names and hashtags for searches of public Instagram posts through Apify. After duplicates were removed, the final snapshot of 4 November 2026 held 10,692 unique posts. A search term says nothing about where a post was made, so each post had to be placed from its own data.</p>
+    <p>Location tags did most of the work. 6,526 posts carried an Instagram location tag with coordinates, which a rule resolved to the place metadata. Of these, 4,320 fell inside the study area, 894 were tagged to named places outside it and 1,312 had only a city or country tag and were left out.</p>
+    <p>The remaining 4,166 posts had no usable coordinates, and this is where AI came in (Figure 4). A local dictionary of the 331 place names and their aliases first screened every caption by plain string matching. It found 559 captions that named a single place together with a text cue suggesting a location, and four more were added as test cases, while most other captions named no listed place (2,508) or several places (239). An AI assistant <mark class="tbc">[TBC model and version]</mark> then read the 563 candidates in context. For each caption it recorded whether the post was really about the named place, a confidence level, the role of the post (for example a personal visit, a promotion or an event report) and the literal text supporting the decision. It accepted 490 captions as place associations, and we added only the 228 high-confidence personal or scene posts to the map, keeping promotional and informational posts in a separate layer. The map point is always the existing OpenStreetMap point, so the AI decides the link but never produces coordinates.</p>
+    <p>We used AI at this step because a dictionary finds names but cannot tell a visit from an advert, a product name or a passing mention. A caption describing a photo spot at the Fort Canning tree tunnel places the post, while a caption listing two destinations does not. Reading context is what a language model does well, and the dictionary stage keeps the task small enough to check by hand.</p>
+    <p>The result is 4,548 placed posts inside the study area, dated from January 2014 to November 2026. Route suggestions use a fixed 90-day window from 6 August to 3 November 2026, with 1,649 posts at 274 places (Figure 5). Popularity is simply the post count for a stated period, which keeps it transparent and easy to check, and the 466 Instagram location tags and 331 OpenStreetMap places are stored as separate layers.</p>
+
+    <figure id="fig4">
+      <div class="flow" role="img" aria-label="Flow of posts. 10,692 posts collected. 6,526 had a location tag, of which 4,320 are inside the study area. 4,166 had no usable coordinates. Dictionary screening selected 563 captions, AI reading accepted 490 place associations, and 228 high-confidence personal or scene posts were added. In total 4,548 posts are placed inside the study area, 1,649 of them in the 90-day window.">
+        <div class="legend"><span class="l-ai">AI</span><span class="l-rules">Rules</span></div>
+        <div class="fbox rules"><b>10,692</b> unique public posts<small>Apify searches from 331 OpenStreetMap place names, snapshot 4 Nov 2026</small></div>
+        <div class="lane">
+          <span class="lane-label">Tagged</span>
+          <div class="fbox rules"><b>6,526</b> with a location tag<small>Tag resolved to place metadata</small></div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <div class="fbox out"><b>4,320</b> inside the study area<small>894 outside, 1,312 city or country only</small></div>
+        </div>
+        <div class="lane">
+          <span class="lane-label">Untagged</span>
+          <div class="fbox rules"><b>4,166</b> without usable coordinates</div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <div class="fbox rules"><b>563</b> candidates<small>Dictionary screening</small></div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <div class="fbox ai"><b>490</b> place links<small>AI reading in context</small></div>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+          <div class="fbox out"><b>228</b> added<small>High-confidence personal or scene posts</small></div>
+        </div>
+        <div class="fbox out total"><b>4,548</b> placed posts inside the study area &middot; <b>1,649</b> in the 90-day window</div>
+      </div>
+      <figcaption><b>Figure 4.</b> How the collected posts were placed. Counts from the group&rsquo;s social media data package.</figcaption>
+    </figure>
+    <figure id="fig5">
+      <img src="report-assets/fig5_post_heatmaps.png" alt="Two heat maps of placed posts in the study area. Left, all collected dates with 4,548 posts. Right, the 90-day study window with 1,649 posts. Clusters appear around Fort Canning, the National Gallery, Chinatown, Haji Lane and Gardens by the Bay." loading="lazy">
+      <figcaption><b>Figure 5.</b> Density of placed posts for all dates (left) and for the 90-day window used in the prototype (right).</figcaption>
+    </figure>
+
+    <h3 id="s3-2">3.2 Shade from street view imagery</h3>
+    <p>For shade we looked at the street from where people walk. Sampling points were placed about every 40&nbsp;m along the walking network, giving 4,176 points after duplicates were removed. At each point four street view images faced forward, backward, left and right, for 16,704 images, of which 15,019 (90%) were valid. 77% of the images date from 2024 or later and 13% from before 2020.</p>
+    <p>A vision-language model (VLM) <mark class="tbc">[TBC model, version and prompt]</mark> rated the shade visible to a pedestrian in each image as none, low, medium or high. We coded the ratings 0 to 3 and averaged them over the valid street images at each point. Images flagged as invalid or not showing a street were left out, and the 240 points without a valid image stay blank, so 3,936 points received a score (Figure 6).</p>
+    <figure id="fig6">
+      <img src="report-assets/fig6_vlm_levels.png" alt="Map of sampling points coloured by VLM shade level, with a summary panel. Mean score 1.38 out of 3. Shares of points by score band, 0 at 5.9 percent, above 0 to 1 at 31.0 percent, above 1 to 2 at 50.4 percent, above 2 to 3 at 12.7 percent, and 240 points with no valid views." loading="lazy">
+      <figcaption><b>Figure 6.</b> VLM shade level at the scored sampling points, averaged over valid images (0 none to 3 high). <mark class="tbc">[TBC reconcile 3,915 points in the panel with 3,936 in the text]</mark></figcaption>
+    </figure>
+    <p>To see what the VLM was responding to, a prompt-based segmentation model built on the Segment Anything approach <mark class="tbc">[TBC model]</mark> measured the pixel share of 20 classes in each image, including tree, shelter, umbrella, canopy, shadow, sky, building and flyover (Figure 7). These shares describe the scene and do not enter the score. Across points, the rating correlates with the share of visible sky at &minus;0.51 and with visible trees at 0.17.</p>
+    <figure id="fig7">
+      <img src="report-assets/figF1_segmentation_shares.png" alt="Three maps of the study area showing the share of image pixels classed as greenery, building and canopy at each sampling point. Mean greenery 22.5 percent, building 15.6 percent, canopy 1.0 percent." loading="lazy">
+      <figcaption><b>Figure 7.</b> Share of image pixels classed as greenery, building and canopy at each sampling point, from prompt-based segmentation.</figcaption>
+    </figure>
+    <p>The point scores then had to be carried onto the network. Each 5&nbsp;m piece of a segment takes the nearest scored point within 20&nbsp;m, half the point spacing, while indoor, corridor and pedestrian tunnel segments are not matched. In total 3,844 points are used, covering 8,429 of the 12,179 segments and 250.9&nbsp;km of the 467.4&nbsp;km network (53.7%).</p>
+    <p>Where no scored point is close enough, the prototype falls back on the share shaded by buildings and trees in the 3D model at the chosen departure time. Covered paths from LTA and OpenStreetMap count as fully shaded, because a camera on a car cannot see under a linkway. The shaded metres of a segment are therefore its covered metres plus the remaining length times a shade fraction, which is the VLM level divided by 3 on the scored part and the 3D model share elsewhere.</p>
+    <p>We chose a VLM over segmentation alone because counting pixels of trees or sky cannot tell whether an awning or a row of trees actually shades the footpath, and common label sets lack classes for shelters and canopies. A VLM can be asked this question directly in plain language, and a four-level answer is easy to aggregate. Visual assessment of streetscapes for heat is an active research field (Yang et al., 2025). The 3D model alone and covered linkways alone serve as the non-AI baselines.</p>
+
+    <h3 id="s3-3">3.3 Routing rules</h3>
+    <p>Once both layers are in place, routing needs no AI. The network is treated as undirected, and each segment has a length <i>L</i> and a number of &ldquo;good&rdquo; metres <i>G</i> whose meaning depends on the route. For the shade route <i>G</i> is the shaded metres described above, for the linkway route the covered metres and for the shortest route zero. For the popular route <i>G</i> is the length weighted by log(1 + posts) / log(1 + the 98th percentile of posts), capped at 1, where the posts belong to places within 60&nbsp;m. The cost of a segment is</p>
+    <p class="formula">cost = ((<i>L</i> &minus; <i>G</i>) &times; <i>w</i> + <i>G</i>) &times; <i>p</i></p>
+    <p>where <i>w</i> is 1.5, 2.5 or 4 for the Shorter, Balanced and Detours OK settings and <i>p</i> is a penalty of 1.5 on primary roads, 1.2 on service roads and 1 elsewhere. A higher <i>w</i> makes exposed metres more expensive, so the route accepts longer detours for shade.</p>
+    <p>Users can choose up to six stops or ask for suggestions. The suggestion rule takes places in order of post count, adds them one at a time while keeping them at least 200&nbsp;m apart, and stops at three places or when the walking limit would be exceeded at 75&nbsp;m per minute. For the chosen stops every ordering is tried using weighted shortest paths, and the route ends at the lowest-cost exit among 138 exits of 27 stations around the study area. The search box reads place names and simple keywords with a rule-based parser.</p>
+  </section>
+
+  <!-- ============================== 4 ============================== -->
+  <section id="prototype" aria-labelledby="prototype-h">
+    <h2 id="prototype-h">4. Prototype and Demonstration</h2>
+
+    <h3 id="s4-1">4.1 How to use the app</h3>
+    <p>The prototype runs in any web browser at the <a href="https://zhangyihan-1021.github.io/shadewalk-sg/">live demo</a>, opening in Chinese with an EN button for English. A user picks a start station and exit, a departure time of 9:00, 13:00 or 17:00, a walking limit of 30, 60 or 90 minutes and a detour setting, then searches for stops by name, picks them on the map or asks for suggestions based on post counts. The page lists the four routes with walking time, distance, shaded share and nearby post counts and draws them on the map. Other map styles colour every street by its shade level at the chosen time or show a heat map of sampled posts, and a Compare tab adds the 3D-model baseline.</p>
+
+    <h3 id="s4-2">4.2 Worked example</h3>
+    <p>Figure 8 shows the opening view of the site, which is also a typical case. A visitor starts at City Hall Exit B at 13:00 with a 60-minute limit and the Balanced setting, and the page opens with three museums as stops, namely the National Gallery Singapore (49 posts in the 90-day window), the Asian Civilisations Museum (120) and the National Museum of Singapore (59). The shortest route is 2.9&nbsp;km and 39 minutes long with 55% of its length in shade, and its longest exposed stretch is 80&nbsp;m. The shade route is 3.1&nbsp;km and 41 minutes long with 75% in shade, and its longest exposed stretch falls to 60&nbsp;m. For about two minutes of extra walking, the visitor gains 20 percentage points of shade. Both routes end at Bras Basah Exit C, the linkway route takes almost the same path as the shade route, and 71% of the shade route is rated from street view, with the rest from the 3D model.</p>
+    <figure id="fig8">
+      <img src="report-assets/fig7_app_city_hall.png" alt="Screenshot of the ShadeWalk web app. A side panel lists City Hall as the start, three stops and four suggested routes. The map shows the shade route from City Hall past the National Gallery, the Asian Civilisations Museum and the National Museum to Bras Basah." loading="lazy">
+      <figcaption><b>Figure 8.</b> Opening view of the prototype, with City Hall at 13:00, a 60-minute limit, the Balanced setting and the shade route highlighted. Map data &copy; OpenStreetMap contributors and the sources in Appendix B.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================== 5 ============================== -->
+  <section id="evaluation" aria-labelledby="evaluation-h">
+    <h2 id="evaluation-h">5. Critical Evaluation</h2>
+
+    <h3 id="s5-1">5.1 Results</h3>
+    <p>One example is not enough to judge the routes, so we generated 300 itineraries with the site&rsquo;s own routing code. Each starts at a random station in the study area and visits three of the most-posted places, and each was kept only if its shortest route fits within 60 minutes (Appendix D).</p>
+    <p>The median shortest route was 3.96&nbsp;km and 53 minutes long with 50.9% of its length in shade. Against it, the shade route added a median 202&nbsp;m and 16.0 percentage points of shade. The linkway route added 224&nbsp;m for 12.4 points and the route guided only by the 3D model added 324&nbsp;m for 16.1 points, while the popular route barely moved, adding 42&nbsp;m and 1.3 points (Figure 9). Long exposed stretches also became rarer, as the number of routes with 100&nbsp;m or more in the sun fell from 269 for the shortest routes to 168 for the shade routes. The detour setting behaves as intended, with shade gains of 9.1, 16.0 and 18.8 points as the weight rises (Table 2).</p>
+    <p>The two shade layers lead walkers along different streets. Routes guided by the VLM layer and by the 3D model share 57% of their length. Street view images carry no time of day, so routes guided by the VLM layer stay steadier through the day, keeping 59% and 76% of the 13:00 path at 9:00 and 17:00, against 40% and 37% for routes guided by the 3D model. Detours also cost time, and 66 of the 300 shade routes run past the 60-minute limit because the limit is applied before the shade detour is added.</p>
+    <figure id="fig9">
+      <img class="narrow" src="report-assets/fig8_route_tradeoff.png" alt="Scatter chart of median extra distance against shade gain compared with the shortest route. Shade route plus 202 metres and plus 16.0 points. 3D baseline plus 324 metres and plus 16.1. Linkway route plus 224 metres and plus 12.4. Popular route plus 42 metres and plus 1.3." loading="lazy">
+      <figcaption><b>Figure 9.</b> Median extra distance and shade gain of each route against the shortest route, for 300 test itineraries at 13:00 with the Balanced setting. Shade gain is in percentage points of route length.</figcaption>
+    </figure>
+    <div class="table-wrap">
+      <table id="tab2">
+        <caption><b>Table 2.</b> Median extra distance and shade gain of the shade route against the shortest route for the three detour settings (300 itineraries, 13:00).</caption>
+        <thead>
+          <tr><th>Detour setting</th><th class="num">Weight <i>w</i></th><th class="num">Extra distance (m)</th><th class="num">Shade gain (points)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Shorter</td><td class="num">1.5</td><td class="num">+60</td><td class="num">+9.1</td></tr>
+          <tr><td>Balanced</td><td class="num">2.5</td><td class="num">+202</td><td class="num">+16.0</td></tr>
+          <tr><td>Detours OK</td><td class="num">4</td><td class="num">+322</td><td class="num">+18.8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="s5-2">5.2 What AI added beyond the non-AI baselines</h3>
+    <p>Setting each AI layer against a simpler alternative shows where AI adds value in this prototype. On shade, covered linkways alone, with no AI, deliver about 78% of the gain of the VLM-guided route (12.4 of 16.0 points), and the 3D model alone gives a similar gain with a longer detour. The VLM layer and the 3D model agree only weakly, with a rank correlation of 0.21 over 264.2&nbsp;km of comparable segments at 13:00, and Figure 10 maps where they differ most, namely 16.6&nbsp;km rated high by the VLM and low by the model and 6.9&nbsp;km the reverse. The VLM looks from a pedestrian&rsquo;s height and can register awnings and overhangs that a building and canopy model leaves out, while the 3D model follows the sun through the day. Our results therefore point to a layered design, with linkways as the base, the 3D model for time of day and the VLM layer for street-level features.</p>
+    <p>On the social media side, AI reading added 228 of the 4,548 placed posts (5%), or 131 of the 1,649 in the 90-day window. Its value lies in sorting rather than finding, since the dictionary had already found all 563 candidates. Dictionary screening alone would have mapped every one of them, including 73 captions that were not about the named place and 157 promotional posts among the 490 accepted links. Because AI reading kept only the 228 high-confidence personal or scene posts, the caption-based part of the popularity layer counts visits and scenes rather than adverts.</p>
+    <figure id="fig10">
+      <img class="narrow" src="report-assets/figF2_svi_model_disagreement.png" alt="Map of streets where the VLM shade level and the 3D model disagree. Orange marks 16.6 kilometres rated high by the VLM and low by the model. Blue marks 6.9 kilometres rated low by the VLM and high by the model." loading="lazy">
+      <figcaption><b>Figure 10.</b> Streets where the VLM level and the 3D model at 13:00 disagree. Orange streets (16.6&nbsp;km) are rated high by the VLM and low by the model, and blue streets (6.9&nbsp;km) the reverse.</figcaption>
+    </figure>
+
+    <h3 id="s5-3">5.3 Limitations and challenges</h3>
+    <p>Three challenges shaped the build. The first was that most collected posts could not be placed directly, since 4,166 had no usable coordinates and a further 1,312 were tagged only to a city or country. The two-stage caption reading in Section 3.1 recovered the posts that name a single place. The second was that street view, taken from a car, cannot see under covered linkways or inside buildings, and 240 sampling points had no valid image. We therefore counted covered paths from LTA as fully shaded and let the 3D model fill the remaining gaps. The third was that the data sources come under different terms. According to the project data notes, LTA DataMall data are for personal, non-commercial use and redistribution needs written permission, and street view imagery may carry its own restrictions <mark class="tbc">[TBC confirm terms]</mark>, so the public repository holds processed layers and anonymised counts.</p>
+    <p>The data also carry known biases. Post counts reflect posting habits as well as visits and tend to over-represent landmarks (Song et al., 2020). A posting date is not a visit date, and tagged posts were not screened for adverts in the way caption posts were. Street view covers 53.7% of the network, the images differ in age and their time of day is unknown. The VLM level also tracks open sky closely, which is related to but not the same as shade on the footpath, and VLMs are known to be weaker on subjective judgements of urban scenes (Mushkani, 2025).</p>
+    <p>Two design choices bound the results. Stops are chosen from post counts before any route is computed, so shade does not influence which places are suggested, and access details such as entrances, opening hours and steps are not modelled. In the evaluation each route is scored with the layer that guided it, so the gains in Section 5.1 show how well each route uses its own layer, while the comparison between layers in Section 5.2 shows how far the layers agree.</p>
+
+    <h3 id="s5-4">5.4 Potential improvements</h3>
+    <p>The evaluation also tells us where to go next. A field or manual check of shade should come first, with sample points drawn from the streets in Figure 10 where the two layers disagree most, alongside a human review of a sample of AI caption decisions to measure their accuracy. The routing can then improve in three ways, namely re-checking the time limit after the shade detour, letting shade enter stop selection and combining the VLM rating with the time of day from the 3D model in one shade score. A language model could replace the keyword parser by mapping free-text requests to the existing settings while the routing stays rule-based, and open imagery such as Global Streetscapes (Hou et al., 2024) would make the shade layer easier to publish and update. Finally, a planning view of busy streets with little shade follows directly from the existing layers, since 1.5&nbsp;km of the 11.0&nbsp;km busiest streets had low shade at 13:00 in the evaluation.</p>
+  </section>
+
+  <!-- ============================== 6 ============================== -->
+  <section id="repository" aria-labelledby="repository-h">
+    <h2 id="repository-h">6. Project Repository</h2>
+    <dl class="links">
+      <dt>Report</dt>
+      <dd><a href="https://zhangyihan-1021.github.io/shadewalk-sg/report.html">https://zhangyihan-1021.github.io/shadewalk-sg/report.html</a></dd>
+      <dt>Live demo</dt>
+      <dd><a href="https://zhangyihan-1021.github.io/shadewalk-sg/">https://zhangyihan-1021.github.io/shadewalk-sg/</a></dd>
+      <dt>Repository</dt>
+      <dd><a href="https://github.com/ZhangYihan-1021/shadewalk-sg">https://github.com/ZhangYihan-1021/shadewalk-sg</a></dd>
+      <dt>Evaluation</dt>
+      <dd><a href="https://github.com/ZhangYihan-1021/shadewalk-sg/tree/main/evaluation">https://github.com/ZhangYihan-1021/shadewalk-sg/tree/main/evaluation</a></dd>
+    </dl>
+    <p>The repository holds the web prototype, this report and the route evaluation. The prototype is a static page that runs in any modern browser without installation. Its data files contain the processed network attributes, shade levels per segment, station exits and anonymised daily post counts per place, and every route in the live demo is computed from these published files. The evaluation folder holds the script behind Section 5.1 and its results (Appendix D). To respect the data licences and the privacy of Instagram users, captions, usernames, post links, raw LTA files, raw Instagram exports, street view images and the data-building scripts that read them stay with the group.</p>
+  </section>
+
+  <!-- ============================ Appendices ============================ -->
+  <section id="appendices" class="appendix" aria-labelledby="appendices-h">
+    <h2 id="appendices-h">Appendices</h2>
+    <p>The appendices are not counted in the word or page limit.</p>
+
+    <h3 id="appA">Appendix A. References</h3>
+    <ol class="refs">
+      <li>Biljecki, F., &amp; Ito, K. (2021). Street view imagery in urban analytics and GIS: A review. <i>Landscape and Urban Planning, 215</i>, 104217.</li>
+      <li>Gavalas, D., Konstantopoulos, C., Mastakas, K., &amp; Pantziou, G. (2014). A survey on algorithmic approaches for solving tourist trip design problems. <i>Journal of Heuristics, 20</i>(3), 291&ndash;328.</li>
+      <li>Hou, Y., Quintana, M., Khomiakov, M., Yap, W., Ouyang, J., Ito, K., Wang, Z., Zhao, T., &amp; Biljecki, F. (2024). Global Streetscapes: A comprehensive dataset of 10 million street-level images across 688 cities for urban science and analytics. <i>ISPRS Journal of Photogrammetry and Remote Sensing, 215</i>, 216&ndash;238.</li>
+      <li>Land Transport Authority. (2019). <i>Land Transport Master Plan 2040</i>.</li>
+      <li>Li, X., Ratti, C., &amp; Seiferling, I. (2018). Quantifying the shade provision of street trees in urban landscape: A case study in Boston, USA, using Google Street View. <i>Landscape and Urban Planning, 169</i>, 81&ndash;91.</li>
+      <li>Liu, Z., Wang, A., Weber, K., Chan, E. H. W., &amp; Shi, W. (2022). Categorisation of cultural tourism attractions by tourist preference using location-based social network data: The case of Central, Hong Kong. <i>Tourism Management, 90</i>, 104488.</li>
+      <li>Ma, X., Zeng, T., de Dear, R., Xie, Y., Yuan, C., &amp; Lu, S. (2025). Active route choice to minimize pedestrian thermal discomfort in a high-density subtropical city. <i>Sustainable Cities and Society, 131</i>, 106697.</li>
+      <li>Melnikov, V. R., Christopoulos, G. I., Krzhizhanovskaya, V. V., Lees, M. H., &amp; Sloot, P. M. A. (2022). Behavioural thermal regulation explains pedestrian path choices in hot urban environments. <i>Scientific Reports, 12</i>, 2441.</li>
+      <li>Meteorological Service Singapore &amp; Ministry of Sustainability and the Environment. (2024, January 5). <i>Latest climate projections for Singapore show intensifying urban heat and more wet &amp; dry extremes</i> [Joint news release].</li>
+      <li>Mushkani, R. (2025). Do vision-language models see urban scenes as people do? An urban perception benchmark. <i>arXiv:2509.14574</i> [Preprint].</li>
+      <li>Singapore Tourism Board. (2026, May 8). <i>Speech by Ms Melissa Ow, Chief Executive, at the Tourism Industry Conference 2026</i>.</li>
+      <li>Song, X. P., Richards, D. R., He, P., &amp; Tan, P. Y. (2020). Does geo-located social media reflect the visit frequency of urban parks? A city-wide analysis using the count and content of photographs. <i>Landscape and Urban Planning, 203</i>, 103908.</li>
+      <li>Tolan, J., Yang, H.-I., Nosarzewski, B., Couairon, G., Vo, H. V., Brandt, J., Spore, J., Majumdar, S., Haziza, D., Vamaraju, J., Moutakanni, T., Bojanowski, P., Johns, T., White, B., Tiecke, T., &amp; Couprie, C. (2024). Very high resolution canopy height maps from RGB imagery using self-supervised vision transformer and convolutional decoder trained on aerial lidar. <i>Remote Sensing of Environment, 300</i>, 113888. <mark class="tbc">[TBC verify this entry]</mark></li>
+      <li>Yang, S., Chong, A., Liu, P., &amp; Biljecki, F. (2025). Thermal comfort in sight: Thermal affordance and its visual assessment for sustainable streetscape design. <i>Building and Environment, 271</i>, 112569.</li>
+      <li>Zhao, H., Zhao, L., Ou, J., Meng, Q., Niu, J., &amp; Brown, R. D. (2026). Summer shading strategies for urban sidewalks: Shade-layout control metrics oriented to pedestrian whole-trip thermal comfort. <i>Sustainable Cities and Society, 136</i>, 107019.</li>
+    </ol>
+
+    <h3 id="appB">Appendix B. Data sources and licences</h3>
+    <div class="table-wrap">
+      <table>
+        <caption><b>Table B1.</b> Data sources used in the prototype.</caption>
+        <thead>
+          <tr><th>Source</th><th>Content used</th><th>Version or date</th><th>Licence or terms</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OpenStreetMap</td><td>Walking network, buildings, named leisure places</td><td>Downloaded 4 Nov 2026</td><td>ODbL 1.0, &copy; OpenStreetMap contributors</td></tr>
+          <tr><td>LTA DataMall</td><td>Covered linkways, footpaths, pedestrian overhead bridges and underpasses</td><td>September 2026 release</td><td>LTA DataMall terms of use <mark class="tbc">[TBC whether processed data may be published]</mark></td></tr>
+          <tr><td>data.gov.sg</td><td>SLA National Map Line, LTA MRT station exits, STB tourist attractions, NParks parks</td><td><mark class="tbc">[TBC download date]</mark></td><td>data.gov.sg terms <mark class="tbc">[TBC licence name]</mark></td></tr>
+          <tr><td>Meta/WRI canopy height (Tolan et al., 2024)</td><td>1&nbsp;m tree canopy height</td><td>2024 release, imagery mostly 2017&ndash;2019</td><td>CC BY 4.0</td></tr>
+          <tr><td>ESA WorldCover</td><td>10&nbsp;m land cover, tree class</td><td>2021, v200</td><td>CC BY 4.0</td></tr>
+          <tr><td>Instagram, collected with Apify</td><td>Public posts, location tags and captions</td><td>Snapshot 4 Nov 2026</td><td>Platform terms apply. Only anonymised counts are published</td></tr>
+          <tr><td>Street view imagery</td><td>Four views at each of 4,176 points</td><td>77% from 2024 or later</td><td><mark class="tbc">[TBC source and terms]</mark></td></tr>
+          <tr><td>MSS and MSE (2024)</td><td>Projected very hot days (Figure 1)</td><td>January 2024</td><td>Cited source</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="appC">Appendix C. AI models and instructions</h3>
+    <div class="table-wrap">
+      <table>
+        <caption><b>Table C1.</b> AI steps, models and instructions.</caption>
+        <thead>
+          <tr><th>Step</th><th>Model and version</th><th>Date run</th><th>Instruction and output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Caption reading</td><td><mark class="tbc">[TBC]</mark></td><td><mark class="tbc">[TBC, about 4&ndash;6 Nov 2026]</mark></td><td>For each of the 563 candidate captions, the assistant recorded a decision, a confidence level, the content role and the literal caption evidence (review method &ldquo;assistant_read_caption_text&rdquo; in the package). <mark class="tbc">[TBC whether a written instruction was used]</mark></td></tr>
+          <tr><td>Street view shade rating</td><td><mark class="tbc">[TBC]</mark></td><td><mark class="tbc">[TBC]</mark></td><td>One rating per image of none, low, medium or high, coded 0&ndash;3. <mark class="tbc">[TBC prompt text, and the per-image file shade_assessment_vlm.csv]</mark></td></tr>
+          <tr><td>Segmentation</td><td><mark class="tbc">[TBC, Segment Anything based]</mark></td><td><mark class="tbc">[TBC]</mark></td><td>Text prompts for 20 classes, namely tree, shrub, grass, bush, shelter, umbrella, canopy, water, fountain, sky, ground, pavement, road, shadow, vehicle, curtain, building, flyover, window and door. Output is the pixel share of each class per image.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="appD">Appendix D. Route evaluation method</h3>
+    <p>The evaluation script, in the evaluation folder of the repository, runs in the browser console on the live demo and calls the site&rsquo;s own routing function, so the routes are those a user would get. Each draw takes a random start among the 10 stations in the study area and three different stops at least 200&nbsp;m apart from the 60 Instagram location tags with the most posts between 6 August and 3 November 2026. A draw is kept only if its shortest route fits the 60-minute limit at 75&nbsp;m per minute, and as on the live demo each route ends at the lowest-cost exit among the 138 exits of 27 stations. With the fixed seed 595813, 300 itineraries were kept from 1,958 draws. Routes use 13:00 and the Balanced setting (<i>w</i> = 2.5) unless stated otherwise, and medians use the nearest rank. The script was run twice with identical results apart from the time stamp, and four itineraries recomputed on the live demo matched its output exactly. The stops are a random draw rather than real itineraries, and tags naming one venue, such as different spellings of Gardens by the Bay, are kept separate. The group presentation used an earlier run on a build in which routes ended only at the 10 study-area stations, so its figures differ slightly (for example +187&nbsp;m and 14.5 points for the shade route).</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Map data &copy; OpenStreetMap contributors, LTA, SLA, STB, ESA WorldCover 2021, Meta/WRI 2024. Last updated 17 November 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>

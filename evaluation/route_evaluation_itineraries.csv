@@ -1,0 +1,301 @@
+﻿itinerary,start_station,stop_1,stop_2,stop_3,shortest_km,shortest_minutes,shortest_shade_pct,shortest_longest_exposed_m,shortest_end_station,shortest_posts,shade_km,shade_minutes,shade_shade_pct,shade_longest_exposed_m,shade_end_station,model3d_km,model3d_shade_pct,linkway_km,linkway_shade_pct,popular_km,popular_shade_pct,popular_posts,overlap_shade_model3d_pct,overlap_shade_shortest_pct
+1,Bras Basah,National Gallery Singapore,Sultan Mosque Singapore,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.21,56,50.7,392,Bugis,111,4.52,60,69.9,392,Bugis,4.58,70.1,4.52,69.9,4.27,52.9,118,79.8,30.5
+2,Dhoby Ghaut,Little India Singapore,Fort Canning Park Tree Tunnel,Bras Basah Complex,3.72,50,50.2,215,Farrer Park,163,3.81,51,61.7,124,Farrer Park,3.95,59.4,3.91,57.8,3.78,46.9,172,36.9,31.8
+3,Bras Basah,Fort Canning,Haji Lane,National Museum of Singapore,3.41,46,50,299,Bugis,230,3.59,48,76.6,45,Bugis,3.66,77.8,3.48,63.4,3.45,54.7,245,81.8,14.4
+4,Fort Canning,Clarke Quay,Supertree Observatory at Gardens by the Bay,Gardens by the Bay,4.43,59,52.4,403,Gardens By The Bay,202,4.71,63,62.9,227,Gardens By The Bay,4.87,60.5,4.75,62.4,4.49,51.4,202,27.9,32.2
+5,Fort Canning,Bras Basah Complex,Fort Canning Tunnel,Clarke Quay,3.11,41,51.9,117,Bras Basah,83,3.31,44,68.1,75,Bras Basah,3.25,64.5,3.12,52.4,3.16,58,156,59.2,21.2
+6,Bugis,"Fort Canning Park, Singapore",Peranakan Museum Singapore,Merlion Park • Singapore,4.18,56,52.4,139,Raffles Place,115,4.45,59,78.8,63,Fort Canning,4.48,78.8,4.44,77.5,4.28,52.5,170,56.7,15.6
+7,Bencoolen,Peranakan Museum Singapore,"Arab Street, Singapore","Buddha Tooth Relic Temple, China Town, Singapore",3.84,51,49.3,251,Bugis,48,4.09,54,65.3,128,Little India,4.14,63.9,4.11,64.6,3.95,54.8,104,55.8,24.9
+8,Bugis,Floral Fantasy,"The Helix Bridge, Marina Bay, Singapore",National Museum of Singapore,4.49,60,53,219,Bayfront,176,4.59,61,63.2,219,Bayfront,4.61,62.5,4.67,62.3,4.51,50.8,176,85.3,48.3
+9,Clarke Quay,Bras Basah Complex,Little India Singapore,Sultan Mosque Singapore,4.21,56,52.1,177,Farrer Park,94,4.24,57,58,124,Farrer Park,4.43,58.8,4.24,56,4.24,53.1,94,52.2,46
+10,Bugis,Haji Lane,Malay Heritage Centre,Peranakan Museum Singapore,3.24,43,46.4,149,Bras Basah,171,3.3,44,61.8,79,City Hall,3.42,62.8,3.4,60.9,3.28,53.7,186,44.6,19.3
+11,City Hall,"Marina Bay, Sinagpore River Cruise, Merlion Park",Capitaspring,ArtScience Museum,4.38,58,40.6,332,Bayfront,145,4.98,66,66.8,283,Raffles Place,4.68,54.4,4.45,48.7,4.44,42.7,210,14.7,10.6
+12,Esplanade,"The Helix Bridge, Marina Bay, Singapore","Kampong Glam, Singapore",ArtScience Museum,4.46,59,48.8,200,Bayfront,163,4.82,64,74.5,92,Nicoll Highway,4.82,73.3,4.83,72.7,4.62,45.6,255,79.7,24
+13,Esplanade,Bras Basah Complex,Little India Singapore,Merlion Park,4.39,59,49,193,Little India,104,4.53,60,62.3,177,Little India,4.75,60.5,5.18,70.9,4.39,49.2,104,27.9,33.1
+14,Esplanade,National Gallery Singapore,"Chinatown, Singapura",Merlion Park,3.49,47,43.8,194,Maxwell,167,3.67,49,60.7,80,Maxwell,4.05,63.6,3.67,60.5,3.57,45.1,155,27.4,17.2
+15,Promenade,"Gardens By the Bay, Singapore","Garden By The Bay, Marina Bay Sands",Floral Fantasy,3.36,45,48,461,Bayfront,334,3.41,45,54,403,Bayfront,3.39,49.7,3.43,51,3.41,46.8,410,47.8,44.5
+16,Esplanade,"Haji Lane, Singapore","Helix Bridge Marina Bay, Singapore",Arab Street,2.17,29,55.1,126,Jalan Besar,135,2.36,31,69.9,70,Jalan Besar,2.36,69.9,2.36,69.9,2.21,54.9,135,90.8,61.9
+17,Bugis,National Gallery Singapore,"Clarke Quay, Singapore",Sultan Mosque Singapore,3.94,53,57.1,77,Fort Canning,117,4.08,54,65.2,36,Fort Canning,4.29,63.8,4.09,65,3.95,55.4,118,55.4,53.4
+18,Bencoolen,Bras Basah Complex,Sultan Mosque Singapore,Clarke Quay,4.01,54,48.1,281,Fort Canning,99,4.27,57,68.1,57,Fort Canning,4.98,69.7,4.29,67.4,4.06,52.8,99,35.6,29.9
+19,Clarke Quay,National Museum of Singapore,"Clarke Quay, Singapore",Bras Basah Complex,3.91,52,51.2,117,Bras Basah,146,4.08,54,67.7,82,Bras Basah,4.07,64.8,3.94,54.6,3.96,51.4,146,77.3,33.8
+20,Bugis,"Fort Canning Park, Singapore",Buddha Tooth Relic Temple and Museum 佛牙寺,Peranakan Museum Singapore,4.32,58,54.9,85,Maxwell,191,4.44,59,65.7,82,Maxwell,4.66,68.5,4.63,66.6,4.39,56.9,205,63.2,9.7
+21,Fort Canning,Peranakan Museum Singapore,Indian Heritage Centre,Clarke Quay,3.33,44,56.8,110,Rochor,34,3.53,47,66.8,110,Rochor,3.56,65.9,3.42,58.7,3.41,48.1,55,55.5,41.5
+22,Promenade,Supertree Observatory at Gardens by the Bay,"Garden By The Bay, Marina Bay Sands",Floral Fantasy,3.22,43,46.5,461,Bayfront,276,3.26,44,50.6,403,Bayfront,3.28,47.2,3.31,47.6,3.34,45.7,276,37.7,43.6
+23,Bugis,"Kampong Glam, Singapure",Capitaspring,Bras Basah Complex,3.46,46,57,76,Raffles Place,100,3.48,46,61.9,76,Raffles Place,3.89,68.1,3.47,58.4,3.46,53.9,100,21.9,47.1
+24,Bencoolen,Merlion Park,Fort Canning,Buddha Tooth Relic Temple and Museum 佛牙寺,4.44,59,48.3,322,Maxwell,209,4.88,65,71.8,133,Maxwell,5.05,72.2,4.9,66,4.52,49.1,324,52.9,14.6
+25,Promenade,Bras Basah Complex,Haji Lane,Yue Hwa Chinese Products Singapore,4.25,57,49,149,Chinatown,146,4.45,59,63.2,76,Chinatown,4.61,65.2,4.51,62.3,4.25,50.3,146,57.7,40.9
+26,Fort Canning,"Buddha Tooth Relic Temple, China Town, Singapore",Fort Canning Tunnel,"Bugis, Singapore",3.08,41,49.9,230,Bugis,59,3.38,45,67.9,107,Little India,3.39,67.5,3.18,59.9,3.12,57.8,99,89.7,15.9
+27,Promenade,"Helix Bridge Marina Bay, Singapore",Merlion Park • Singapore,"Kampong Glam, Singapore",4.42,59,54.8,214,Jalan Besar,166,4.68,62,80.4,63,Jalan Besar,4.69,78.4,4.68,79.6,4.46,63.8,170,83.7,28.4
+28,City Hall,Clarke Quay,Peranakan Museum Singapore,"Chinatown, Singapura",3.54,47,50.5,110,Maxwell,69,3.87,52,65.3,82,Maxwell,3.93,65.9,3.82,59.3,3.73,48.1,149,43.4,17.8
+29,Bugis,"Kampong Glam, Singapore","Helix Bridge Marina Bay, Singapore",Marina Bay Sands,4.25,57,45.1,403,Bayfront,196,4.8,64,65.2,403,Bayfront,4.81,63.3,4.62,56.5,4.26,46,194,86.3,34.4
+30,Esplanade,Indian Heritage Centre,"Haji Lane, Singapore",Malay Heritage Centre,2.99,40,55.7,126,Rochor,164,3.23,43,70.1,79,Rochor,3.25,67.2,3.21,68.1,3.02,58.4,172,54.4,38.2
+31,Raffles Place,ACM (Asian Civilisations Museum),Merlion Park,People's park complex,3.22,43,42.8,139,Chinatown,186,3.27,44,51.3,133,Chinatown,3.85,61.5,3.31,52.7,3.22,44.8,186,16.3,66.3
+32,Raffles Place,Ann Siang Hill,Capitaspring,"Bugis, Singapore",4.01,53,52.2,264,Bugis,65,4.16,55,63,128,Bugis,5.14,75.7,4.2,62.4,4.09,52.8,94,16.5,35.8
+33,Promenade,National Museum of Singapore,Little India,Little India Singapore,4.35,58,39.1,407,Farrer Park,116,4.87,65,68,124,Farrer Park,5.06,69.2,4.92,67,4.38,39.7,129,37.7,9.1
+34,Esplanade,Little India Singapore,Malay Heritage Centre,"Buddha Tooth Relic Temple, China Town, Singapore",3.79,51,45.3,221,Little India,118,4.01,53,58.8,221,Little India,4.08,55.2,4,55,3.82,47.4,197,56.2,44.3
+35,Fort Canning,Fort Canning Tunnel,"The Helix Bridge, Marina Bay, Singapore",Marina Bay Sands Singapore,3.88,52,59,200,Bayfront,183,3.95,53,66.4,200,Bayfront,3.96,64.8,3.98,61.6,3.91,57.6,183,84.9,64.6
+36,Raffles Place,ArtScience Museum,Garden By the Bay Singapore,Capitaspring,4.05,54,47.8,200,Gardens By The Bay,397,4.1,55,51.2,200,Bayfront,4.29,52.2,4.09,49.4,4.1,49.1,355,56.2,61.8
+37,Promenade,China Town. Singapore.新加坡,Bras Basah Complex,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.14,55,47.5,458,Maxwell,86,4.34,58,66.6,458,Maxwell,4.79,68.4,4.33,66.3,4.15,50.9,142,38.4,27.7
+38,Bras Basah,"Kampong Glam, Singapure",Fort Canning,Fort Canning Tunnel,3.15,42,57.9,110,Bugis,171,3.26,43,76.3,45,Bugis,3.33,77.6,3.22,72.4,3.19,62.9,186,79.6,18.9
+39,Promenade,Ann Siang Hill,Yue Hwa Chinese Products Singapore,Peranakan Museum Singapore,4.26,57,41.7,246,Maxwell,66,4.56,61,69.6,76,Maxwell,4.63,69.3,4.59,68.8,4.31,51,91,55.5,20.5
+40,Bencoolen,Malay Heritage Centre,Fort Canning Park Tree Tunnel,Peranakan Museum Singapore,3.9,52,49.5,110,Bugis,215,4.41,59,76.5,50,Nicoll Highway,4.44,74.2,4.35,71.6,3.95,54.4,230,79.7,14.6
+41,Bras Basah,"Bugis, Singapore",Peranakan Museum Singapore,Ann Siang Hill,3.67,49,41.9,246,Maxwell,56,4.01,53,61.4,76,Maxwell,4.07,59.3,3.96,58.7,3.68,46.2,57,37.4,28.7
+42,Bencoolen,Fort Canning Park Tree Tunnel,People's park complex,ACM (Asian Civilisations Museum),4.42,59,46.4,126,Chinatown,195,4.82,64,69.7,126,Chinatown,5.02,69.8,4.78,66.5,4.44,49.9,324,45.3,24.5
+43,Dhoby Ghaut,Little India Singapore,Haji Lane,Fort Canning Park Tree Tunnel,4.05,54,48,193,Bugis,187,4.54,61,66.5,177,Little India,4.76,68.5,4.08,49.4,4.06,47.8,187,68.7,25.1
+44,Bugis,Floral Fantasy Gardens by the Bay,Gardens by the Bay,Marina Bay Sands,4.17,56,52.6,403,Gardens By The Bay,215,4.62,62,71.6,403,Gardens By The Bay,4.62,70.8,4.64,65.7,4.22,53.4,340,84.5,40.3
+45,Raffles Place,Gardens by the Bay,"Garden By The Bay, Marina Bay Sands",ACM (Asian Civilisations Museum),4.39,59,54.4,403,Gardens By The Bay,306,4.65,62,63.7,227,Gardens By The Bay,4.7,62.6,4.65,60.1,4.52,52.9,470,38.2,39
+46,Raffles Place,"Supertree Grove, Gardens by the Bay",Marina Bay Sands Singapore,Capitaspring,3.87,52,48.9,200,Bayfront,234,3.91,52,52,200,Bayfront,4.06,52.3,3.89,50.1,3.9,49.8,234,60.5,77.4
+47,Esplanade,Indian Heritage Centre,Fort Canning Park Tree Tunnel,"Kampong Glam, Singapore",4.25,57,52.3,314,Dhoby Ghaut,218,4.87,65,72.5,110,Dhoby Ghaut,4.96,70.1,4.47,61.3,4.26,53.2,218,56.4,23.6
+48,Bugis,Ann Siang Hill,"Chinatown, Singapura",ACM (Asian Civilisations Museum),3.69,49,39.9,375,Maxwell,188,4.08,54,68.2,128,Maxwell,4.27,70,3.89,61,3.82,43.4,270,66.9,12.5
+49,Bras Basah,"Kampong Glam, Singapure",Ann Siang Hill,"Bugis, Singapore",4.47,60,51.3,246,Maxwell,91,4.65,62,62.7,76,Maxwell,5.59,71.3,4.67,62.1,4.5,52.2,93,15.6,41.5
+50,Raffles Place,ACM (Asian Civilisations Museum),Merlion Park,Yue Hwa Chinese Products Singapore,2.73,36,39.4,139,Chinatown,177,2.83,38,51.2,133,Chinatown,3.08,53.2,2.85,51.8,2.73,41.8,177,20.5,60.8
+51,Esplanade,Chinatown Singapore 牛车水,Yue Hwa Chinese Products Singapore,Bras Basah Complex,3.34,44,52.7,126,Chinatown,74,3.38,45,63.4,76,Chinatown,3.41,63.7,3.4,63.8,3.34,54.6,74,77.3,45
+52,Clarke Quay,Merlion Park,"Helix Bridge Marina Bay, Singapore",Haji Lane,4.1,55,48.5,189,Jalan Besar,137,4.25,57,68.6,133,Jalan Besar,4.25,67,4.23,66.1,4.12,53.4,139,72.9,25.5
+53,Promenade,Merlion Park,"Fort Canning Park, Singapore",Clarke Quay,4.22,56,61.3,214,Fort Canning,84,4.53,60,78,61,Fort Canning,4.59,77.6,4.67,79.8,4.37,65.1,142,64.8,22.7
+54,Promenade,"Helix Bridge Marina Bay, Singapore","Bugis, Singapore",Bras Basah Complex,2.46,33,50.2,215,Jalan Besar,50,2.6,35,66.9,110,Jalan Besar,2.6,62.6,2.69,69.8,2.47,52.6,50,47.5,26.4
+55,Bencoolen,"Marina Bay, Sinagpore River Cruise, Merlion Park","Chinatown, Singapura",Merlion Park • Singapore,4.06,54,48.2,332,Maxwell,118,4.25,57,64.1,332,Maxwell,4.39,64.7,4.31,63.5,4.15,49.9,166,55.9,38.8
+56,Raffles Place,Fort Canning Park Tree Tunnel,"Clarke Quay, Singapore",Buddha Tooth Relic Temple and Museum 佛牙寺,4.43,59,49.3,202,Dhoby Ghaut,180,4.71,63,66.7,82,Dhoby Ghaut,4.77,66.5,4.58,58.3,4.46,52.7,181,82,24.7
+57,Bencoolen,"Chinatown, Singapura","Helix Bridge Marina Bay, Singapore","Bugis, Singapore",4.52,60,48.4,224,Maxwell,75,4.75,63,57.1,110,Maxwell,5.86,68.3,4.76,58.3,4.54,46.8,104,22.4,32.8
+58,Bras Basah,Fort Canning Park Tree Tunnel,Yue Hwa Chinese Products Singapore,The Pinnacle@Duxton,4.24,56,61.6,202,Outram Park,137,4.43,59,74.4,82,Outram Park,4.5,73.8,4.32,65.3,4.26,64.1,137,70.4,26.4
+59,Bras Basah,"Bugis, Singapore",Fort Canning Tunnel,"Clarke Quay, Singapore",3.09,41,53.4,59,Fort Canning,69,3.26,44,71.6,59,Fort Canning,3.27,69.3,3.25,68.2,3.13,62.7,72,78.5,43.6
+60,Raffles Place,Marina Bay Sands Singapore,Helix Bridge,Gardens by the Bay,3.79,51,49.2,227,Gardens By The Bay,301,3.82,51,52.2,227,Gardens By The Bay,3.93,53.1,3.79,49.2,3.8,50.3,391,62,75.8
+61,Dhoby Ghaut,Fort Canning,Merlion Park • Singapore,National Museum of Singapore,3.06,41,55.7,144,Raffles Place,141,3.38,45,77.1,25,Esplanade,3.38,77.1,3.49,71.1,3.06,52.6,141,100,44.1
+62,Promenade,"Gardens By the Bay, Singapore",ArtScience Museum,"Flower Dome, Gardens By the Bay, Singapore",4.06,54,45.2,461,Gardens By The Bay,532,4.46,59,66.2,200,Gardens By The Bay,4.45,63.4,4.09,47.4,4.14,47.8,569,79.7,40.2
+63,City Hall,Marina Bay Sands Singapore,"The Helix Bridge, Marina Bay, Singapore",Merlion Park • Singapore,3.2,43,52.3,205,Bayfront,160,3.33,44,66.9,205,Bayfront,3.33,66.9,3.31,63.4,3.22,53.7,160,94.6,59.1
+64,Bencoolen,China Town. Singapore.新加坡,Fort Canning Park Tree Tunnel,"Clarke Quay, Singapore",3.87,52,48.9,202,Maxwell,97,4.23,56,72.2,82,Maxwell,4.29,73.2,4.14,63.8,3.92,54.1,162,49.2,14.1
+65,Bugis,"Flower Dome, Singapore",Garden By the Bay Singapore,Floral Fantasy,4.47,60,48.6,461,Bayfront,355,4.95,66,68.6,403,Bayfront,5.02,67.4,5.1,62.4,4.55,48.5,354,59.7,27.2
+66,Esplanade,"Bugis, Singapore",Haji Lane,"Marina Bay, Sinagpore River Cruise, Merlion Park",3.74,50,43,375,Bugis,38,4.01,53,70,343,Bugis,4.06,70.8,4.17,68.9,3.8,48.4,123,88,11.4
+67,Clarke Quay,"Arab Street, Singapore",China Town. Singapore.新加坡,Bras Basah Complex,4.44,59,55.2,76,Bugis,113,4.47,60,58.9,76,Bugis,4.77,62.7,4.66,61.4,4.6,56.1,204,55,48.5
+68,Raffles Place,Little India,"Bugis, Singapore","Fort Canning Park, Singapore",4.32,58,56.6,215,Rochor,86,4.44,59,68.3,191,Rochor,4.73,67,4.61,66.4,4.36,63.3,89,39.4,50.7
+69,Esplanade,ACM (Asian Civilisations Museum),China Town. Singapore.新加坡,"The Helix Bridge, Marina Bay, Singapore",4.37,58,59.3,126,Maxwell,192,4.42,59,63.3,126,Maxwell,4.73,68.2,4.63,64.9,4.46,56.7,224,45,66.2
+70,Clarke Quay,Bras Basah Complex,Haji Lane,Chinatown Singapore 牛车水,4.44,59,52.6,299,Bugis,166,4.48,60,60.2,76,Bugis,4.93,65.4,4.5,56.6,4.44,53,166,42,52.1
+71,Dhoby Ghaut,"Chinatown, Singapura",Ann Siang Hill,"Bugis, Singapore",4.2,56,49.1,246,Maxwell,72,4.36,58,62.9,76,Maxwell,5.4,72.7,4.34,62,4.23,50.9,102,23.6,20.8
+72,Clarke Quay,Little India Singapore,Fort Canning Tunnel,Fort Canning,4.17,56,45.9,221,Farrer Park,148,4.67,62,67.2,124,Farrer Park,4.85,66.8,4.55,58.3,4.17,45.8,148,53.8,5.5
+73,City Hall,"Helix Bridge Marina Bay, Singapore",Little India Singapore,Fort Canning Tunnel,3.75,50,47.3,221,Jalan Besar,143,4.02,54,58.8,124,Farrer Park,4.15,60.6,3.94,56.8,3.77,49.6,152,54.8,25.2
+74,City Hall,"Gardens By the Bay, Singapore",SuperTree Grove @ Gardens by the Bay,National Gallery Singapore,4.5,60,56.4,403,Gardens By The Bay,446,4.76,63,66.9,227,Gardens By The Bay,4.77,63.9,4.76,64.4,4.6,56.5,483,39,36.9
+75,Bras Basah,Arab Street,"Haji Lane, Singapore",Merlion Park • Singapore,4.1,55,47.8,189,Raffles Place,167,4.53,60,77.8,70,Esplanade,4.42,72.5,4.66,78.1,4.18,56,204,49.1,16.2
+76,City Hall,"Helix Bridge Marina Bay, Singapore",Fort Canning Tunnel,Masjid Sultan,4.12,55,52.4,112,Bugis,170,4.32,58,70.3,45,Jalan Besar,4.35,70,4.29,66.9,4.3,60.8,217,91.1,27.5
+77,Clarke Quay,Haji Lane,National Museum of Singapore,Indian Heritage Centre,4.48,60,51.2,314,Bugis,132,4.64,62,67.8,76,Rochor,4.9,68.9,4.64,66.5,4.49,51,136,43.1,30.7
+78,Fort Canning,Peranakan Museum Singapore,Fort Canning,"Kampong Glam, Singapure",3.6,48,54,110,Bugis,219,3.66,49,66.1,62,Bugis,3.79,66,3.71,64.2,3.66,59.3,234,47,33.2
+79,Esplanade,"Haji Lane, Singapore",Fort Canning,"Clarke Quay, Singapore",4.38,58,48.2,149,Fort Canning,236,4.77,64,75,70,Fort Canning,4.79,75.2,4.64,66.1,4.42,55.5,251,94.3,19.5
+80,Raffles Place,ACM (Asian Civilisations Museum),"Kampong Glam, Singapure",Bras Basah Complex,3.54,47,49.9,80,Bugis,205,3.64,49,64.1,61,Bugis,3.8,66.7,3.6,62.3,3.57,50.6,261,64,32.9
+81,Bugis,Haji Lane,Fort Canning Tunnel,"Chinatown, Singapura",4.16,55,45.9,110,Maxwell,103,4.42,59,65.7,60,Maxwell,4.51,66,4.4,62.8,4.2,49.9,118,77.4,20.6
+82,Dhoby Ghaut,Sultan Mosque Singapore,"Buddha Tooth Relic Temple, China Town, Singapore",Peranakan Museum Singapore,3.97,53,44.2,251,Bugis,56,4.22,56,60,128,Little India,4.48,61.8,4.24,59.3,4.1,49.4,171,36.4,27
+83,Bras Basah,"Supertree Grove, Gardens by the Bay",Fort Canning Tunnel,Floral Fantasy Gardens by the Bay,4.45,59,57.8,403,Gardens By The Bay,225,4.67,62,64.7,227,Gardens By The Bay,4.7,64.3,4.7,64.2,4.54,54.8,348,43,47.9
+84,Fort Canning,Arab Street,"Haji Lane, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",4.25,57,43.4,409,Bugis,144,4.83,64,72.1,392,Bugis,4.84,69.6,4.76,66.3,4.42,50.2,200,19.8,8.8
+85,Bencoolen,Garden By the Bay Singapore,"Gardens By the Bay, Singapore",Helix Bridge,4.37,58,61.3,227,Gardens By The Bay,375,4.41,59,64.1,227,Gardens By The Bay,4.52,65.4,4.48,63.2,4.39,59.3,375,82.3,79.8
+86,Promenade,Marina Bay Sands Singapore,"The Helix Bridge, Marina Bay, Singapore",National Gallery Singapore,3.69,49,47.9,461,City Hall,182,4.1,55,70,167,City Hall,4.11,70.3,3.82,52.2,3.72,49.1,182,94.5,37.7
+87,City Hall,"Arab Street, Singapore",ACM (Asian Civilisations Museum),Bras Basah Complex,3.71,49,50.6,80,Bugis,202,3.81,51,70.1,61,Bugis,3.95,72.3,3.81,70.1,3.73,54.9,258,64.9,36.7
+88,Bencoolen,ArtScience Museum,Fort Canning Tunnel,Bras Basah Complex,4.2,56,53.3,200,Bayfront,177,4.34,58,66.2,200,Bayfront,4.72,71.2,4.68,69.5,4.22,54.7,177,39.2,45.3
+89,City Hall,"Haji Lane, Singapore",National Gallery Singapore,Malay Heritage Centre,3.25,43,50.9,159,Bugis,195,3.47,46,75.5,39,Nicoll Highway,3.49,73.9,3.47,72.6,3.29,60,205,81.6,20.4
+90,Fort Canning,Marina Bay Sands,ArtScience Museum,Helix Bridge,3.98,53,60,200,Bayfront,173,4.18,56,71.9,200,Bayfront,4.11,66.8,4.19,67.2,4.01,61,171,49.3,30.1
+91,Fort Canning,Merlion Park • Singapore,ArtScience Museum,"The Helix Bridge, Marina Bay, Singapore",4.12,55,52.4,205,Bayfront,166,4.46,59,67.2,205,Bayfront,4.4,63.2,4.38,60.6,4.26,53.8,222,69.1,45.2
+92,Fort Canning,Peranakan Museum Singapore,"Clarke Quay, Singapore","Arab Street, Singapore",3.72,50,45.7,110,Bugis,76,3.85,51,64.9,62,Bugis,3.94,61.4,3.84,56.6,3.78,51.3,91,34.7,14.4
+93,Clarke Quay,Chinatown Singapore 牛车水,National Museum of Singapore,Merlion Park,4.38,58,56.8,144,Bras Basah,158,4.48,60,65.6,133,Bras Basah,4.61,65.3,4.75,65.8,4.44,55.3,146,44.3,59.7
+94,Promenade,Little India,Arab Street,"Buddha Tooth Relic Temple, China Town, Singapore",2.92,39,49.7,350,Little India,74,3.13,42,60.6,350,Little India,3.2,60.9,3.41,68.1,2.97,50.7,155,55.2,47.8
+95,Esplanade,"Fort Canning Park, Singapore","Bugis, Singapore",Yue Hwa Chinese Products Singapore,4.3,57,54.3,202,Chinatown,81,4.59,61,74.4,82,Chinatown,4.81,76.1,4.74,74,4.38,62.6,121,65.5,24.2
+96,Bugis,Malay Heritage Centre,"The Helix Bridge, Marina Bay, Singapore","Bugis, Singapore",4.47,60,53.5,227,Bayfront,134,4.72,63,70.1,227,Bayfront,4.86,70.6,4.79,68.6,4.61,54.2,139,65.2,33
+97,Bencoolen,National Museum of Singapore,Little India Singapore,Masjid Sultan,4.25,57,47.8,193,Bugis,165,4.58,61,65.8,177,Little India,4.81,67.3,4.65,65.5,4.26,47.6,165,64.7,24.2
+98,City Hall,Bras Basah Complex,Merlion Park,Clarke Quay,3.94,53,54.1,144,Fort Canning,77,4.46,59,74.7,57,Fort Canning,4.7,75.3,4.96,81,4.07,54.8,133,62.1,30.3
+99,Clarke Quay,"Marina Bay, Sinagpore River Cruise, Merlion Park",Merlion Park • Singapore,Fort Canning Park Tree Tunnel,3.7,49,47,397,Dhoby Ghaut,84,3.81,51,59.6,397,Dhoby Ghaut,3.87,58.8,3.78,54.5,3.72,47.8,211,16.7,35.1
+100,Bras Basah,"Haji Lane, Singapore",Little India,Fort Canning,3.7,49,53.4,409,Bugis,243,4.29,57,76.6,191,Rochor,4.31,76.8,4.24,71.9,3.7,53.3,243,96,24.9
+101,Promenade,Capitaspring,China Town. Singapore.新加坡,People's park complex,3.94,53,70.2,128,Chinatown,105,4.16,55,80,47,Chinatown,4.16,79.1,4.25,75.7,4.03,58.1,188,89.1,53.4
+102,Bras Basah,Haji Lane,"Bugis, Singapore",Fort Canning Tunnel,2.22,30,48.9,69,Bugis,36,2.29,30,66.9,36,Bugis,2.33,68.2,2.32,66.4,2.27,63.6,39,70.3,31.3
+103,City Hall,"Buddha Tooth Relic Temple, China Town, Singapore","The Helix Bridge, Marina Bay, Singapore",Bras Basah Complex,4.49,60,54.9,172,Little India,75,4.62,62,64.3,172,Little India,5,69.8,5.12,72.6,4.49,55,75,49.7,60.9
+104,City Hall,ArtScience Museum,"The Helix Bridge, Marina Bay, Singapore","Bugis, Singapore",4.33,58,51.9,200,Bayfront,145,4.77,64,80.5,46,Bugis,4.8,80.6,4.85,81.2,4.39,53,174,84.3,15.4
+105,Bencoolen,"Bugis, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",Merlion Park,3.61,48,46.6,332,Raffles Place,58,4.03,54,70.5,332,Esplanade,4.05,70.6,4.25,74.2,3.63,46.6,143,93,16.1
+106,Dhoby Ghaut,Fort Canning Tunnel,Haji Lane,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.41,59,50.9,392,Bugis,146,4.63,62,69.4,392,Bugis,4.61,68.3,4.55,67.4,4.43,53,203,61.1,34.1
+107,Bugis,Haji Lane,Bras Basah Complex,Merlion Park,3.19,43,54.9,144,Raffles Place,91,3.46,46,69.2,36,Esplanade,3.61,71.8,3.94,78,3.19,55.1,91,45.8,50.9
+108,Clarke Quay,Capitaspring,Indian Heritage Centre,Merlion Park,4.47,60,49.5,211,Rochor,75,4.74,63,70.2,133,Rochor,4.85,69.4,4.73,68.7,4.57,51.1,137,63.9,23.7
+109,Bencoolen,Clarke Quay,Bras Basah Complex,Yue Hwa Chinese Products Singapore,3.72,50,46.8,202,Chinatown,66,4.14,55,68.2,82,Chinatown,4.36,68.8,4.17,65.6,3.75,43.7,64,79.9,19
+110,Bugis,"Bugis, Singapore","Fort Canning Park, Singapore",Fort Canning Park Tree Tunnel,2.48,33,64.3,43,Fort Canning,171,2.57,34,81.1,38,Fort Canning,2.56,75.6,2.54,77.3,2.54,78.3,176,44,33.6
+111,Dhoby Ghaut,Fort Canning Tunnel,Merlion Park,"Fort Canning Park, Singapore",3.32,44,54.2,322,Raffles Place,135,3.63,48,77.2,25,Esplanade,3.62,75.3,3.81,75.8,3.34,55.9,189,87.9,14.8
+112,Bras Basah,National Gallery Singapore,Little India Singapore,"Bugis, Singapore",4.31,58,51.1,215,Farrer Park,77,4.63,62,70,124,Farrer Park,4.74,68.6,4.63,68.2,4.39,51.2,117,53,16.9
+113,Bras Basah,Marina Bay Sands Singapore,Floral Fantasy,Helix Bridge,3.42,46,49.2,192,Bayfront,191,3.44,46,53.3,192,Bayfront,3.5,55.8,3.71,58.1,3.44,50.6,191,60.9,77.1
+114,Clarke Quay,Ann Siang Hill,Yue Hwa Chinese Products Singapore,Merlion Park • Singapore,3.06,41,44.6,264,Raffles Place,88,3.37,45,63.8,133,Esplanade,3.65,67.9,3.48,63.9,3.16,52.3,101,30,31.4
+115,Esplanade,Little India Singapore,Bras Basah Complex,Haji Lane,3.39,45,55.7,177,Farrer Park,152,3.42,46,61,124,Farrer Park,3.6,61.7,3.41,56,3.4,57.1,152,44.7,56.1
+116,Fort Canning,Sultan Mosque Singapore,Little India Singapore,Fort Canning Tunnel,4.26,57,53.1,177,Farrer Park,128,4.36,58,68.7,124,Farrer Park,4.47,66.7,4.35,64.6,4.32,58.2,143,56.4,34.7
+117,Raffles Place,Merlion Park • Singapore,ACM (Asian Civilisations Museum),Arab Street,3.79,50,49.3,139,Bugis,220,3.86,51,61.5,133,Bugis,4.16,67.3,3.86,60.6,3.8,50.7,277,12.5,45.5
+118,Dhoby Ghaut,People's park complex,Fort Canning Tunnel,Chinatown Singapore 牛车水,3.37,45,50,76,Chinatown,48,3.79,51,71.3,82,Chinatown,3.78,69.2,3.73,62.9,3.5,56.9,157,81.2,4.5
+119,Bencoolen,Capitaspring,ACM (Asian Civilisations Museum),Fort Canning Park Tree Tunnel,3.39,45,50.5,80,Raffles Place,203,3.78,50,75.3,61,Raffles Place,3.81,75,3.66,68.8,3.43,51.8,332,81.3,18
+120,Promenade,Haji Lane,Fort Canning Tunnel,Bras Basah Complex,3.08,41,56.1,69,Bras Basah,65,3.2,43,64.2,70,Bras Basah,3.33,64.9,3.47,68.1,3.1,57.1,146,38.1,37.4
+121,Bencoolen,"Kampong Glam, Singapure",Indian Heritage Centre,Little India Singapore,3.25,43,46.6,193,Bugis,77,3.43,46,58.3,177,Little India,3.55,58.5,3.5,58.3,3.26,46.4,77,63.1,32.5
+122,Bugis,Haji Lane,Indian Heritage Centre,Fort Canning Tunnel,3.59,48,53.8,314,Dhoby Ghaut,189,3.69,49,60.8,97,Dhoby Ghaut,3.83,62,3.61,55.3,3.59,53.7,189,45.2,45.3
+123,Fort Canning,Marina Bay Sands,Peranakan Museum Singapore,Fort Canning Tunnel,4.32,58,54.5,403,Bayfront,185,4.59,61,66.2,403,Bayfront,4.59,66.2,4.58,65.7,4.44,58,223,100,38.8
+124,Bugis,"The Helix Bridge, Marina Bay, Singapore","Arab Street, Singapore",Floral Fantasy,4.04,54,52.1,219,Bayfront,188,4.22,56,63.6,219,Bayfront,4.37,65,4.35,64.8,4.04,52,188,76.9,50.2
+125,Clarke Quay,Yue Hwa Chinese Products Singapore,Fort Canning Park Tree Tunnel,"Buddha Tooth Relic Temple, China Town, Singapore",3.77,50,51.2,202,Little India,63,3.93,52,61.6,172,Little India,4.06,63.4,3.84,53.1,3.79,53.7,62,61.8,43
+126,Esplanade,People's park complex,China Town. Singapore.新加坡,Merlion Park,3.22,43,56.2,144,Chinatown,130,3.37,45,69.7,133,Chinatown,3.49,69.8,3.43,68.9,3.28,54.5,174,46.2,44.1
+127,Esplanade,"Marina Bay, Sinagpore River Cruise, Merlion Park","Clarke Quay, Singapore",Fort Canning Tunnel,3.91,52,40.4,375,Fort Canning,127,4.27,57,67.2,343,Fort Canning,4.19,64.9,4.17,58.7,3.95,46.9,183,69.9,15.2
+128,Clarke Quay,"Helix Bridge Marina Bay, Singapore","Arab Street, Singapore",Little India Singapore,4.16,55,55.3,124,Farrer Park,55,4.19,56,59.4,124,Farrer Park,4.3,60.7,4.18,58.2,4.17,54,56,69.7,68.1
+129,Bras Basah,National Museum of Singapore,Chinatown Singapore 牛车水,People's park complex,3.32,44,55.3,76,Chinatown,105,3.34,45,61.5,76,Chinatown,3.64,66.7,3.53,64.6,3.34,56.9,112,11,57.3
+130,Promenade,"Haji Lane, Singapore","Bugis, Singapore","Helix Bridge Marina Bay, Singapore",2.66,35,45.3,215,Jalan Besar,104,3.18,42,75.7,36,Jalan Besar,3.21,75.7,3.2,73.4,2.67,46.8,104,82.4,6
+131,Promenade,Haji Lane,China Town. Singapore.新加坡,Bras Basah Complex,4.27,57,52.5,149,Maxwell,172,4.38,58,60.5,76,Maxwell,4.52,62.2,4.42,59.1,4.27,52.3,172,57.6,50.9
+132,Bencoolen,Ann Siang Hill,"Bugis, Singapore","Helix Bridge Marina Bay, Singapore",4.45,59,46.3,246,Maxwell,60,4.68,62,57,110,Maxwell,5.69,67.3,4.68,57.9,4.47,46.7,90,18.4,27.6
+133,Promenade,"Chinatown, Singapura",The Pinnacle@Duxton,Merlion Park • Singapore,4.45,59,58.2,214,Outram Park,123,4.74,63,74.8,133,Outram Park,4.89,74.2,4.81,73.5,4.54,61.6,113,49.9,17.2
+134,Dhoby Ghaut,Peranakan Museum Singapore,"Fort Canning Park, Singapore",Masjid Sultan,3.74,50,55.6,110,Bugis,179,3.79,51,66.9,62,Bugis,3.92,67.5,3.87,66.9,3.8,61.5,194,55.3,32.5
+135,Esplanade,Sultan Mosque Singapore,National Gallery Singapore,"Fort Canning Park, Singapore",4.5,60,52.8,159,Bugis,179,4.8,64,72.6,36,Fort Canning,4.9,70.7,4.99,75.7,4.55,57.5,194,13.1,18.5
+136,Esplanade,Indian Heritage Centre,"Haji Lane, Singapore",Peranakan Museum Singapore,4.07,54,49.8,149,Rochor,152,4.16,56,64,71,Rochor,4.26,63.4,4.21,61.3,4.14,56.7,183,51.7,25.9
+137,Clarke Quay,"Haji Lane, Singapore",Bras Basah Complex,Merlion Park • Singapore,4.11,55,51.7,299,Bugis,167,4.18,56,61.9,133,Bugis,4.33,62.7,4.62,64.4,4.11,51.8,167,41.7,34.3
+138,Bras Basah,"Arab Street, Singapore",Little India,National Museum of Singapore,3.25,43,50.1,409,Bugis,124,3.57,48,71.7,191,Rochor,3.59,72.1,3.56,70.6,3.25,50.1,124,95.4,27.4
+139,Bencoolen,Fort Canning Park Tree Tunnel,"Bugis, Singapore","Clarke Quay, Singapore",3.21,43,50.9,117,Fort Canning,134,3.38,45,70.7,59,Fort Canning,3.39,70.7,3.26,59.6,3.27,64.4,134,93.4,23.5
+140,Promenade,"Flower Dome, Singapore",Gardens by the Bay,Supertree Observatory at Gardens by the Bay,3,40,51.4,461,Gardens By The Bay,375,3,40,52.3,403,Gardens By The Bay,3.04,50.7,3.03,50,3,51.5,377,37.6,57.6
+141,Clarke Quay,ACM (Asian Civilisations Museum),Indian Heritage Centre,Bras Basah Complex,4.06,54,44.9,215,Rochor,191,4.2,56,61.3,126,Rochor,4.25,60.6,4.32,62,4.13,45.1,267,62.9,30.6
+142,Bugis,Marina Bay Sands Singapore,Helix Bridge,Haji Lane,3.71,49,49.5,200,Bayfront,221,3.93,52,67.6,200,Bayfront,3.99,68.5,3.9,62.6,3.73,50.7,221,81.5,36.3
+143,Raffles Place,Bras Basah Complex,"Marina Bay, Sinagpore River Cruise, Merlion Park",Peranakan Museum Singapore,3.11,41,40.1,332,Bras Basah,52,3.23,43,57,332,Bras Basah,3.25,55.8,3.17,52.1,3.15,45.2,117,70.8,25.4
+144,Bencoolen,Sultan Mosque Singapore,"Bugis, Singapore",ACM (Asian Civilisations Museum),4.23,56,53.1,80,Raffles Place,193,4.53,60,71.2,61,City Hall,4.64,69.2,4.56,70.9,4.29,52.5,250,15.9,33
+145,Esplanade,"Helix Bridge Marina Bay, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",National Museum of Singapore,3.99,53,47.6,375,Jalan Besar,85,4.11,55,66.7,343,Jalan Besar,4.19,67.7,4.32,67.2,4.05,53.4,145,71.2,37
+146,Promenade,Merlion Park • Singapore,"The Helix Bridge, Marina Bay, Singapore",Yue Hwa Chinese Products Singapore,4.22,56,58.3,205,Chinatown,67,4.36,58,63,205,Chinatown,4.36,60.9,5,70.5,4.35,46.9,95,56.3,28.4
+147,Promenade,Arab Street,Bras Basah Complex,National Gallery Singapore,3.8,51,58.4,69,City Hall,145,3.95,53,68.3,70,City Hall,4.1,70.1,4.23,73.9,3.81,59.4,226,51.2,35.6
+148,Esplanade,Fort Canning Park Tree Tunnel,"Haji Lane, Singapore","Fort Canning Park, Singapore",3.95,53,56.2,149,Fort Canning,276,4.26,57,79.4,70,Fort Canning,4.27,76.6,4.22,75.3,4,61,293,64.8,25.9
+149,City Hall,National Museum of Singapore,Merlion Park,"Fort Canning Park, Singapore",3.67,49,59.6,139,Raffles Place,158,3.86,52,78.3,25,Fort Canning,3.85,76.4,4.03,76.9,3.76,56.4,213,88.9,19.2
+150,Dhoby Ghaut,Peranakan Museum Singapore,"Bugis, Singapore","Chinatown, Singapura",4.37,58,47,76,Maxwell,74,4.6,61,61.2,76,Maxwell,4.69,61.3,4.55,59.1,4.39,50.1,75,56.5,32.6
+151,Promenade,Helix Bridge,Merlion Park • Singapore,Ann Siang Hill,4.19,56,58.2,205,Maxwell,119,4.28,57,58.8,205,Maxwell,4.53,61.9,4.79,65.4,4.32,44.9,108,43.4,49.6
+152,Promenade,"Haji Lane, Singapore",National Museum of Singapore,Fort Canning,3.67,49,48.9,149,Dhoby Ghaut,222,3.9,52,73.4,70,Dhoby Ghaut,3.98,74.2,3.88,65.2,3.7,53.4,237,67.5,26.1
+153,Bugis,Marina Bay Sands Singapore,Haji Lane,Helix Bridge,3.71,49,49.5,200,Bayfront,221,3.93,52,67.6,200,Bayfront,3.99,68.5,3.9,62.6,3.73,50.7,221,81.5,36.3
+154,Fort Canning,Yue Hwa Chinese Products Singapore,"Fort Canning Park, Singapore",The Pinnacle@Duxton,3.92,52,68,202,Outram Park,67,4,53,73.9,82,Outram Park,4.06,73.2,4,71.9,3.93,66.7,67,64.3,40.1
+155,Bugis,Little India,"Clarke Quay, Singapore",Little India Singapore,4.14,55,40.4,211,Fort Canning,89,4.29,57,46.7,211,Fort Canning,4.79,53.5,4.14,40.8,4.22,41.4,103,36.2,69.7
+156,Bras Basah,"Helix Bridge Marina Bay, Singapore",Fort Canning Tunnel,Sultan Mosque Singapore,2.75,37,52.9,110,Jalan Besar,78,2.82,38,71,45,Jalan Besar,2.84,71.4,2.82,70.1,2.8,58.8,93,89.5,30.8
+157,City Hall,"Bugis, Singapore",Haji Lane,Merlion Park,3.93,52,49.1,189,Bugis,130,4.22,56,80.4,70,Bugis,4.19,80.3,4.24,78.6,4.06,53.5,168,91.5,18.3
+158,City Hall,National Gallery Singapore,Haji Lane,Little India,3.63,48,51.9,191,Rochor,172,3.84,51,73.2,191,Rochor,3.85,73.4,3.83,71.1,3.67,60.2,182,94.3,25.6
+159,Bencoolen,The Pinnacle@Duxton,Bras Basah Complex,Buddha Tooth Relic Temple and Museum 佛牙寺,4.45,59,57.1,76,Outram Park,149,4.48,60,62.5,76,Outram Park,4.77,63,4.52,60.9,4.47,57.2,162,54.7,60.7
+160,Bras Basah,Haji Lane,Malay Heritage Centre,Fort Canning,3.72,50,56.8,149,Bugis,278,3.96,53,78.9,45,Nicoll Highway,3.98,77.6,3.92,73.2,3.76,61.1,293,84.3,19.1
+161,Bras Basah,Fort Canning,"Helix Bridge Marina Bay, Singapore",Masjid Sultan,3.66,49,59.8,110,Jalan Besar,200,3.77,50,75.5,45,Jalan Besar,3.8,75.2,3.73,72.3,3.7,64.1,215,89.4,30.5
+162,Esplanade,Arab Street,"Fort Canning Park, Singapore",Fort Canning,4.24,57,58.4,126,Fort Canning,214,4.42,59,75.2,45,Fort Canning,4.54,71.7,4.57,76.2,4.33,62.5,331,19.2,16.1
+163,Raffles Place,"Buddha Tooth Relic Temple, China Town, Singapore",Bras Basah Complex,Fort Canning Tunnel,3.82,51,48.4,172,Little India,58,4.33,58,66.7,172,Little India,4.03,57.1,4.22,60.6,3.92,45.5,126,28.4,18
+164,Esplanade,Marina Bay Sands,ArtScience Museum,"Haji Lane, Singapore",4.52,60,39.1,846,Bayfront,220,4.97,66,73,200,Bayfront,4.98,72.9,4.97,72.6,4.67,40.8,240,92.1,25.6
+165,Bugis,Sultan Mosque Singapore,ACM (Asian Civilisations Museum),Merlion Park • Singapore,3.71,49,50,139,Raffles Place,212,4.02,54,68.9,61,Esplanade,4.11,67.6,4.24,73.3,3.72,50.5,269,23.2,37.2
+166,Bras Basah,Little India Singapore,Indian Heritage Centre,National Gallery Singapore,4.31,58,49.9,215,Little India,105,4.55,61,65.6,177,Little India,4.63,65.1,4.62,65.4,4.43,45.2,142,62.6,22.8
+167,Bras Basah,Fort Canning Park Tree Tunnel,National Gallery Singapore,Haji Lane,4.03,54,51.2,159,Bugis,265,4.27,57,74,36,Bugis,4.34,74.5,4.16,65.9,4.09,58.6,272,77.9,13.6
+168,Raffles Place,Capitaspring,"Kampong Glam, Singapure",Little India Singapore,4.51,60,57,177,Farrer Park,80,4.87,65,70,124,Farrer Park,5.08,69.5,4.55,57.8,4.53,54.7,81,57.1,17.9
+169,Raffles Place,"Helix Bridge Marina Bay, Singapore",Fort Canning Tunnel,Clarke Quay,4.17,56,53.8,112,Jalan Besar,28,4.31,57,63.9,110,Jalan Besar,4.85,64.6,4.64,60.3,4.17,53.9,28,21.5,50.5
+170,Clarke Quay,Fort Canning Park Tree Tunnel,Bras Basah Complex,Merlion Park,4.18,56,56.1,144,Dhoby Ghaut,189,4.25,57,66.2,133,Dhoby Ghaut,4.27,64,4.68,68.3,4.18,56.4,189,50,29.5
+171,Promenade,Fort Canning Park Tree Tunnel,Yue Hwa Chinese Products Singapore,Bras Basah Complex,4.28,57,54.1,202,Chinatown,165,4.66,62,75.9,82,Chinatown,4.66,72.9,4.5,64.7,4.31,57.9,165,69.2,11.9
+172,Promenade,Marina Bay Sands,Helix Bridge,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.45,59,67.5,294,Bayfront,71,4.59,61,72.1,294,Bayfront,4.6,72.2,4.9,69.6,4.52,51.9,122,97.6,71.8
+173,Clarke Quay,Yue Hwa Chinese Products Singapore,Merlion Park • Singapore,Clarke Quay,3.88,52,50.7,139,Fort Canning,50,4.15,55,63.3,133,Fort Canning,4.33,60,4.66,68.9,4.07,53.1,133,35.1,31.2
+174,Raffles Place,Clarke Quay,Fort Canning Tunnel,"Fort Canning Park, Singapore",3.16,42,61.2,60,Bras Basah,65,3.23,43,66.2,60,Bras Basah,3.44,66.8,3.65,71.3,3.34,55.2,132,21.7,70.8
+175,Bras Basah,People's park complex,The Pinnacle@Duxton,Chinatown Singapore 牛车水,4.22,56,58.3,76,Outram Park,47,4.36,58,68.6,76,Outram Park,4.87,71.3,4.36,67.3,4.28,61.4,56,13.7,37.9
+176,City Hall,Little India Singapore,National Gallery Singapore,"Buddha Tooth Relic Temple, China Town, Singapore",3.57,48,46.4,257,Little India,88,3.73,50,59.5,257,Little India,3.8,60.2,3.72,57.3,3.68,45.2,127,81.9,36
+177,Bencoolen,Fort Canning,Capitaspring,Peranakan Museum Singapore,3.14,42,56.8,76,Raffles Place,149,3.4,45,72.1,76,Raffles Place,3.73,73.7,3.35,64.6,3.17,55.8,149,34.3,31.2
+178,Dhoby Ghaut,Merlion Park,National Gallery Singapore,Peranakan Museum Singapore,2.98,40,46.2,139,Raffles Place,95,3.42,46,67.4,71,Esplanade,3.64,70.8,3.38,66.1,3,48.9,154,47.2,28.7
+179,Fort Canning,Merlion Park,People's park complex,ACM (Asian Civilisations Museum),4.28,57,50.6,139,Chinatown,189,4.63,62,66.7,133,Chinatown,4.9,66.7,4.79,64.1,4.46,52.9,272,24.4,17.7
+180,City Hall,National Museum of Singapore,Little India Singapore,Haji Lane,4.29,57,48.7,193,Bugis,211,4.54,61,64,177,Little India,4.76,66.1,4.59,62,4.31,46.7,211,67.7,31.5
+181,Bugis,"The Helix Bridge, Marina Bay, Singapore",Bras Basah Complex,"Haji Lane, Singapore",4.03,54,53.5,299,Bayfront,158,4.1,55,63,227,Bayfront,4.59,71.1,4.42,65.7,4.04,54,158,35.1,58.6
+182,Esplanade,"Gardens By the Bay, Singapore",Floral Fantasy,"Garden By The Bay, Marina Bay Sands",3.86,52,60.1,403,Bayfront,334,3.93,52,64.1,403,Bayfront,3.91,59.8,3.97,64.5,3.93,57.6,410,60,68.8
+183,Promenade,Gardens by the Bay,Supertree Observatory at Gardens by the Bay,Floral Fantasy Gardens by the Bay,2.81,38,47.2,461,Gardens By The Bay,336,2.81,38,48.2,403,Gardens By The Bay,2.86,46.5,2.85,45.7,2.82,47.4,338,35.8,56.1
+184,Esplanade,Fort Canning,National Museum of Singapore,Ann Siang Hill,4.07,54,47.9,246,Maxwell,146,4.19,56,64.8,62,Maxwell,4.47,68.8,4.34,55.2,4.08,50.2,156,22.4,19.2
+185,City Hall,Masjid Sultan,Peranakan Museum Singapore,Fort Canning Park Tree Tunnel,3.84,51,55.9,110,Bugis,203,3.95,53,71.3,50,Bugis,4.05,70.6,3.91,67,3.9,59.9,218,72.1,27.3
+186,Esplanade,Helix Bridge,Bras Basah Complex,"Helix Bridge Marina Bay, Singapore",4.19,56,56.3,215,Jalan Besar,73,4.24,56,63.6,110,Jalan Besar,4.64,70,4.81,75,4.23,53.8,77,29.3,47.2
+187,Raffles Place,"Buddha Tooth Relic Temple, China Town, Singapore",Little India Singapore,ACM (Asian Civilisations Museum),4.35,58,40.9,257,Farrer Park,165,4.55,61,57.2,257,Farrer Park,4.6,57.9,4.42,52.9,4.48,41,260,76,39.4
+188,Bencoolen,Capitaspring,National Museum of Singapore,Merlion Park,3.08,41,56.9,144,Raffles Place,127,3.21,43,69.3,133,Raffles Place,3.29,69.7,3.38,69.8,3.08,53.8,127,81.3,53.8
+189,Bras Basah,Fort Canning Tunnel,Fort Canning Tunnel,Little India,2.48,33,53.8,409,Rochor,143,2.48,33,53.7,409,Rochor,2.61,57.3,2.48,53.7,2.48,53.7,143,37.6,88.6
+190,Bugis,National Gallery Singapore,Ann Siang Hill,"Kampong Glam, Singapore",4.19,56,42.3,246,Maxwell,226,4.3,57,59.9,80,Maxwell,4.38,56.6,4.29,59.5,4.25,54.4,233,59.1,30.2
+191,Dhoby Ghaut,Little India Singapore,Bras Basah Complex,Masjid Sultan,4.22,56,49.9,177,Little India,132,4.27,57,54.7,177,Little India,4.72,60.8,4.54,58.3,4.23,49.5,132,28.8,46.2
+192,Promenade,Fort Canning,Masjid Sultan,Fort Canning Tunnel,3.75,50,54.5,110,Dhoby Ghaut,228,3.94,53,72.7,69,Dhoby Ghaut,4.03,71.9,3.97,70.1,3.8,58.7,307,58.2,31.2
+193,Promenade,Haji Lane,"Helix Bridge Marina Bay, Singapore",Fort Canning,3.92,52,53.2,112,Dhoby Ghaut,146,4.09,54,65.5,110,Dhoby Ghaut,4.22,67.1,4.08,60.8,3.98,61.5,225,51.6,37.2
+194,Esplanade,The Pinnacle@Duxton,Chinatown Singapore 牛车水,Ann Siang Hill,3.94,53,55.3,180,Outram Park,110,4.14,55,69.7,128,Outram Park,4.56,72.7,3.98,58.8,3.97,56.6,147,43.6,21.1
+195,Fort Canning,Sultan Mosque Singapore,Indian Heritage Centre,National Museum of Singapore,4.15,55,48.6,314,Bugis,193,4.33,58,73.7,45,Rochor,4.37,71.3,4.32,70.7,4.18,55.9,204,67.1,12.8
+196,Fort Canning,Arab Street,Haji Lane,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.27,57,43.4,409,Bugis,144,4.85,65,72.1,392,Bugis,4.86,69.6,4.78,66.3,4.44,50.2,200,19.8,8.8
+197,Bras Basah,Gardens by the Bay,Marina Bay Sands Singapore,OCBC Skyway,4.09,55,53.5,200,Gardens By The Bay,298,4.11,55,57.1,200,Gardens By The Bay,4.18,59.1,4.38,60.7,4.12,54.7,388,67.5,77
+198,City Hall,"Marina Bay, Sinagpore River Cruise, Merlion Park",Ann Siang Hill,Fort Canning Tunnel,4.47,60,44,458,Maxwell,162,4.65,62,60,458,Maxwell,4.94,61.1,4.56,57.3,4.51,49.4,219,33.1,34
+199,Bugis,Bras Basah Complex,"Bugis, Singapore","Chinatown, Singapura",3.22,43,50.9,76,Maxwell,98,3.26,44,58.2,76,Maxwell,3.28,58.6,3.26,58,3.23,52.2,98,82,48.7
+200,Raffles Place,Indian Heritage Centre,Little India Singapore,Bras Basah Complex,4.09,55,43.3,215,Little India,76,4.32,58,58,177,Little India,4.45,58.1,4.5,58.7,4.23,38.2,148,42.8,17.6
+201,Bencoolen,Little India Singapore,"Helix Bridge Marina Bay, Singapore",Little India Singapore,2.66,35,40.8,193,Jalan Besar,37,2.66,35,42.4,193,Jalan Besar,3.02,48.3,2.66,41.3,2.66,41.2,37,33.4,88.3
+202,Bugis,Ann Siang Hill,Chinatown Singapore 牛车水,Clarke Quay,4.11,55,45.9,202,Maxwell,112,4.51,60,70.5,82,Maxwell,4.78,69,4.49,68.3,4.14,45.4,112,32.6,13.6
+203,Bencoolen,Yue Hwa Chinese Products Singapore,"Bugis, Singapore",Arab Street,4.4,59,53.3,126,Chinatown,82,4.55,61,63.8,76,Chinatown,4.55,63.4,4.61,63.9,4.45,53.1,83,76.2,43.6
+204,Raffles Place,Helix Bridge,Haji Lane,ArtScience Museum,4.48,60,49.8,194,Bugis,223,4.7,63,63.9,194,Bugis,4.78,64.5,4.67,60.3,4.48,50.1,223,70.7,42.6
+205,Bugis,Masjid Sultan,Fort Canning Tunnel,"Clarke Quay, Singapore",3.85,51,55,110,Fort Canning,138,3.93,52,69.6,45,Fort Canning,4,68.3,3.92,67.2,3.89,59.3,153,72.4,37.4
+206,Raffles Place,"Fort Canning Park, Singapore",Bras Basah Complex,National Museum of Singapore,3.82,51,61.8,75,Bras Basah,158,4.05,54,72.1,47,Fort Canning,4.06,69.4,4.01,66.1,3.99,55.6,228,57,13.5
+207,Clarke Quay,Merlion Park,ACM (Asian Civilisations Museum),"Kampong Glam, Singapore",4.11,55,44.9,189,Bugis,293,4.32,58,65.6,126,Nicoll Highway,4.33,64.2,4.34,64.3,4.14,50.8,295,81.5,34.9
+208,Bugis,Haji Lane,Bras Basah Complex,"Clarke Quay, Singapore",3.55,47,46.7,299,Fort Canning,144,3.84,51,65,38,Fort Canning,3.96,64.1,3.8,59.5,3.56,47.1,144,52.8,22.5
+209,Bugis,Helix Bridge,Haji Lane,Marina Bay Sands Singapore,3.7,49,50.4,200,Bayfront,146,3.92,52,67.6,200,Bayfront,3.98,68.5,3.93,65.4,3.73,52.9,227,81.5,28
+210,Clarke Quay,Haji Lane,Fort Canning Park Tree Tunnel,National Museum of Singapore,4.12,55,49.3,117,Bugis,146,4.35,58,72.9,82,Bugis,4.43,73.9,4.19,60.5,4.25,51.7,173,88.2,21.7
+211,Bras Basah,"Bugis, Singapore",ACM (Asian Civilisations Museum),Merlion Park,3.53,47,46.2,139,Raffles Place,182,4.07,54,75.3,61,Esplanade,4.19,74.7,4.29,78.9,3.55,46.4,267,45.2,13.3
+212,Bugis,Gardens by the Bay,"Kampong Glam, Singapure","Garden By The Bay, Marina Bay Sands",4.42,59,45.4,461,Gardens By The Bay,274,4.88,65,64.9,403,Gardens By The Bay,5.03,64.5,4.71,55.6,4.47,46.2,438,54.9,35.3
+213,Bras Basah,"Fort Canning Park, Singapore",People's park complex,The Pinnacle@Duxton,4.24,57,66.3,202,Outram Park,78,4.36,58,73.1,82,Outram Park,4.4,70.4,4.33,69.1,4.29,62.9,78,65.7,53.4
+214,Bras Basah,Haji Lane,Little India,"Fort Canning Park, Singapore",3.95,53,55.5,409,Bugis,144,4.3,57,74.6,191,Rochor,4.3,71.5,4.28,70.7,3.98,55.6,144,85.8,27.3
+215,City Hall,"Buddha Tooth Relic Temple, China Town, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",Fort Canning Tunnel,3.97,53,46.4,392,Little India,131,4.16,56,64.8,392,Little India,4.11,62.4,4.08,62.4,3.98,50.1,187,58.2,44.6
+216,Bugis,Fort Canning,Peranakan Museum Singapore,Capitaspring,3.97,53,56.8,80,Raffles Place,173,4.08,54,71,76,Raffles Place,4.44,71.6,4.06,64,4,55.8,173,35.3,29.2
+217,Bugis,Little India,Haji Lane,Merlion Park,4.38,58,50.4,211,Raffles Place,69,4.92,66,73.5,211,Esplanade,4.92,73.5,4.95,74,4.45,52.3,149,96.6,24
+218,Promenade,"Kampong Glam, Singapure",Fort Canning Tunnel,"Helix Bridge Marina Bay, Singapore",3.64,49,59.3,112,Bras Basah,122,3.73,50,62.5,110,Bras Basah,3.96,64.8,3.87,65.3,3.64,59.3,122,37.6,82.5
+219,Bras Basah,"Helix Bridge Marina Bay, Singapore",Arab Street,National Museum of Singapore,2.9,39,55.3,66,Jalan Besar,81,2.99,40,69.8,45,Jalan Besar,2.97,64.7,2.98,68.5,2.99,58,156,43.4,22.8
+220,Bugis,ArtScience Museum,SuperTree Grove @ Gardens by the Bay,Gardens by the Bay,4.47,60,40.6,846,Gardens By The Bay,294,4.74,63,70.4,200,Gardens By The Bay,4.75,69.5,4.74,68,4.65,42.7,441,82,29.1
+221,Bras Basah,Merlion Park,National Museum of Singapore,Peranakan Museum Singapore,2.73,36,48.1,322,Raffles Place,105,3.09,41,71.8,71,Esplanade,3.13,71.8,3.05,70.2,2.75,52,159,40.3,19.1
+222,Raffles Place,Clarke Quay,Fort Canning Park Tree Tunnel,Merlion Park,3.51,47,49.8,139,Dhoby Ghaut,82,3.86,52,67.4,133,Dhoby Ghaut,4.04,69.4,3.78,60.1,3.68,56,179,19.7,40.5
+223,Esplanade,Marina Bay Sands,ArtScience Museum,Floral Fantasy Gardens by the Bay,4.21,56,63.5,200,Gardens By The Bay,317,4.24,57,68.2,200,Gardens By The Bay,4.36,68.2,4.24,66.7,4.4,65.7,393,62.7,77.1
+224,Esplanade,"Marina Bay, Sinagpore River Cruise, Merlion Park",Merlion Park,"Clarke Quay, Singapore",3.37,45,50.2,397,Fort Canning,49,3.63,48,64.1,332,Fort Canning,3.79,62.4,3.65,63.9,3.5,50.6,105,64.7,54
+225,Bras Basah,"Helix Bridge Marina Bay, Singapore",Fort Canning Park Tree Tunnel,Indian Heritage Centre,2.76,37,52.5,314,Jalan Besar,162,3.21,43,73.2,110,Jalan Besar,3.23,71.6,2.77,52.4,2.78,53.2,162,41,10.6
+226,Bras Basah,Clarke Quay,The Pinnacle@Duxton,Fort Canning Tunnel,4.37,58,57.4,196,Outram Park,33,4.73,63,73.5,82,Outram Park,4.73,68.2,4.67,64.7,4.51,54.5,43,33.1,12.6
+227,Bencoolen,Fort Canning Tunnel,China Town. Singapore.新加坡,Capitaspring,3.88,52,54,128,Maxwell,180,4.07,54,66.5,60,Maxwell,4.06,63.4,4.03,59.1,3.95,50.9,179,70.8,28.8
+228,Bencoolen,"Kampong Glam, Singapore",National Gallery Singapore,"Helix Bridge Marina Bay, Singapore",4.04,54,55,159,Jalan Besar,194,4.16,55,73.7,36,Jalan Besar,4.2,71.2,4.16,73.7,4.12,65,204,84.7,30
+229,Bencoolen,Fort Canning Park Tree Tunnel,"Bugis, Singapore",Chinatown Singapore 牛车水,4.38,58,54,202,Chinatown,162,4.6,61,71.1,82,Chinatown,4.62,70.8,4.45,61.2,4.44,62.9,162,87.5,22.3
+230,Raffles Place,Haji Lane,Peranakan Museum Singapore,Merlion Park,4.1,55,40.5,322,Bugis,158,4.24,57,61.9,133,Bugis,4.48,63.6,4.28,58.5,4.16,48.2,227,23.4,18.7
+231,Bencoolen,Merlion Park • Singapore,Fort Canning Tunnel,"Fort Canning Park, Singapore",3.52,47,56.4,139,Raffles Place,121,3.9,52,71.6,61,Esplanade,3.99,71.5,3.9,71.4,3.63,55.9,180,50.6,29.6
+232,Bras Basah,Merlion Park,Yue Hwa Chinese Products Singapore,Bras Basah Complex,3.6,48,53.2,144,Chinatown,84,3.7,49,64.4,133,Chinatown,3.74,62.4,4.38,73.8,3.66,55.9,111,39.7,33.6
+233,Esplanade,"Buddha Tooth Relic Temple, China Town, Singapore",Arab Street,Indian Heritage Centre,3.06,41,50.4,254,Little India,94,3.15,42,60.8,254,Little India,3.35,63.9,3.34,66.1,3.12,52.3,174,21.6,32.2
+234,Bencoolen,"Chinatown, Singapura",National Museum of Singapore,People's park complex,3.77,50,50.1,202,Maxwell,210,4.11,55,71.7,82,Maxwell,4.13,70.3,4,68.3,3.88,47.6,233,87.3,24.2
+235,Esplanade,Peranakan Museum Singapore,"Arab Street, Singapore",Clarke Quay,4.11,55,47.7,126,Fort Canning,140,4.43,59,69,63,Fort Canning,4.57,69,4.56,66.3,4.17,52.6,155,59.8,25.4
+236,Raffles Place,"The Helix Bridge, Marina Bay, Singapore",Capitaspring,ArtScience Museum,3.17,42,46.8,227,Bayfront,161,3.5,47,65.8,200,Bayfront,3.52,65.7,3.24,52.8,3.2,48.5,161,87.2,16.3
+237,Dhoby Ghaut,Capitaspring,Fort Canning Park Tree Tunnel,Fort Canning Tunnel,2.58,34,60.4,76,Raffles Place,143,2.62,35,66.3,76,Raffles Place,2.94,70.9,2.74,64.8,2.58,56.7,143,39.7,56
+238,Bugis,Clarke Quay,"Haji Lane, Singapore",National Museum of Singapore,3.78,50,46.4,299,Fort Canning,188,3.99,53,73.5,57,Fort Canning,4.02,72,3.87,58.7,3.83,51.7,207,64.7,14
+239,Bras Basah,Masjid Sultan,Peranakan Museum Singapore,Little India Singapore,4.07,54,47.6,177,Farrer Park,99,4.23,56,62.3,124,Farrer Park,4.41,61.5,4.25,59.6,4.12,54.1,114,40,27
+240,Dhoby Ghaut,Haji Lane,Indian Heritage Centre,Fort Canning Tunnel,3.3,44,53.6,314,Bugis,105,3.85,51,72.5,45,Rochor,3.9,71.7,3.33,55.3,3.3,53.6,105,73,19.8
+241,Fort Canning,Merlion Park • Singapore,National Gallery Singapore,Helix Bridge,4.2,56,54.4,227,Bayfront,119,4.5,60,68.3,227,Bayfront,4.42,64.3,4.42,62.2,4.2,54.8,119,70.7,45.7
+242,Bugis,Arab Street,National Gallery Singapore,Bras Basah Complex,2.97,40,58.5,124,City Hall,144,3.02,40,67.3,36,City Hall,3.14,69,3.02,66.1,2.97,59.2,144,53.8,31.9
+243,Promenade,Garden By the Bay Singapore,"Gardens By the Bay, Singapore",Marina Bay Sands Singapore,3.53,47,38,461,Gardens By The Bay,476,3.88,52,59.5,200,Gardens By The Bay,3.98,61,3.53,38.5,3.56,39.7,476,77.8,46
+244,Bugis,National Museum of Singapore,"Arab Street, Singapore",Merlion Park,4.35,58,51,144,Raffles Place,155,4.65,62,73.2,63,Bras Basah,4.8,74.1,4.95,74.3,4.39,52.7,170,75.9,30.8
+245,Fort Canning,Fort Canning Tunnel,Fort Canning Tunnel,Little India,2.96,39,47.8,409,Rochor,143,3.11,41,67.2,191,Rochor,3.16,67.6,3.1,66.9,3.1,57.5,187,67.6,16.1
+246,City Hall,"Haji Lane, Singapore","Fort Canning Park, Singapore",Peranakan Museum Singapore,3.81,51,53.3,299,Bugis,181,3.93,52,72.6,50,Bugis,4,71.9,3.89,65.4,3.87,57.5,196,77.3,24.9
+247,Raffles Place,Helix Bridge,"Garden By The Bay, Marina Bay Sands",Supertree Observatory at Gardens by the Bay,4.01,53,54,227,Gardens By The Bay,405,4.33,58,65,227,Gardens By The Bay,4.1,54.9,4.13,57,4.01,54.1,446,27.2,39
+248,Raffles Place,Ann Siang Hill,"Clarke Quay, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",4.3,57,42.7,524,Fort Canning,41,4.56,61,54.1,458,Fort Canning,5.24,58.9,5.04,58.8,4.44,46.2,99,29,45.9
+249,Fort Canning,Fort Canning Tunnel,Floral Fantasy,"The Helix Bridge, Marina Bay, Singapore",4.4,59,51.1,219,Bayfront,194,4.49,60,61.2,219,Bayfront,4.5,61.3,4.55,61,4.47,56.9,243,97.9,46.5
+250,City Hall,National Gallery Singapore,Marina Bay Sands Singapore,Capitaspring,4.26,57,47,200,Bayfront,192,4.51,60,61.6,194,Raffles Place,4.67,61.7,4.56,59.6,4.34,45.4,204,68.5,26.9
+251,Fort Canning,ACM (Asian Civilisations Museum),Buddha Tooth Relic Temple and Museum 佛牙寺,National Museum of Singapore,4.5,60,46.9,126,Maxwell,347,4.57,61,65,126,Maxwell,4.93,68.4,4.56,62.8,4.53,55.5,418,42.8,35.5
+252,Dhoby Ghaut,"Clarke Quay, Singapore",Capitaspring,Peranakan Museum Singapore,4.18,56,52.5,93,Raffles Place,46,4.48,60,68.9,76,Raffles Place,4.85,67.7,4.25,53.5,4.29,53.2,67,28,10
+253,Esplanade,Marina Bay Sands Singapore,"Supertree Grove, Gardens by the Bay",Floral Fantasy,3.58,48,54.9,200,Bayfront,247,3.58,48,59.4,200,Bayfront,3.59,59.4,3.58,57.3,3.59,55.8,247,95.3,75.7
+254,Bencoolen,Haji Lane,Fort Canning Tunnel,Fort Canning Tunnel,3.39,45,49.7,299,Bugis,230,3.49,47,68.7,45,Bugis,3.59,70.4,3.46,63.4,3.43,54.6,245,73.1,30.1
+255,Bras Basah,Peranakan Museum Singapore,Fort Canning,Marina Bay Sands Singapore,4.23,56,58.2,200,Bayfront,251,4.33,58,66,200,Bayfront,4.37,65,4.34,59.8,4.28,58.9,251,84.7,54.5
+256,Promenade,"Bugis, Singapore",National Gallery Singapore,Fort Canning Tunnel,3.53,47,53.7,69,City Hall,77,3.84,51,78.6,31,City Hall,3.89,78.6,3.98,81,3.57,63,80,81.6,21.7
+257,Bugis,Indian Heritage Centre,"Arab Street, Singapore",Merlion Park • Singapore,4.53,60,48,211,Raffles Place,153,4.99,67,73.4,211,Esplanade,5.12,72.8,5.12,73.6,4.54,52.6,155,66.8,35.2
+258,Raffles Place,Clarke Quay,"Arab Street, Singapore",Bras Basah Complex,4.42,59,50.3,159,Bugis,80,4.71,63,62.7,60,Bugis,5.56,66.8,5.03,64.4,4.43,50.8,80,29.8,41.7
+259,Promenade,"Bugis, Singapore",Yue Hwa Chinese Products Singapore,Fort Canning Tunnel,4.26,57,45.9,126,Chinatown,35,4.81,64,77.3,82,Chinatown,4.85,75.8,4.78,73.5,4.31,55,38,81.4,6.5
+260,City Hall,"Flower Dome, Gardens By the Bay, Singapore",Supertree Observatory at Gardens by the Bay,Helix Bridge,3.84,51,60.9,227,Gardens By The Bay,375,3.96,53,68.5,227,Gardens By The Bay,4.01,67.7,4.08,69.2,3.84,61,377,73.1,69.9
+261,Raffles Place,Arab Street,Peranakan Museum Singapore,National Museum of Singapore,4.17,56,49.1,124,Bugis,82,4.47,60,67.3,71,Bugis,4.5,63.9,4.39,63.5,4.33,51.5,225,45.3,5
+262,Clarke Quay,Merlion Park • Singapore,Bras Basah Complex,Little India,4.21,56,51.1,215,Rochor,96,4.26,57,60.1,191,Rochor,4.32,58.5,4.85,67.8,4.24,48.7,100,42.9,34.3
+263,Esplanade,"Fort Canning Park, Singapore",Arab Street,Fort Canning Park Tree Tunnel,4.23,56,58.4,126,Fort Canning,214,4.42,59,75.2,45,Fort Canning,4.54,71.7,4.57,76.2,4.32,62.5,331,19.2,16.1
+264,Bras Basah,Fort Canning,"Marina Bay, Sinagpore River Cruise, Merlion Park",Peranakan Museum Singapore,3.18,42,50.6,332,Raffles Place,130,3.36,45,74.3,392,City Hall,3.37,72.6,3.32,70.4,3.25,58.7,183,70.5,23.9
+265,Dhoby Ghaut,"Kampong Glam, Singapore",Fort Canning Park Tree Tunnel,"Helix Bridge Marina Bay, Singapore",3.43,46,58.3,110,Jalan Besar,271,3.52,47,73.7,45,Jalan Besar,3.56,70.9,3.5,71.7,3.46,63,286,85.1,33.4
+266,Bras Basah,Clarke Quay,Malay Heritage Centre,Haji Lane,4.51,60,47.8,159,Fort Canning,176,4.67,62,70.2,79,Fort Canning,5.11,70.5,4.8,69,4.59,55.2,187,38.5,23
+267,Clarke Quay,Sultan Mosque Singapore,Little India Singapore,Bras Basah Complex,4.21,56,52.1,177,Farrer Park,94,4.24,57,58,124,Farrer Park,4.43,58.8,4.24,56,4.24,53.1,94,52.2,46
+268,Raffles Place,Capitaspring,Malay Heritage Centre,Peranakan Museum Singapore,4.18,56,48.2,110,Bugis,128,4.35,58,64.5,76,Nicoll Highway,4.74,66.4,4.42,61.6,4.23,53,143,32.5,25.9
+269,Bras Basah,"Marina Bay, Sinagpore River Cruise, Merlion Park","Chinatown, Singapura",Capitaspring,3.62,48,44.8,332,Maxwell,88,3.9,52,67.2,332,Maxwell,3.96,67,3.91,65.3,3.77,46.9,158,84.6,21.7
+270,Esplanade,Fort Canning Tunnel,Little India Singapore,National Gallery Singapore,3.85,51,40.6,193,Little India,96,4.17,56,57.3,193,Little India,4.38,59.1,4.3,58.9,3.86,41.8,96,61.7,27.9
+271,Bencoolen,Malay Heritage Centre,National Museum of Singapore,Fort Canning,3.8,51,49.1,110,Bugis,198,4.26,57,80.2,45,Nicoll Highway,4.28,79,4.19,72.4,3.84,53.5,213,86.3,10.7
+272,City Hall,Merlion Park,"Fort Canning Park, Singapore",ACM (Asian Civilisations Museum),3.36,45,59.5,144,Fort Canning,207,3.6,48,76.1,61,Fort Canning,3.66,75.6,3.6,76.1,3.44,58.7,266,53,27.6
+273,Dhoby Ghaut,Bras Basah Complex,Fort Canning Tunnel,"Helix Bridge Marina Bay, Singapore",2.67,36,46.6,215,Jalan Besar,56,2.85,38,62.3,110,Jalan Besar,2.88,60.9,2.9,57.3,2.84,48.6,166,46,19.2
+274,Dhoby Ghaut,Fort Canning Tunnel,Haji Lane,"Buddha Tooth Relic Temple, China Town, Singapore",3.4,45,46.1,251,Bugis,35,3.97,53,71.5,128,Little India,3.97,70.1,3.82,65.8,3.54,52,159,77.7,16.8
+275,Esplanade,"Bugis, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park","Helix Bridge Marina Bay, Singapore",3.6,48,40.6,375,Jalan Besar,27,3.85,51,67.7,343,Jalan Besar,3.85,67.6,4.06,68.4,3.66,45.3,112,77.5,11.4
+276,City Hall,National Gallery Singapore,Masjid Sultan,"Buddha Tooth Relic Temple, China Town, Singapore",3.96,53,59.4,128,Little India,128,4.13,55,69.3,128,Little India,4.15,67.1,4.13,69.3,3.98,58.2,147,71.3,45.9
+277,Bencoolen,Fort Canning,"Haji Lane, Singapore","Helix Bridge Marina Bay, Singapore",3.68,49,54.5,149,Jalan Besar,244,3.99,53,79.1,45,Jalan Besar,4.01,79.4,3.94,74.1,3.71,58.9,259,95.9,20.8
+278,City Hall,"Marina Bay, Sinagpore River Cruise, Merlion Park",ArtScience Museum,Peranakan Museum Singapore,4.31,57,48.5,343,Bayfront,142,4.44,59,62.5,343,Bayfront,4.46,62.5,4.6,58.6,4.36,53.6,198,84.2,42.2
+279,City Hall,Merlion Park • Singapore,Peranakan Museum Singapore,"Kampong Glam, Singapure",4.41,59,48.1,322,Bugis,142,4.62,62,71.6,71,Bugis,4.81,72.6,4.74,72.1,4.48,53,166,47.1,28
+280,Bras Basah,"Kampong Glam, Singapore",Fort Canning,Little India,3.85,51,55.2,409,Bugis,270,4.43,59,75.5,191,Rochor,4.59,71.3,4.05,61.1,3.85,55.1,270,44.3,27.4
+281,Raffles Place,Clarke Quay,Merlion Park,Fort Canning Park Tree Tunnel,3.51,47,49.8,139,Dhoby Ghaut,82,3.86,52,67.4,133,Dhoby Ghaut,4.04,69.4,3.78,60.1,3.68,56,179,19.7,40.5
+282,Bugis,"Fort Canning Park, Singapore",Fort Canning Tunnel,Little India,3.22,43,54.2,409,Fort Canning,115,3.22,43,54.4,409,Fort Canning,3.81,64.8,3.22,54.2,3.26,54.3,117,25.5,97.4
+283,Bugis,Fort Canning Park Tree Tunnel,Little India Singapore,"Clarke Quay, Singapore",4.51,60,41,221,Fort Canning,77,5.19,69,63.8,229,Fort Canning,5.41,62.3,4.57,44.2,4.53,44.5,82,63.9,10.1
+284,Bencoolen,Clarke Quay,Peranakan Museum Singapore,Ann Siang Hill,3.63,48,51,246,Maxwell,52,3.99,53,68.1,82,Maxwell,4.02,68,3.9,61.3,3.82,52.2,92,43.7,15.3
+285,Esplanade,People's park complex,Bras Basah Complex,Fort Canning Tunnel,3.96,53,49.4,126,Chinatown,71,4.14,55,66.9,82,Chinatown,4.13,63.9,4.21,61.6,3.97,50.9,71,78,15.3
+286,Bras Basah,National Museum of Singapore,Haji Lane,"Marina Bay, Sinagpore River Cruise, Merlion Park",4.2,56,42.2,375,Bugis,166,4.53,60,70.6,392,Bugis,4.64,72.4,4.5,67,4.27,49.6,226,34.1,18.7
+287,Fort Canning,Fort Canning Tunnel,Arab Street,Indian Heritage Centre,3.95,53,59.5,66,Rochor,84,4.07,54,73.4,45,Rochor,4.07,66.9,4.06,70.4,4.06,62.4,175,39.9,24.1
+288,Dhoby Ghaut,Little India,Arab Street,Little India Singapore,3.54,47,42,193,Bugis,50,3.65,49,47.8,193,Bugis,3.87,49.5,3.65,46.8,3.7,43.7,108,43.7,62.7
+289,Clarke Quay,"Helix Bridge Marina Bay, Singapore",Capitaspring,"Kampong Glam, Singapure",4.12,55,60.1,76,Jalan Besar,70,4.46,59,71.8,63,Jalan Besar,4.55,71.9,4.14,60.4,4.12,56.1,71,84,21
+290,Bugis,Arab Street,Bras Basah Complex,Marina Bay Sands,4.16,55,49.8,403,Bayfront,154,4.42,59,68.4,403,Bayfront,4.55,67.5,4.46,63.8,4.2,51.5,152,51.9,29.6
+291,City Hall,Haji Lane,Little India,Little India Singapore,3.26,43,46.7,189,Little India,62,3.45,46,57.3,189,Little India,3.53,58.2,3.49,56.9,3.29,47,74,82.4,36.6
+292,Dhoby Ghaut,Buddha Tooth Relic Temple and Museum 佛牙寺,Clarke Quay,Fort Canning Tunnel,3.83,51,51.4,202,Maxwell,147,4.2,56,72,82,Maxwell,4.16,69.3,3.96,56.6,3.98,52.1,251,72.4,13.6
+293,City Hall,Merlion Park,Floral Fantasy,Gardens by the Bay,4.41,59,56.3,219,Gardens By The Bay,183,4.54,60,65,219,Gardens By The Bay,4.52,64,4.51,63.9,4.56,54.9,339,90.5,67.6
+294,Raffles Place,"Arab Street, Singapore",Capitaspring,"Buddha Tooth Relic Temple, China Town, Singapore",4.34,58,56.3,128,Little India,76,4.79,64,72,128,Little India,4.88,70.6,4.48,61.5,4.36,53.1,95,70.7,15.7
+295,Bencoolen,National Museum of Singapore,"Chinatown, Singapura",Chinatown Singapore 牛车水,3.33,44,51.4,91,Maxwell,162,3.46,46,64.6,76,Maxwell,4,71.8,3.46,63.5,3.36,52.9,189,17.6,42.5
+296,Clarke Quay,"Kampong Glam, Singapure",Capitaspring,Bras Basah Complex,3.95,53,56.3,76,Bugis,96,3.98,53,60.6,76,Bugis,4.38,66.2,3.97,57.5,3.96,53.6,96,29.2,51.9
+297,Raffles Place,Yue Hwa Chinese Products Singapore,"Fort Canning Park, Singapore","Marina Bay, Sinagpore River Cruise, Merlion Park",4.02,54,54.7,397,Chinatown,66,4.31,58,66.7,332,Chinatown,4.39,66.5,4.24,63.4,4.13,51.9,134,54.6,23.7
+298,City Hall,Bras Basah Complex,National Gallery Singapore,Little India,3.02,40,56,215,Rochor,116,3.08,41,67.4,191,Rochor,3.13,66.9,3.21,70,3.06,51.9,120,59.5,33.9
+299,Clarke Quay,Ann Siang Hill,"Helix Bridge Marina Bay, Singapore",Fort Canning Tunnel,4.45,59,50.1,316,Jalan Besar,42,4.65,62,61.7,110,Jalan Besar,4.78,58.6,4.91,63.5,4.54,54.3,56,48.8,34.9
+300,Clarke Quay,"Fort Canning Park, Singapore",Fort Canning Park Tree Tunnel,Little India Singapore,4.23,56,54.5,221,Farrer Park,117,4.78,64,68.2,124,Farrer Park,4.96,67.8,4.23,54.5,4.24,55.2,119,55.3,28.8

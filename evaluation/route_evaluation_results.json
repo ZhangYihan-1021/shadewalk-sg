@@ -1,0 +1,811 @@
+{
+  "meta": {
+    "generated_at": "2026-11-17T02:43:50.250Z",
+    "source": "ShadeWalk website as published on GitHub Pages, site files dated 12 Nov 2026",
+    "seed": 595813,
+    "itineraries_kept": 300,
+    "draws_needed": 1958,
+    "start_stations": [
+      "City Hall",
+      "Esplanade",
+      "Raffles Place",
+      "Clarke Quay",
+      "Fort Canning",
+      "Bras Basah",
+      "Bencoolen",
+      "Dhoby Ghaut",
+      "Bugis",
+      "Promenade"
+    ],
+    "end_choice": "lowest-cost exit among 138 exits of 27 stations",
+    "top_places": 60,
+    "min_spacing_m": 200,
+    "walking_limit_min": 60,
+    "time": "13:00",
+    "detour_setting": "Balanced unless a metric says otherwise",
+    "post_period": "2026-08-06 to 2026-11-03",
+    "quantile_rule": "nearest rank, rounded down"
+  },
+  "demo": {
+    "start_station": "City Hall",
+    "time": "13:00",
+    "detour_setting": "Balanced",
+    "walking_limit_min": 60,
+    "opening_stops": {
+      "stops": [
+        {
+          "name": "National Museum of Singapore",
+          "posts_90_days": 59
+        },
+        {
+          "name": "National Gallery Singapore",
+          "posts_90_days": 49
+        },
+        {
+          "name": "ACM (Asian Civilisations Museum)",
+          "posts_90_days": 120
+        }
+      ],
+      "routes": {
+        "shortest": {
+          "km": 2.91,
+          "minutes": 39,
+          "shade_pct": 55.4,
+          "model3d_pct": 45.8,
+          "svi_coverage_pct": 73.6,
+          "longest_exposed_m": 80,
+          "posts_along_route": 252,
+          "end_station": "Bras Basah",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "National Museum of Singapore"
+          ]
+        },
+        "linkway": {
+          "km": 3.09,
+          "minutes": 41,
+          "shade_pct": 75.1,
+          "model3d_pct": 66.5,
+          "svi_coverage_pct": 71,
+          "longest_exposed_m": 61,
+          "posts_along_route": 252,
+          "end_station": "Bras Basah",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "National Museum of Singapore"
+          ]
+        },
+        "model3d": {
+          "km": 3.1,
+          "minutes": 41,
+          "shade_pct": 75.4,
+          "model3d_pct": 69.6,
+          "svi_coverage_pct": 71,
+          "longest_exposed_m": 61,
+          "posts_along_route": 252,
+          "end_station": "Bras Basah",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "National Museum of Singapore"
+          ]
+        },
+        "shade": {
+          "km": 3.09,
+          "minutes": 41,
+          "shade_pct": 75.4,
+          "model3d_pct": 67.3,
+          "svi_coverage_pct": 71.3,
+          "longest_exposed_m": 61,
+          "posts_along_route": 252,
+          "end_station": "Bras Basah",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "National Museum of Singapore"
+          ]
+        },
+        "popular": {
+          "km": 2.92,
+          "minutes": 39,
+          "shade_pct": 58,
+          "model3d_pct": 44.5,
+          "svi_coverage_pct": 76.1,
+          "longest_exposed_m": 92,
+          "posts_along_route": 256,
+          "end_station": "Bras Basah",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "National Museum of Singapore"
+          ]
+        }
+      }
+    },
+    "suggested_stops": {
+      "stops": [
+        {
+          "name": "ACM (Asian Civilisations Museum)",
+          "posts_90_days": 120
+        },
+        {
+          "name": "ArtScience Museum",
+          "posts_90_days": 70
+        },
+        {
+          "name": "National Gallery Singapore",
+          "posts_90_days": 49
+        }
+      ],
+      "routes": {
+        "shortest": {
+          "km": 3.82,
+          "minutes": 51,
+          "shade_pct": 56.3,
+          "model3d_pct": 48.4,
+          "svi_coverage_pct": 62.5,
+          "longest_exposed_m": 200,
+          "posts_along_route": 314,
+          "end_station": "Bayfront",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "ArtScience Museum"
+          ]
+        },
+        "linkway": {
+          "km": 4.21,
+          "minutes": 56,
+          "shade_pct": 66.3,
+          "model3d_pct": 58.9,
+          "svi_coverage_pct": 55.7,
+          "longest_exposed_m": 200,
+          "posts_along_route": 314,
+          "end_station": "Bayfront",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "ArtScience Museum"
+          ]
+        },
+        "model3d": {
+          "km": 4.03,
+          "minutes": 54,
+          "shade_pct": 67.5,
+          "model3d_pct": 61.7,
+          "svi_coverage_pct": 58.8,
+          "longest_exposed_m": 227,
+          "posts_along_route": 312,
+          "end_station": "Bayfront",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "ArtScience Museum"
+          ]
+        },
+        "shade": {
+          "km": 4.01,
+          "minutes": 53,
+          "shade_pct": 67.3,
+          "model3d_pct": 58.8,
+          "svi_coverage_pct": 58.7,
+          "longest_exposed_m": 200,
+          "posts_along_route": 312,
+          "end_station": "Bayfront",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "ArtScience Museum"
+          ]
+        },
+        "popular": {
+          "km": 3.92,
+          "minutes": 52,
+          "shade_pct": 54.5,
+          "model3d_pct": 42.8,
+          "svi_coverage_pct": 57.4,
+          "longest_exposed_m": 205,
+          "posts_along_route": 346,
+          "end_station": "Bayfront",
+          "order": [
+            "National Gallery Singapore",
+            "ACM (Asian Civilisations Museum)",
+            "ArtScience Museum"
+          ]
+        }
+      }
+    }
+  },
+  "planning_view": {
+    "definition": "Nearby posts are sampled 90-day posts of places within 60 m of a segment. Top group is the top 10% of segments with any nearby post. Low shade is under 33% at 13:00.",
+    "network_km": 467.4,
+    "low_shade_km": 127.2,
+    "near_any_post_km": 102.1,
+    "top_group_min_nearby_posts": 40,
+    "top_group_km": 11,
+    "top_group_low_shade_km": 1.5,
+    "flagged_segments": [
+      {
+        "segment_id": "S002418",
+        "length_m": 207,
+        "nearby_posts": 103,
+        "shade_pct": 31,
+        "svi_coverage_pct": 88
+      },
+      {
+        "segment_id": "S000925",
+        "length_m": 168,
+        "nearby_posts": 91,
+        "shade_pct": 33,
+        "svi_coverage_pct": 32
+      },
+      {
+        "segment_id": "S010278",
+        "length_m": 217,
+        "nearby_posts": 68,
+        "shade_pct": 27,
+        "svi_coverage_pct": 95
+      },
+      {
+        "segment_id": "S000923",
+        "length_m": 94,
+        "nearby_posts": 69,
+        "shade_pct": 32,
+        "svi_coverage_pct": 63
+      },
+      {
+        "segment_id": "S001959",
+        "length_m": 101,
+        "nearby_posts": 64,
+        "shade_pct": 24,
+        "svi_coverage_pct": 0
+      },
+      {
+        "segment_id": "S003228",
+        "length_m": 93,
+        "nearby_posts": 56,
+        "shade_pct": 28,
+        "svi_coverage_pct": 84
+      },
+      {
+        "segment_id": "S008294",
+        "length_m": 57,
+        "nearby_posts": 75,
+        "shade_pct": 8,
+        "svi_coverage_pct": 33
+      },
+      {
+        "segment_id": "S003250",
+        "length_m": 27,
+        "nearby_posts": 123,
+        "shade_pct": 14,
+        "svi_coverage_pct": 100
+      },
+      {
+        "segment_id": "S003265",
+        "length_m": 25,
+        "nearby_posts": 123,
+        "shade_pct": 8,
+        "svi_coverage_pct": 100
+      },
+      {
+        "segment_id": "S002714",
+        "length_m": 69,
+        "nearby_posts": 40,
+        "shade_pct": 29,
+        "svi_coverage_pct": 72
+      },
+      {
+        "segment_id": "S003254",
+        "length_m": 27,
+        "nearby_posts": 88,
+        "shade_pct": 3,
+        "svi_coverage_pct": 83
+      },
+      {
+        "segment_id": "S001465",
+        "length_m": 23,
+        "nearby_posts": 103,
+        "shade_pct": 0,
+        "svi_coverage_pct": 0
+      },
+      {
+        "segment_id": "S003226",
+        "length_m": 42,
+        "nearby_posts": 56,
+        "shade_pct": 25,
+        "svi_coverage_pct": 89
+      },
+      {
+        "segment_id": "S003210",
+        "length_m": 25,
+        "nearby_posts": 87,
+        "shade_pct": 32,
+        "svi_coverage_pct": 40
+      },
+      {
+        "segment_id": "S003247",
+        "length_m": 25,
+        "nearby_posts": 87,
+        "shade_pct": 0,
+        "svi_coverage_pct": 100
+      },
+      {
+        "segment_id": "S002718",
+        "length_m": 54,
+        "nearby_posts": 40,
+        "shade_pct": 33,
+        "svi_coverage_pct": 64
+      },
+      {
+        "segment_id": "S008674",
+        "length_m": 31,
+        "nearby_posts": 64,
+        "shade_pct": 18,
+        "svi_coverage_pct": 43
+      },
+      {
+        "segment_id": "S000602",
+        "length_m": 24,
+        "nearby_posts": 75,
+        "shade_pct": 0,
+        "svi_coverage_pct": 0
+      },
+      {
+        "segment_id": "S003204",
+        "length_m": 32,
+        "nearby_posts": 56,
+        "shade_pct": 17,
+        "svi_coverage_pct": 100
+      },
+      {
+        "segment_id": "S006656",
+        "length_m": 27,
+        "nearby_posts": 49,
+        "shade_pct": 17,
+        "svi_coverage_pct": 0
+      },
+      {
+        "segment_id": "S002712",
+        "length_m": 33,
+        "nearby_posts": 40,
+        "shade_pct": 29,
+        "svi_coverage_pct": 57
+      }
+    ]
+  },
+  "counts": {
+    "identical_shade_and_model3d": 2,
+    "identical_shade_and_shortest": 0,
+    "identical_model3d_and_shortest": 0,
+    "order_differs_shade_vs_shortest": 42,
+    "end_station_differs_shade_vs_shortest": 49,
+    "shade_route_over_limit": 66,
+    "shortest_with_exposed_100m_plus": 269,
+    "shade_with_exposed_100m_plus": 168
+  },
+  "summary": {
+    "detour_balanced_exposed_m": {
+      "p25": 71.06,
+      "median": 123.74,
+      "p75": 199.9,
+      "mean": 148.82,
+      "n": 300
+    },
+    "detour_balanced_extra_m": {
+      "p25": 111.8,
+      "median": 201.8,
+      "p75": 311.5,
+      "mean": 225.21,
+      "n": 300
+    },
+    "detour_balanced_km": {
+      "p25": 3.79,
+      "median": 4.18,
+      "p75": 4.5,
+      "mean": 4.08,
+      "n": 300
+    },
+    "detour_balanced_shade_pct": {
+      "p25": 62.98,
+      "median": 67.16,
+      "p75": 71.6,
+      "mean": 66.9,
+      "n": 300
+    },
+    "detour_balanced_shade_points": {
+      "p25": 10.66,
+      "median": 16,
+      "p75": 20.13,
+      "mean": 15.66,
+      "n": 300
+    },
+    "detour_ok_exposed_m": {
+      "p25": 62.76,
+      "median": 110.39,
+      "p75": 199.9,
+      "mean": 145.64,
+      "n": 300
+    },
+    "detour_ok_extra_m": {
+      "p25": 197.7,
+      "median": 322,
+      "p75": 472.7,
+      "mean": 354.43,
+      "n": 300
+    },
+    "detour_ok_km": {
+      "p25": 3.89,
+      "median": 4.31,
+      "p75": 4.64,
+      "mean": 4.21,
+      "n": 300
+    },
+    "detour_ok_shade_pct": {
+      "p25": 66,
+      "median": 69.98,
+      "p75": 73.7,
+      "mean": 69.39,
+      "n": 300
+    },
+    "detour_ok_shade_points": {
+      "p25": 13.41,
+      "median": 18.84,
+      "p75": 22.16,
+      "mean": 18.15,
+      "n": 300
+    },
+    "detour_shorter_exposed_m": {
+      "p25": 78.87,
+      "median": 128.44,
+      "p75": 204.58,
+      "mean": 167.79,
+      "n": 300
+    },
+    "detour_shorter_extra_m": {
+      "p25": 26.5,
+      "median": 60.1,
+      "p75": 100.3,
+      "mean": 75.55,
+      "n": 300
+    },
+    "detour_shorter_km": {
+      "p25": 3.58,
+      "median": 4.05,
+      "p75": 4.35,
+      "mean": 3.93,
+      "n": 300
+    },
+    "detour_shorter_shade_pct": {
+      "p25": 56.02,
+      "median": 61.22,
+      "p75": 66.12,
+      "mean": 61.05,
+      "n": 300
+    },
+    "detour_shorter_shade_points": {
+      "p25": 4.43,
+      "median": 9.1,
+      "p75": 14.24,
+      "mean": 9.8,
+      "n": 300
+    },
+    "linkway_vs_shortest_covered_points": {
+      "p25": 14.74,
+      "median": 21.31,
+      "p75": 28.57,
+      "mean": 21.25,
+      "n": 300
+    },
+    "linkway_vs_shortest_extra_m": {
+      "p25": 101.4,
+      "median": 224.4,
+      "p75": 331.7,
+      "mean": 248.5,
+      "n": 300
+    },
+    "linkway_vs_shortest_shade_points": {
+      "p25": 7.63,
+      "median": 12.43,
+      "p75": 17.83,
+      "mean": 12.76,
+      "n": 300
+    },
+    "model3d_km": {
+      "p25": 3.87,
+      "median": 4.29,
+      "p75": 4.66,
+      "mean": 4.21,
+      "n": 300
+    },
+    "model3d_longest_exposed_m": {
+      "p25": 71.07,
+      "median": 130.8,
+      "p75": 214.57,
+      "mean": 158.04,
+      "n": 300
+    },
+    "model3d_mean_vlm_level": {
+      "p25": 1.41,
+      "median": 1.5,
+      "p75": 1.58,
+      "mean": 1.49,
+      "n": 300
+    },
+    "model3d_model3d_pct": {
+      "p25": 61.37,
+      "median": 67.49,
+      "p75": 72.38,
+      "mean": 66.99,
+      "n": 300
+    },
+    "model3d_shade_pct": {
+      "p25": 63.37,
+      "median": 67.62,
+      "p75": 71.17,
+      "mean": 66.99,
+      "n": 300
+    },
+    "model3d_vs_shade_model3d_points": {
+      "p25": 2.85,
+      "median": 6.55,
+      "p75": 10.48,
+      "mean": 7.75,
+      "n": 300
+    },
+    "model3d_vs_shortest_extra_m": {
+      "p25": 211.4,
+      "median": 324.2,
+      "p75": 450.7,
+      "mean": 358.43,
+      "n": 300
+    },
+    "model3d_vs_shortest_model3d_points": {
+      "p25": 20.16,
+      "median": 27.23,
+      "p75": 33.21,
+      "mean": 26.94,
+      "n": 300
+    },
+    "model3d_vs_shortest_shade_points": {
+      "p25": 10.94,
+      "median": 16.06,
+      "p75": 20.36,
+      "mean": 15.75,
+      "n": 300
+    },
+    "model3d_vs_shortest_vlm_level": {
+      "p25": -0.02,
+      "median": 0.06,
+      "p75": 0.15,
+      "mean": 0.07,
+      "n": 300
+    },
+    "overlap_model3d_shortest_pct": {
+      "p25": 16.32,
+      "median": 24.51,
+      "p75": 35.61,
+      "mean": 27.26,
+      "n": 300
+    },
+    "overlap_shade_model3d_pct": {
+      "p25": 39.99,
+      "median": 57.01,
+      "p75": 77.5,
+      "mean": 57.81,
+      "n": 300
+    },
+    "overlap_shade_shortest_pct": {
+      "p25": 21.02,
+      "median": 30.56,
+      "p75": 43.59,
+      "mean": 33.76,
+      "n": 300
+    },
+    "popular_vs_shortest_extra_m": {
+      "p25": 16.8,
+      "median": 41.5,
+      "p75": 77.4,
+      "mean": 55.01,
+      "n": 300
+    },
+    "popular_vs_shortest_posts": {
+      "p25": 0,
+      "median": 15,
+      "p75": 56,
+      "mean": 31.38,
+      "n": 300
+    },
+    "popular_vs_shortest_shade_points": {
+      "p25": -0.02,
+      "median": 1.34,
+      "p75": 4.31,
+      "mean": 1.88,
+      "n": 300
+    },
+    "shade_km": {
+      "p25": 3.79,
+      "median": 4.18,
+      "p75": 4.5,
+      "mean": 4.08,
+      "n": 300
+    },
+    "shade_longest_exposed_m": {
+      "p25": 71.06,
+      "median": 123.74,
+      "p75": 199.9,
+      "mean": 148.82,
+      "n": 300
+    },
+    "shade_mean_vlm_level": {
+      "p25": 1.46,
+      "median": 1.54,
+      "p75": 1.63,
+      "mean": 1.54,
+      "n": 300
+    },
+    "shade_minutes": {
+      "p25": 51,
+      "median": 56,
+      "p75": 60,
+      "mean": 54.4,
+      "n": 300
+    },
+    "shade_model3d_pct": {
+      "p25": 52.18,
+      "median": 60.01,
+      "p75": 67.06,
+      "mean": 59.24,
+      "n": 300
+    },
+    "shade_shade_pct": {
+      "p25": 62.98,
+      "median": 67.16,
+      "p75": 71.6,
+      "mean": 66.9,
+      "n": 300
+    },
+    "shade_svi_coverage_pct": {
+      "p25": 56.57,
+      "median": 63.72,
+      "p75": 69.76,
+      "mean": 63.22,
+      "n": 300
+    },
+    "shade_vs_model3d_shade_points": {
+      "p25": -1.17,
+      "median": 0.02,
+      "p75": 1.45,
+      "mean": -0.09,
+      "n": 300
+    },
+    "shade_vs_shortest_exposed_m": {
+      "p25": -113.78,
+      "median": -48.93,
+      "p75": 0,
+      "mean": -70.36,
+      "n": 300
+    },
+    "shade_vs_shortest_extra_m": {
+      "p25": 111.8,
+      "median": 201.8,
+      "p75": 311.5,
+      "mean": 225.21,
+      "n": 300
+    },
+    "shade_vs_shortest_extra_pct": {
+      "p25": 2.99,
+      "median": 5.17,
+      "p75": 8.03,
+      "mean": 5.85,
+      "n": 300
+    },
+    "shade_vs_shortest_model3d_points": {
+      "p25": 12.07,
+      "median": 19.24,
+      "p75": 25.76,
+      "mean": 19.19,
+      "n": 300
+    },
+    "shade_vs_shortest_posts": {
+      "p25": -1,
+      "median": 3,
+      "p75": 41,
+      "mean": 18.15,
+      "n": 300
+    },
+    "shade_vs_shortest_shade_points": {
+      "p25": 10.66,
+      "median": 16,
+      "p75": 20.13,
+      "mean": 15.66,
+      "n": 300
+    },
+    "shade_vs_shortest_vlm_level": {
+      "p25": 0.02,
+      "median": 0.09,
+      "p75": 0.18,
+      "mean": 0.11,
+      "n": 300
+    },
+    "shortest_km": {
+      "p25": 3.54,
+      "median": 3.96,
+      "p75": 4.25,
+      "mean": 3.86,
+      "n": 300
+    },
+    "shortest_longest_exposed_m": {
+      "p25": 138.51,
+      "median": 199.9,
+      "p75": 264.14,
+      "mean": 219.18,
+      "n": 300
+    },
+    "shortest_mean_vlm_level": {
+      "p25": 1.35,
+      "median": 1.42,
+      "p75": 1.5,
+      "mean": 1.43,
+      "n": 300
+    },
+    "shortest_minutes": {
+      "p25": 47,
+      "median": 53,
+      "p75": 57,
+      "mean": 51.41,
+      "n": 300
+    },
+    "shortest_model3d_pct": {
+      "p25": 32.86,
+      "median": 39.14,
+      "p75": 45.55,
+      "mean": 40.05,
+      "n": 300
+    },
+    "shortest_shade_pct": {
+      "p25": 47.81,
+      "median": 50.88,
+      "p75": 54.94,
+      "mean": 51.24,
+      "n": 300
+    },
+    "shortest_svi_coverage_pct": {
+      "p25": 60.74,
+      "median": 67.29,
+      "p75": 74.29,
+      "mean": 67.41,
+      "n": 300
+    },
+    "time_0900_overlap_model3d_pct": {
+      "p25": 27.49,
+      "median": 40.34,
+      "p75": 62.73,
+      "mean": 45.8,
+      "n": 300
+    },
+    "time_0900_overlap_shade_pct": {
+      "p25": 45.56,
+      "median": 59.46,
+      "p75": 81.86,
+      "mean": 63.24,
+      "n": 300
+    },
+    "time_1700_overlap_model3d_pct": {
+      "p25": 24.88,
+      "median": 36.51,
+      "p75": 48.13,
+      "mean": 38.18,
+      "n": 300
+    },
+    "time_1700_overlap_shade_pct": {
+      "p25": 58.39,
+      "median": 76.39,
+      "p75": 89.82,
+      "mean": 71.74,
+      "n": 300
+    }
+  }
+}
