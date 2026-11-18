@@ -1,6 +1,6 @@
 # ShadeWalk route evaluation
 
-This folder holds the script and results behind Section 5.1, Table 2, Figure 9 and Appendix D of the
+This folder holds the script and results behind Section 5, Tables 4 and 5, Figure 9 and Appendix D of the
 [ShadeWalk final report](https://zhangyihan-1021.github.io/shadewalk-sg/report.html). The script calls the
 website's own routing function, so the routes are the ones a user gets on the
 [live demo](https://zhangyihan-1021.github.io/shadewalk-sg/).
@@ -42,17 +42,20 @@ kept in `window.__routeEval`.
 
 | Report | Result | Value | Field in the JSON file |
 | --- | --- | --- | --- |
-| 5.1, Figure 9 | Median shortest route | 3.96 km, 53 min, 50.9% shade | `summary.shortest_*` |
-| 5.1, Figure 9 | Shade route against shortest | +202 m, +16.0 points | `summary.shade_vs_shortest_*` |
-| 5.1, Figure 9 | Linkway route against shortest | +224 m, +12.4 points | `summary.linkway_vs_shortest_*` |
-| 5.1, Figure 9 | 3D baseline against shortest | +324 m, +16.1 points | `summary.model3d_vs_shortest_*` |
-| 5.1, Figure 9 | Popular route against shortest | +42 m, +1.3 points | `summary.popular_vs_shortest_*` |
-| 5.1 | Routes with 100 m or more exposed in a row | 269 shortest, 168 shade, of 300 | `counts` |
-| 5.1, Table 2 | Shorter and Detours OK settings against shortest | +60 m, +9.1 points and +322 m, +18.8 points | `summary.detour_*` |
-| 5.1 | Length shared by VLM-led and 3D-led routes | 57% | `summary.overlap_shade_model3d_pct` |
-| 5.1 | Share of the 13:00 route kept at 9:00 and 17:00 | 59% and 76% VLM-led, 40% and 37% 3D-led | `summary.time_*` |
-| 5.1 | Shade routes over 60 minutes | 66 of 300 | `counts.shade_route_over_limit` |
-| 5.4 | Busiest streets, and those with low shade at 13:00 | 11.0 km, 1.5 km | `planning_view` |
+| 4.2, Table 4 | City Hall worked example, five routes | Shortest 2.91 km, 55.4%; Shade 3.09 km, 75.4% | `demo.opening_stops` |
+| 5.2, Figure 9 | Median shortest route | 3.96 km, 53 min, 50.9% shade | `summary.shortest_*` |
+| 5.2, Table 5, Figure 9 | Shade route against shortest, median [IQR] | +202 m [112–312], +16.0 pp [10.7–20.1] | `summary.shade_vs_shortest_*` |
+| 5.2, Table 5, Figure 9 | Linkway route against shortest | +224 m, +12.4 pp | `summary.linkway_vs_shortest_*` |
+| 5.2, Table 5, Figure 9 | 3D baseline against shortest | +324 m, +16.1 pp | `summary.model3d_vs_shortest_*` |
+| 5.2, Table 5, Figure 9 | Popular route against shortest | +42 m, +1.3 pp | `summary.popular_vs_shortest_*` |
+| 5.2 | Routes with 100 m or more exposed in a row | 269 shortest, 168 shade, of 300 | `counts` |
+| 5.2 | Median longest exposed run | 200 m shortest, 124 m shade | `summary.*_longest_exposed_m` |
+| 5.2, Table 5, Figure 9 | Shorter and Detours OK settings against shortest | +60 m, +9.1 pp and +322 m, +18.8 pp | `summary.detour_*` |
+| 5.2 | Length shared by Shade and 3D-baseline routes | 57% | `summary.overlap_shade_model3d_pct` |
+| 5.2 | Share of the 13:00 route kept at 09:00 and 17:00 | 59% and 76% Shade, 40% and 37% 3D baseline | `summary.time_*` |
+| 5.2 | Gains measured with the 3D model alone | 27.2 pp 3D baseline, 19.2 pp Shade | `summary.*_vs_shortest_model3d_points` |
+| 5.2 | Shade routes over 60 minutes | 66 of 300 | `counts.shade_route_over_limit` |
+| 5.5 | Busiest streets, and those with low shade at 13:00 | 11.0 km, 1.5 km | `planning_view` |
 
 ## Checks
 
@@ -63,7 +66,7 @@ worked example (Section 4.2) also match `demo.opening_stops`.
 A first version of this script ran on 9 Nov 2026 against an earlier build of the site in which routes could
 end only at the 10 stations inside the study area. Its results were used in the group presentation, so
 the presentation numbers differ slightly from the report (for example +187 m and +14.5 points for the shade
-route).
+route). Table D1 of the report lists both runs side by side.
 
 ## Data
 
