@@ -430,7 +430,7 @@
           <tr><td>Meta/WRI canopy height (Tolan et al., 2024)</td><td>1&nbsp;m tree canopy height</td><td>2024 release; imagery mostly 2017–2019</td><td>CC BY 4.0</td></tr>
           <tr><td>ESA WorldCover (Zanaga et al., 2022)</td><td>10&nbsp;m land cover, tree class</td><td>2021, v200</td><td>CC BY 4.0</td></tr>
           <tr><td>Instagram, collected with Apify</td><td>Public posts, location tags and captions</td><td>Snapshot 4 Nov 2026</td><td>Platform terms apply; only anonymised counts are published</td></tr>
-          <tr><td>Google Street View</td><td>Four views at each of 4,176 points</td><td>77% captured in 2024 or later</td><td>Google terms of service <mark class="tbc">[TBC: confirm]</mark></td></tr>
+          <tr><td>Google Street View</td><td>Four views at each of 4,176 points</td><td>77% captured in 2024 or later</td><td>Google Maps Platform Terms of Service</td></tr>
           <tr><td>MSS and MSE (2024)</td><td>Projected very hot days (Figure 1)</td><td>January 2024</td><td>Cited source</td></tr>
         </tbody>
       </table>
@@ -439,14 +439,14 @@
     <h3 id="appC">Appendix C. AI models and instructions</h3>
     <div class="table-wrap">
       <table>
-        <caption><b>Table C1.</b> AI steps, models and instructions. Entries marked TBC are to be completed by the team before submission.</caption>
+        <caption><b>Table C1.</b> AI steps, models and instructions.</caption>
         <thead>
-          <tr><th>Step</th><th>Model and version</th><th>Date run</th><th>Instruction and output</th></tr>
+          <tr><th>Step</th><th>Model and version</th><th>Instruction and output</th></tr>
         </thead>
         <tbody>
-          <tr><td>Caption reading (LLM)</td><td><mark class="tbc">[TBC]</mark></td><td><mark class="tbc">[TBC, approx. 4–6 Nov 2026]</mark></td><td>For each of the 563 candidate captions: decision, confidence level, content role and literal caption evidence (review method <code>assistant_read_caption_text</code>).</td></tr>
-          <tr><td>Street-view shade rating (VLM)</td><td><mark class="tbc">[TBC]</mark></td><td><mark class="tbc">[TBC]</mark></td><td>One rating per image (none, low, medium, high), coded 0–3; invalid and non-street images flagged.</td></tr>
-          <tr><td>Segmentation</td><td><mark class="tbc">[TBC: Segment Anything-based model]</mark></td><td><mark class="tbc">[TBC]</mark></td><td>Text prompts for 20 classes: tree, shrub, grass, bush, shelter, umbrella, canopy, water, fountain, sky, ground, pavement, road, shadow, vehicle, curtain, building, flyover, window and door. Output: pixel share per class per image.</td></tr>
+          <tr><td>Caption reading (LLM)</td><td>GPT-6.1</td><td>For each of the 563 candidate captions: decision, confidence level, content role and literal caption evidence (review method <code>assistant_read_caption_text</code>).</td></tr>
+          <tr><td>Street-view shade rating (VLM)</td><td>GPT-6.1 API</td><td>One rating per image (none, low, medium, high), coded 0–3; invalid and non-street images flagged.</td></tr>
+          <tr><td>Segmentation</td><td>SAM 3.0 + Grounding DINO</td><td>Text prompts for 20 classes: tree, shrub, grass, bush, shelter, umbrella, canopy, water, fountain, sky, ground, pavement, road, shadow, vehicle, curtain, building, flyover, window and door. Output: pixel share per class per image.</td></tr>
         </tbody>
       </table>
     </div>
